@@ -1,0 +1,9 @@
+# conda env it has cuda enabled
+conda activate gmapadconda
+
+# run
+#PC-3
+cd datasets/
+python dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
+cd..
+python main.py --data PC-3 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50

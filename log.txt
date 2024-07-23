@@ -1,0 +1,1080 @@
+
+(gmapadconda) F:\workspace\RQGNN>python main.py --data MCF-7 --lr 5e-3 --batchsize 512 --nepoch 3 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+Model info:
+{
+        "data": "MCF-7",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 3,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+Epoch: 0, loss: 0.3503787564603906, time cost: 32.00072526931763
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Val auc: 0.47836390692805364, f1: 0.47846230904082143
+Epoch: 1, loss: 0.2376369908452034, time cost: 33.82896280288696
+Val auc: 0.6071298150368526, f1: 0.48931811530582386
+Epoch: 2, loss: 0.21826649731711337, time cost: 32.846962451934814
+Val auc: 0.6643183630244122, f1: 0.48395342617676246
+Under the condition of auc, best idx: 2
+Test auc: 0.6861867600998036, f1: 0.48404594904093906
+Under the condition of f1, best idx: 1
+Test auc: 0.6364044168391996, f1: 0.4992727483208221
+
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>python main.py --data P388 --lr 5e-3 --batchsize 512 --nepoch 3 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+Model info:
+{
+        "data": "P388",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 3,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\main.py", line 55, in <module>
+    adjs, features, graphlabels, train_index, val_index, test_index = utils.load_data(data)
+                                                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "F:\workspace\RQGNN\utils.py", line 36, in load_data
+    graphlabels = np.loadtxt(graphlabel_path, dtype=np.int64)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
+    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
+    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
+    raise FileNotFoundError(f"{path} not found.")
+FileNotFoundError: datasets\P388\P388_graph_newlabel.txt not found.
+
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>python datasets/dataset.py --data P388 --trainsz 0.7 --testsz 0.15
+Generator info:
+{
+        "seed": 2023,
+        "data": "P388",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
+    datautils.gen_nodeattr(data)
+  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
+    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
+    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
+    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
+    raise FileNotFoundError(f"{path} not found.")
+FileNotFoundError: P388\P388_node_labels.txt not found.
+
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>python datasets/dataset.py --data P388 --trainsz 0.7 --testsz 0.15
+Generator info:
+{
+        "seed": 2023,
+        "data": "P388",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
+    datautils.gen_nodeattr(data)
+  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
+    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
+    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
+    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
+    raise FileNotFoundError(f"{path} not found.")
+FileNotFoundError: P388\P388_node_labels.txt not found.
+
+(gmapadconda) F:\workspace\RQGNN>python datasets/dataset.py --data P388 --trainsz 0.7 --testsz 0.15
+Generator info:
+{
+        "seed": 2023,
+        "data": "P388",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
+    datautils.gen_nodeattr(data)
+  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
+    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
+    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
+    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
+    raise FileNotFoundError(f"{path} not found.")
+FileNotFoundError: P388\P388_node_labels.txt not found.
+
+(gmapadconda) F:\workspace\RQGNN>cd datasets
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python dataset.py --data P388 --trainsz 0.7 --testsz 0.15
+Generator info:
+{
+        "seed": 2023,
+        "data": "P388",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 29029, normal size: 27421, abnormal size: 1608
+Val size: 6221, normal size: 5876, abnormal size: 345
+Test size: 6222, normal size: 5877, abnormal size: 345
+Total size: 41472, generate size: 41472
+Generate successfully, time cost: 11.081099510192871
+
+(gmapadconda) F:\workspace\RQGNN\datasets>cd ..
+
+(gmapadconda) F:\workspace\RQGNN>python main.py --data P388 --lr 5e-3 --batchsize 512 --nepoch 3 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+
+(gmapadconda) F:\workspace\RQGNN>python main.py --data P388 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+Model info:
+{
+        "data": "P388",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+Epoch: 0, loss: 0.2667046508245301, time cost: 50.40495014190674
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Val auc: 0.6704494332139581, f1: 0.48574026618169797
+Epoch: 1, loss: 0.16516085622603432, time cost: 51.2759428024292
+Val auc: 0.7823243160584445, f1: 0.49401370579728887
+Epoch: 2, loss: 0.15857173711584324, time cost: 52.5640082359314
+Val auc: 0.6874892710213988, f1: 0.48565522943365025
+Epoch: 3, loss: 0.15750092660125933, time cost: 53.80033326148987
+Val auc: 0.794705310721086, f1: 0.49661752267337544
+Epoch: 4, loss: 0.15481292404103697, time cost: 53.397799015045166
+Val auc: 0.7884218289085545, f1: 0.5101825341191666
+Epoch: 5, loss: 0.15296135921227305, time cost: 54.72384428977966
+Val auc: 0.8002256785154054, f1: 0.5018237995692026
+Epoch: 6, loss: 0.1506140093531525, time cost: 51.79294300079346
+Val auc: 0.7902094987223883, f1: 0.49335621542590297
+Epoch: 7, loss: 0.1507113077922871, time cost: 50.67089056968689
+Val auc: 0.7929432917986207, f1: 0.503801098587505
+Epoch: 8, loss: 0.15105039090440983, time cost: 51.60430192947388
+Val auc: 0.8086307850159332, f1: 0.5098536746984301
+Epoch: 9, loss: 0.14893322150435365, time cost: 51.0626323223114
+Val auc: 0.7998981363640848, f1: 0.5024433250301891
+Under the condition of auc, best idx: 8
+Test auc: 0.7934815899860177, f1: 0.5202081365481813
+Under the condition of f1, best idx: 4
+Test auc: 0.7793237208178284, f1: 0.5428038857522418
+
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>cd datasets/
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasets/dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
+python: can't open file 'F:\\workspace\\RQGNN\\datasets\\datasets\\dataset.py': [Errno 2] No such file or directory
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasets/dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
+python: can't open file 'F:\\workspace\\RQGNN\\datasets\\datasets\\dataset.py': [Errno 2] No such file or directory
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
+Generator info:
+{
+        "seed": 2023,
+        "data": "PC-3",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 19255, normal size: 18158, abnormal size: 1097
+Val size: 4126, normal size: 3891, abnormal size: 235
+Test size: 4128, normal size: 3892, abnormal size: 236
+Total size: 27509, generate size: 27509
+Generate successfully, time cost: 5.928061008453369
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python main.py --data PC-3 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+python: can't open file 'F:\\workspace\\RQGNN\\datasets\\main.py': [Errno 2] No such file or directory
+
+(gmapadconda) F:\workspace\RQGNN\datasets>cd..
+
+(gmapadconda) F:\workspace\RQGNN>python main.py --data PC-3 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+Model info:
+{
+        "data": "PC-3",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+Epoch: 0, loss: 0.29451985774855866, time cost: 33.251962661743164
+Val auc: 0.7038036494474429, f1: 0.5921046055220115
+Epoch: 1, loss: 0.19088479170673772, time cost: 33.357481718063354
+Val auc: 0.71161162967459, f1: 0.5223984257437203
+Epoch: 2, loss: 0.18245343667896172, time cost: 33.05065369606018
+Val auc: 0.6834544529929953, f1: 0.48964147975235967
+Epoch: 3, loss: 0.1729666182869359, time cost: 32.558963775634766
+Val auc: 0.7050449209031207, f1: 0.5047162698412698
+Epoch: 4, loss: 0.16617323889544136, time cost: 33.960963010787964
+Val auc: 0.7406442581625902, f1: 0.505148420747842
+Epoch: 5, loss: 0.16554643801952662, time cost: 32.66196393966675
+Val auc: 0.7364037030353736, f1: 0.5932038883370987
+Epoch: 6, loss: 0.16133026974765877, time cost: 32.82896375656128
+Val auc: 0.7641053823061402, f1: 0.6006007686571792
+Epoch: 7, loss: 0.15891382313872637, time cost: 32.50896406173706
+Val auc: 0.776722605904515, f1: 0.5385242160442091
+Epoch: 8, loss: 0.15704598630729474, time cost: 32.410964488983154
+Val auc: 0.7548237339851376, f1: 0.5245226763958053
+Epoch: 9, loss: 0.1552739047298306, time cost: 32.24696445465088
+Val auc: 0.7553082126237853, f1: 0.5366927438588677
+Under the condition of auc, best idx: 7
+Test auc: 0.7622426272057415, f1: 0.5678327880829428
+Under the condition of f1, best idx: 6
+Test auc: 0.7391563746581427, f1: 0.6173429402098344
+
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>python main.py --data PC-3 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+(gmapadconda) F:\workspace\RQGNN>cd datasets
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 50
+    python dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
+           ^^^^^^^
+SyntaxError: invalid syntax
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 3, in <module>
+    from utils import get_repo_root, log_data
+ModuleNotFoundError: No module named 'utils'
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 70, in <module>
+    run_experiments()
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 41, in run_experiments
+    if experiment_counter > 0:
+       ^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'experiment_counter' where it is not associated with a value
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
+[Experiment 1 - Dataset: MOLT-4]
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 71, in <module>
+    run_experiments()
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 57, in run_experiments
+    log_data(f"Running command: {' '.join(command)}")
+                                 ^^^^^^^^^^^^^^^^^
+TypeError: sequence item 5: expected str instance, float found
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
+[Experiment 1 - Dataset: MOLT-4]
+Running command: for dataset MOLT-4
+Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 71, in <module>
+    run_experiments()
+  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 60, in run_experiments
+    result = subprocess.run(command, capture_output=True, text=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 1462, in _execute_child
+    args = list2cmdline(args)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 608, in list2cmdline
+    for arg in map(os.fsdecode, seq):
+  File "<frozen os>", line 830, in fsdecode
+TypeError: expected str, bytes or os.PathLike object, not float
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
+[Experiment 1 - Dataset: MOLT-4]
+Running command: for dataset MOLT-4
+Generator info:
+{
+        "seed": 2023,
+        "data": "MOLT-4",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 27835, normal size: 25637, abnormal size: 2198
+Val size: 5965, normal size: 5494, abnormal size: 471
+Test size: 5965, normal size: 5494, abnormal size: 471
+Total size: 39765, generate size: 39765
+Generate successfully, time cost: 11.381628513336182
+
+[End of [Experiment 1 - Dataset: MOLT-4]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 2 - Dataset: SW-620]
+Running command: for dataset SW-620
+Generator info:
+{
+        "seed": 2023,
+        "data": "SW-620",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 28372, normal size: 26685, abnormal size: 1687
+Val size: 6079, normal size: 5718, abnormal size: 361
+Test size: 6081, normal size: 5719, abnormal size: 362
+Total size: 40532, generate size: 40532
+Generate successfully, time cost: 11.8224458694458
+
+[End of [Experiment 2 - Dataset: SW-620]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 3 - Dataset: NC1-H23]
+Running command: for dataset NC1-H23
+Generator info:
+{
+        "seed": 2023,
+        "data": "NC1-H23",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+
+Error: Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
+    datautils.gen_nodeattr(data)
+  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
+    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
+    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
+    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
+    raise FileNotFoundError(f"{path} not found.")
+FileNotFoundError: NC1-H23\NC1-H23_node_labels.txt not found.
+
+[End of [Experiment 3 - Dataset: NC1-H23]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 4 - Dataset: OVCAR-8]
+Running command: for dataset OVCAR-8
+Generator info:
+{
+        "seed": 2023,
+        "data": "OVCAR-8",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 28360, normal size: 26905, abnormal size: 1455
+Val size: 6078, normal size: 5766, abnormal size: 312
+Test size: 6078, normal size: 5766, abnormal size: 312
+Total size: 40516, generate size: 40516
+Generate successfully, time cost: 11.68390703201294
+
+[End of [Experiment 4 - Dataset: OVCAR-8]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 5 - Dataset: P388]
+Running command: for dataset P388
+Generator info:
+{
+        "seed": 2023,
+        "data": "P388",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 29029, normal size: 27421, abnormal size: 1608
+Val size: 6221, normal size: 5876, abnormal size: 345
+Test size: 6222, normal size: 5877, abnormal size: 345
+Total size: 41472, generate size: 41472
+Generate successfully, time cost: 0.16499590873718262
+
+[End of [Experiment 5 - Dataset: P388]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 6 - Dataset: SF-295]
+Running command: for dataset SF-295
+Generator info:
+{
+        "seed": 2023,
+        "data": "SF-295",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 28189, normal size: 26772, abnormal size: 1417
+Val size: 6041, normal size: 5737, abnormal size: 304
+Test size: 6041, normal size: 5737, abnormal size: 304
+Total size: 40271, generate size: 40271
+Generate successfully, time cost: 11.730144262313843
+
+[End of [Experiment 6 - Dataset: SF-295]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 7 - Dataset: SN12C]
+Running command: for dataset SN12C
+Generator info:
+{
+        "seed": 2023,
+        "data": "SN12C",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 28002, normal size: 26634, abnormal size: 1368
+Val size: 6000, normal size: 5707, abnormal size: 293
+Test size: 6002, normal size: 5708, abnormal size: 294
+Total size: 40004, generate size: 40004
+Generate successfully, time cost: 11.686315774917603
+
+[End of [Experiment 7 - Dataset: SN12C]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 8 - Dataset: UACC257]
+Running command: for dataset UACC257
+Generator info:
+{
+        "seed": 2023,
+        "data": "UACC257",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 27991, normal size: 26841, abnormal size: 1150
+Val size: 5998, normal size: 5752, abnormal size: 246
+Test size: 5999, normal size: 5752, abnormal size: 247
+Total size: 39988, generate size: 39988
+Generate successfully, time cost: 11.592099666595459
+
+[End of [Experiment 8 - Dataset: UACC257]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 9 - Dataset: NC1]
+Running command: for dataset NC1
+Generator info:
+{
+        "seed": 2023,
+        "data": "NC1",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+
+Error: Traceback (most recent call last):
+  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
+    datautils.gen_nodeattr(data)
+  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
+    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
+    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
+    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
+    raise FileNotFoundError(f"{path} not found.")
+FileNotFoundError: NC1\NC1_node_labels.txt not found.
+
+[End of [Experiment 9 - Dataset: NC1]]
+
+(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
+[Experiment 1 - Dataset: NCI-H23]
+Running command: for dataset NCI-H23
+Generator info:
+{
+        "seed": 2023,
+        "data": "NCI-H23",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 28246, normal size: 26807, abnormal size: 1439
+Val size: 6053, normal size: 5744, abnormal size: 309
+Test size: 6054, normal size: 5745, abnormal size: 309
+Total size: 40353, generate size: 40353
+Generate successfully, time cost: 11.760912656784058
+
+[End of [Experiment 1 - Dataset: NCI-H23]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 2 - Dataset: NCI1]
+Running command: for dataset NCI1
+Generator info:
+{
+        "seed": 2023,
+        "data": "NCI1",
+        "trainsz": 0.7,
+        "testsz": 0.15
+}
+Train size: 2876, normal size: 1437, abnormal size: 1439
+Val size: 617, normal size: 308, abnormal size: 309
+Test size: 617, normal size: 308, abnormal size: 309
+Total size: 4110, generate size: 4110
+Generate successfully, time cost: 0.8689985275268555
+
+[End of [Experiment 2 - Dataset: NCI1]]
+
+(gmapadconda) F:\workspace\RQGNN\datasets>cd ..
+
+(gmapadconda) F:\workspace\RQGNN>python evaluate.py
+[Experiment 1 - Dataset: MOLT-4]
+Running command: for dataset MOLT-4
+Model info:
+{
+        "data": "MOLT-4",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.31067015474492854, time cost: 52.25452136993408
+Val auc: 0.6458365698306665, f1: 0.4794484684527446
+Epoch: 1, loss: 0.21821206997741352, time cost: 55.91393852233887
+Val auc: 0.6795798079665367, f1: 0.5325824769648166
+Epoch: 2, loss: 0.21362640234557065, time cost: 53.72094106674194
+Val auc: 0.6780239705619795, f1: 0.5010006236542577
+Epoch: 3, loss: 0.21037229787219655, time cost: 53.97896599769592
+Val auc: 0.6850752838263244, f1: 0.4811103282096784
+Epoch: 4, loss: 0.2084075545722788, time cost: 53.057979345321655
+Val auc: 0.6869936089321916, f1: 0.4800166843095252
+Epoch: 5, loss: 0.2080459638075395, time cost: 52.5619421005249
+Val auc: 0.6958981309082983, f1: 0.5097000756373886
+Epoch: 6, loss: 0.20691605427048423, time cost: 52.010942459106445
+Val auc: 0.6964036041634303, f1: 0.4813096541211854
+Epoch: 7, loss: 0.20897698700428008, time cost: 53.76545190811157
+Val auc: 0.6951766335326628, f1: 0.4874711725775217
+Epoch: 8, loss: 0.20574052171273666, time cost: 51.63794279098511
+Val auc: 0.6937137367380899, f1: 0.5094894575747398
+Epoch: 9, loss: 0.2045494009147991, time cost: 51.56894373893738
+Val auc: 0.6910418391188381, f1: 0.4964280178474552
+Under the condition of auc, best idx: 6
+Test auc: 0.6829799657916723, f1: 0.4813096541211854
+Under the condition of f1, best idx: 1
+Test auc: 0.6732318290480175, f1: 0.5282434491214427
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+
+[End of [Experiment 1 - Dataset: MOLT-4]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 2 - Dataset: SW-620]
+Running command: for dataset SW-620
+Model info:
+{
+        "data": "SW-620",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.2755239773541689, time cost: 53.455801486968994
+Val auc: 0.7205960862281623, f1: 0.5412270233810829
+Epoch: 1, loss: 0.18545205944350787, time cost: 54.63096046447754
+Val auc: 0.7310907190104825, f1: 0.5221809605542118
+Epoch: 2, loss: 0.1769850898001875, time cost: 54.71100974082947
+Val auc: 0.7388612914071226, f1: 0.49011509145776333
+Epoch: 3, loss: 0.1745022926479578, time cost: 54.73796224594116
+Val auc: 0.7336127638918359, f1: 0.4927343734375506
+Epoch: 4, loss: 0.17034938213016307, time cost: 55.547115087509155
+Val auc: 0.7294382612520698, f1: 0.5056000929476008
+Epoch: 5, loss: 0.1692374904773065, time cost: 58.06714153289795
+Val auc: 0.7785643625272382, f1: 0.6324001779149333
+Epoch: 6, loss: 0.16445515916815825, time cost: 54.06919026374817
+Val auc: 0.7545012639291385, f1: 0.5471945860594725
+Epoch: 7, loss: 0.16006261269961083, time cost: 54.031317472457886
+Val auc: 0.7907114530679711, f1: 0.559624109424725
+Epoch: 8, loss: 0.1551071942916938, time cost: 54.29503154754639
+Val auc: 0.8003558767133772, f1: 0.6270576138951297
+Epoch: 9, loss: 0.15409380184220417, time cost: 54.55644631385803
+Val auc: 0.78543410079847, f1: 0.5527866133696206
+Under the condition of auc, best idx: 8
+Test auc: 0.7601793092521875, f1: 0.6074099326040655
+Under the condition of f1, best idx: 5
+Test auc: 0.752852756972735, f1: 0.6111518546812664
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+
+[End of [Experiment 2 - Dataset: SW-620]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 3 - Dataset: NCI-H23]
+Running command: for dataset NCI-H23
+Model info:
+{
+        "data": "NCI-H23",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.256638927385211, time cost: 54.901939868927
+Val auc: 0.7028355464207481, f1: 0.5620968863908289
+Epoch: 1, loss: 0.17501297859208925, time cost: 54.41394019126892
+Val auc: 0.6793640303431863, f1: 0.5448202743194488
+Epoch: 2, loss: 0.16112922744027205, time cost: 56.927937269210815
+Val auc: 0.7029479473726912, f1: 0.568629623352583
+Epoch: 3, loss: 0.15447664141122783, time cost: 56.78393745422363
+Val auc: 0.7040646325193138, f1: 0.5788210910393222
+Epoch: 4, loss: 0.15092950074800424, time cost: 55.64650535583496
+Val auc: 0.7298244516861833, f1: 0.5235251958056414
+Epoch: 5, loss: 0.14588392632348196, time cost: 57.70093607902527
+Val auc: 0.7571705609793477, f1: 0.5202558876811595
+Epoch: 6, loss: 0.1427788252809218, time cost: 55.61993908882141
+Val auc: 0.7804327690185792, f1: 0.5445830564999817
+Epoch: 7, loss: 0.14174324606678315, time cost: 56.42589497566223
+Val auc: 0.7870554105705349, f1: 0.5086705628855633
+Epoch: 8, loss: 0.1375969714884247, time cost: 53.60396885871887
+Val auc: 0.7950401037581919, f1: 0.5689348451420113
+Epoch: 9, loss: 0.13685532938688993, time cost: 54.91280746459961
+Val auc: 0.7881923785957036, f1: 0.585519829543377
+Under the condition of auc, best idx: 8
+Test auc: 0.7939753436927003, f1: 0.5703944514398794
+Under the condition of f1, best idx: 9
+Test auc: 0.785504209373002, f1: 0.5699475023242608
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+
+[End of [Experiment 3 - Dataset: NCI-H23]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 4 - Dataset: OVCAR-8]
+Running command: for dataset OVCAR-8
+Model info:
+{
+        "data": "OVCAR-8",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.25962307171097826, time cost: 53.351393938064575
+Val auc: 0.6891309133114544, f1: 0.5488663967611336
+Epoch: 1, loss: 0.16246909648180008, time cost: 56.49893927574158
+Val auc: 0.7200768541494348, f1: 0.5126032450348827
+Epoch: 2, loss: 0.15636283212474414, time cost: 53.78146457672119
+Val auc: 0.6931323207662958, f1: 0.5010031375823719
+Epoch: 3, loss: 0.15510763028370483, time cost: 54.137516021728516
+Val auc: 0.6736219505145103, f1: 0.4866554054054054
+Epoch: 4, loss: 0.15235233173838683, time cost: 53.694523096084595
+Val auc: 0.7084497874365199, f1: 0.5041515591007977
+Epoch: 5, loss: 0.1519804181797164, time cost: 54.01789712905884
+Val auc: 0.7179412137463645, f1: 0.5118884917297449
+Epoch: 6, loss: 0.15155095194599458, time cost: 53.670989990234375
+Val auc: 0.7112977711963144, f1: 0.5010907662557409
+Epoch: 7, loss: 0.15199026026363885, time cost: 53.654948711395264
+Val auc: 0.7142291349822566, f1: 0.4929008955728286
+Epoch: 8, loss: 0.15111680209104503, time cost: 53.17725896835327
+Val auc: 0.7220587973709721, f1: 0.5062774937144077
+Epoch: 9, loss: 0.1507157517064895, time cost: 53.499969244003296
+Val auc: 0.7161966256659285, f1: 0.49850714142951585
+Under the condition of auc, best idx: 8
+Test auc: 0.7187794609425723, f1: 0.5072123519458545
+Under the condition of f1, best idx: 0
+Test auc: 0.6670527161877318, f1: 0.5686810930236846
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+
+[End of [Experiment 4 - Dataset: OVCAR-8]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 5 - Dataset: P388]
+Running command: for dataset P388
+Model info:
+{
+        "data": "P388",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.2667046508245301, time cost: 52.21794152259827
+Val auc: 0.6704494332139581, f1: 0.48574026618169797
+Epoch: 1, loss: 0.16516085622603432, time cost: 53.406943798065186
+Val auc: 0.7823243160584445, f1: 0.49401370579728887
+Epoch: 2, loss: 0.15857173711584324, time cost: 52.4992835521698
+Val auc: 0.6874892710213988, f1: 0.48565522943365025
+Epoch: 3, loss: 0.15750092660125933, time cost: 52.17007923126221
+Val auc: 0.794705310721086, f1: 0.49661752267337544
+Epoch: 4, loss: 0.15481292404103697, time cost: 55.26293897628784
+Val auc: 0.7884218289085545, f1: 0.5101825341191666
+Epoch: 5, loss: 0.15296135921227305, time cost: 53.35527443885803
+Val auc: 0.8002256785154054, f1: 0.5018237995692026
+Epoch: 6, loss: 0.1506140093531525, time cost: 52.570621490478516
+Val auc: 0.7902094987223883, f1: 0.49335621542590297
+Epoch: 7, loss: 0.1507113077922871, time cost: 50.598493337631226
+Val auc: 0.7929432917986207, f1: 0.503801098587505
+Epoch: 8, loss: 0.15105039090440983, time cost: 49.48142695426941
+Val auc: 0.8086307850159332, f1: 0.5098536746984301
+Epoch: 9, loss: 0.14893322150435365, time cost: 53.197521686553955
+Val auc: 0.7998981363640848, f1: 0.5024433250301891
+Under the condition of auc, best idx: 8
+Test auc: 0.7934815899860177, f1: 0.5202081365481813
+Under the condition of f1, best idx: 4
+Test auc: 0.7793237208178284, f1: 0.5428038857522418
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+
+[End of [Experiment 5 - Dataset: P388]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 6 - Dataset: SF-295]
+Running command: for dataset SF-295
+Model info:
+{
+        "data": "SF-295",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.2608192791896207, time cost: 52.48989677429199
+Val auc: 0.6394012664789043, f1: 0.4870945831210732
+Epoch: 1, loss: 0.16281955702496426, time cost: 53.92698073387146
+Val auc: 0.7223029412034532, f1: 0.5291364476546088
+Epoch: 2, loss: 0.15445077838376164, time cost: 56.79849624633789
+Val auc: 0.7006361063456968, f1: 0.4869203329369798
+Epoch: 3, loss: 0.1530687495001725, time cost: 54.61593985557556
+Val auc: 0.7362409176811647, f1: 0.5046522062008787
+Epoch: 4, loss: 0.15144946306411708, time cost: 55.96046829223633
+Val auc: 0.7367176820821446, f1: 0.4931342832592089
+Epoch: 5, loss: 0.14901266725999968, time cost: 56.67544460296631
+Val auc: 0.7185754061814812, f1: 0.48705103167190283
+Epoch: 6, loss: 0.15028777226273501, time cost: 53.968615770339966
+Val auc: 0.7351492046090474, f1: 0.4931342832592089
+Epoch: 7, loss: 0.1499872069273676, time cost: 55.336467027664185
+Val auc: 0.74207389934222, f1: 0.5173163563752602
+Epoch: 8, loss: 0.1520803247445396, time cost: 56.082937717437744
+Val auc: 0.7419838788840675, f1: 0.516919285345419
+Epoch: 9, loss: 0.15178802609443665, time cost: 55.68893837928772
+Val auc: 0.7370232929368916, f1: 0.49019793796182753
+Under the condition of auc, best idx: 7
+Test auc: 0.7482626624955276, f1: 0.5346784721039787
+Under the condition of f1, best idx: 1
+Test auc: 0.7142538508114455, f1: 0.5413882244151488
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+
+[End of [Experiment 6 - Dataset: SF-295]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 7 - Dataset: SN12C]
+Running command: for dataset SN12C
+Model info:
+{
+        "data": "SN12C",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.2555171990936453, time cost: 54.87879037857056
+Val auc: 0.5655730254026101, f1: 0.48748611941573416
+Epoch: 1, loss: 0.1693963724103841, time cost: 54.66080832481384
+Val auc: 0.7215107965727977, f1: 0.48748611941573416
+Epoch: 2, loss: 0.15576834285801108, time cost: 52.711941719055176
+Val auc: 0.7187090161115831, f1: 0.5199924192977545
+Epoch: 3, loss: 0.15176408304409547, time cost: 52.89394164085388
+Val auc: 0.731780802092634, f1: 0.5307119841576851
+Epoch: 4, loss: 0.14700893773273987, time cost: 54.903377294540405
+Val auc: 0.752012527576756, f1: 0.5253153021551712
+Epoch: 5, loss: 0.14074355296113275, time cost: 57.47893667221069
+Val auc: 0.7810855598567356, f1: 0.5891870247318856
+Epoch: 6, loss: 0.13871580308133905, time cost: 53.508827686309814
+Val auc: 0.7953435425389213, f1: 0.5168191370723016
+Epoch: 7, loss: 0.13573657301339237, time cost: 51.56690073013306
+Val auc: 0.8083899121550625, f1: 0.5500378159707854
+Epoch: 8, loss: 0.1332338186827573, time cost: 54.38587164878845
+Val auc: 0.8093593222143215, f1: 0.5850800132755253
+Epoch: 9, loss: 0.130335501649163, time cost: 51.95247030258179
+Val auc: 0.7975278548408605, f1: 0.6517445662478573
+Under the condition of auc, best idx: 8
+Test auc: 0.8210007198394424, f1: 0.5811045909689252
+Under the condition of f1, best idx: 9
+Test auc: 0.8133840081232213, f1: 0.645420795048341
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+
+[End of [Experiment 7 - Dataset: SN12C]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 8 - Dataset: UACC257]
+Running command: for dataset UACC257
+Model info:
+{
+        "data": "UACC257",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.246560722860423, time cost: 52.62018013000488
+Val auc: 0.6311862540565601, f1: 0.504648419065597
+Epoch: 1, loss: 0.1509735879572955, time cost: 52.40834903717041
+Val auc: 0.7237945514886304, f1: 0.564193382228017
+Epoch: 2, loss: 0.13971779644489288, time cost: 54.538939476013184
+Val auc: 0.6937378444542442, f1: 0.4955028296870952
+Epoch: 3, loss: 0.1385333011096174, time cost: 54.07667326927185
+Val auc: 0.7263224809751575, f1: 0.4930885327938671
+Epoch: 4, loss: 0.13366521271792325, time cost: 52.747941732406616
+Val auc: 0.6167798121826837, f1: 0.49314735859423403
+Epoch: 5, loss: 0.13607835444537075, time cost: 54.36074113845825
+Val auc: 0.7372038145798704, f1: 0.5198719945912537
+Epoch: 6, loss: 0.13284644227136266, time cost: 56.59614610671997
+Val auc: 0.7380405684272421, f1: 0.5042411844321152
+Epoch: 7, loss: 0.13269294540990484, time cost: 53.63899850845337
+Val auc: 0.756770002939946, f1: 0.5360483458606319
+Epoch: 8, loss: 0.1276387802579186, time cost: 52.44117832183838
+Val auc: 0.7880804273098364, f1: 0.558419611800697
+Epoch: 9, loss: 0.12282770533453334, time cost: 52.20750427246094
+Val auc: 0.8044303430690773, f1: 0.5301659496781448
+Under the condition of auc, best idx: 9
+Test auc: 0.7803545184776427, f1: 0.5119892464787641
+Under the condition of f1, best idx: 1
+Test auc: 0.6812029471882337, f1: 0.568023814279057
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+
+[End of [Experiment 8 - Dataset: UACC257]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 9 - Dataset: NCI1]
+Running command: for dataset NCI1
+Model info:
+{
+        "data": "NCI1",
+        "lr": 0.005,
+        "batchsize": 512,
+        "nepoch": 10,
+        "hdim": 64,
+        "width": 4,
+        "depth": 6,
+        "dropout": 0.4,
+        "normalize": 1,
+        "beta": 0.999,
+        "gamma": 1.5,
+        "decay": 0.0,
+        "seed": 10,
+        "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.5331641733646393, time cost: 4.908994436264038
+Val auc: 0.7065103181608036, f1: 0.4213995139475909
+Epoch: 1, loss: 0.4697383443514506, time cost: 5.001994609832764
+Val auc: 0.7331673181187744, f1: 0.544932261946353
+Epoch: 2, loss: 0.45242591698964435, time cost: 5.142994165420532
+Val auc: 0.7498423906190897, f1: 0.6388104313858787
+Epoch: 3, loss: 0.4574356625477473, time cost: 4.848503112792969
+Val auc: 0.7504938427268525, f1: 0.6645752063836389
+Epoch: 4, loss: 0.44795792798201245, time cost: 4.895994663238525
+Val auc: 0.7521960240406842, f1: 0.6770555767034641
+Epoch: 5, loss: 0.4436793029308319, time cost: 5.386994361877441
+Val auc: 0.7627663598537385, f1: 0.651810661638198
+Epoch: 6, loss: 0.43399375180403393, time cost: 5.083508491516113
+Val auc: 0.7588576472071618, f1: 0.6635950422145926
+Epoch: 7, loss: 0.43016470968723297, time cost: 4.880994558334351
+Val auc: 0.7580801075946707, f1: 0.6602643000583015
+Epoch: 8, loss: 0.42613063255945843, time cost: 4.957296133041382
+Val auc: 0.7529210271928718, f1: 0.6601879057703838
+Epoch: 9, loss: 0.42605289816856384, time cost: 5.0099945068359375
+Val auc: 0.7480771655528937, f1: 0.5832035722463934
+Under the condition of auc, best idx: 5
+Test auc: 0.7280817887614005, f1: 0.6473730856200977
+Under the condition of f1, best idx: 4
+Test auc: 0.7224603875089312, f1: 0.6480468172311074
+
+Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
+  return torch.sparse.FloatTensor(indices, values, shape)
+
+[End of [Experiment 9 - Dataset: NCI1]]
+
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>
+(gmapadconda) F:\workspace\RQGNN>

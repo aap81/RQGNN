@@ -46,7 +46,7 @@ def load_data(data):
     adj = csr_matrix((np.ones(edges.shape[0]), (edges[:, 0], edges[:, 1])), shape=(graphindicator.size, graphindicator.size))
 
     nodeattr_path = os.path.join(path, data + NODEATTR)
-    nodeattrs = np.loadtxt(nodeattr_path, dtype=np.float, delimiter=",")
+    nodeattrs = np.loadtxt(nodeattr_path, dtype=np.float64, delimiter=",")
 
     adjs = []
     features = []
