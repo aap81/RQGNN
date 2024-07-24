@@ -7,7 +7,7 @@ import shutil
 
 # Define the datasets and GNN layers to test
 # datasets = ['MCF-7', 'MOLT-4', 'SW-620', 'NCI-H23', 'OVCAR-8', 'P388', 'SF-295', 'SN12C', 'UACC257', 'NCI1']
-datasets = ["ENZYMES" "COX2"]
+datasets = ["ENZYMES", "COX2"]
 trainsize = "0.7"
 testsize = "0.15"
 
