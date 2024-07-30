@@ -134,7 +134,8 @@ for epoch in range(nepoch):
     if patiencecount > patience:
         break
 
-print("Under the condition of auc, best idx: {}".format(bestepochauc))
+print("\nUnder the condition of auc, best idx: {}".format(bestepochauc))
+print("Best F1 score {} found at epoch count: {} and patience_count: {}".format(bestf1, bestepochf1, patiencecount))
 test_batches = utils.generate_batches(adj_test, feats_test, label_test, batchsize, False)
 preds = torch.Tensor()
 truths = torch.Tensor()
@@ -149,7 +150,7 @@ for i, test_batch in enumerate(test_batches):
         truths = torch.cat((truths, test_batch.label_list), dim=0)
 
 auc_test, f1_score_test = utils.compute_metrics(preds, truths)
-print("Test auc: {}, f1: {}".format(auc_test, f1_score_test))
+print("Test auc: {}, f1: {}\n".format(auc_test, f1_score_test))
 
 print("Under the condition of f1, best idx: {}".format(bestepochf1))
 test_batches = utils.generate_batches(adj_test, feats_test, label_test, batchsize, False)
@@ -166,4 +167,4 @@ for i, test_batch in enumerate(test_batches):
         truths = torch.cat((truths, test_batch.label_list), dim=0)
 
 auc_test, f1_score_test = utils.compute_metrics(preds, truths)
-print("Test auc: {}, f1: {}".format(auc_test, f1_score_test))
+print("Test auc: {}, f1: {}\n".format(auc_test, f1_score_test))

@@ -6,8 +6,9 @@ from torch_geometric.datasets import TUDataset
 import shutil
 
 # Define the datasets and GNN layers to test
-# datasets = ['MCF-7', 'MOLT-4', 'SW-620', 'NCI-H23', 'OVCAR-8', 'P388', 'SF-295', 'SN12C', 'UACC257', 'NCI1']
-datasets = ["Mutagenicity"]
+datasets = [
+    "MOLT-4", "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD", "ENZYMES"
+]
 trainsize = "0.7"
 testsize = "0.15"
 
@@ -52,10 +53,6 @@ def log_time(start_time, action_start_time, message):
 def run_experiments():
     experiment_counter = 0
     for dataset in datasets:
-            if experiment_counter > 0:
-                log_data("Waiting for 15 seconds before the next experiment...")
-                time.sleep(15)
-
             experiment_name = f"[Experiment {experiment_counter + 1} - Dataset: {dataset}]"
             log_data(experiment_name)
 

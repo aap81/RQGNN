@@ -4,9 +4,9 @@ import logging
 import time
 
 # Define the datasets and GNN layers to test
-# datasets = ['MOLT-4', 'SW-620', 'NCI-H23', 'OVCAR-8', 'P388', 'SF-295', 'SN12C', 'UACC257', 'NCI1']
-datasets = ['MOLT-4']
-
+datasets = [
+    "MOLT-4", "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD", "ENZYMES"
+]
 
 def get_repo_root():
     current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -54,7 +54,7 @@ def run_experiments():
                 '--data', dataset,
                 '--lr', "5e-3",
                 '--batchsize', "512",
-                '--nepoch', "50",
+                '--nepoch', "30",
                 '--hdim', "64",
                 '--width', "4",
                 '--depth', "6",
