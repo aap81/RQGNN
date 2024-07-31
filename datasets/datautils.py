@@ -52,11 +52,11 @@ def split_train_val_test(data, trainsz, testsz):
     random.shuffle(normalinds)
     random.shuffle(abnormalinds)
 
-    train_normal = np.array(normalinds[: int(trainsz * len(normalinds))])
-    val_normal = np.array(normalinds[int(trainsz * len(normalinds)): int((1 - testsz) * len(normalinds))])
-    test_normal = np.array(normalinds[int((1 - testsz) * len(normalinds)): ])
+    train_normal = np.array(normalinds[: int(trainsz * len(normalinds))]) # first 70 percent
+    val_normal = np.array(normalinds[int(trainsz * len(normalinds)): int((1 - testsz) * len(normalinds))]) # 15% after the first 70%
+    test_normal = np.array(normalinds[int((1 - testsz) * len(normalinds)): ]) # 15% after the first 70% and the later 15%
 
-    train_abnormal = np.array(abnormalinds[: int(trainsz * len(abnormalinds))])
+    train_abnormal = np.array(abnormalinds[: int(trainsz * len(abnormalinds))]) # same as above
     val_abnormal = np.array(abnormalinds[int(trainsz * len(abnormalinds)): int((1 - testsz) * len(abnormalinds))])
     test_abnormal = np.array(abnormalinds[int((1 - testsz) * len(abnormalinds)):])
 
