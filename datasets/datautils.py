@@ -39,6 +39,12 @@ def split_train_val_test(data, trainsz, testsz):
 
     normalinds = []
     abnormalinds = []
+    uniq_labels = set(graphlabels)
+    if len(uniq_labels) == 2 and uniq_labels != {0, 1}:
+        print(f"Improper labels found: {uniq_labels}, converting them to 0, 1")
+        labels_list = list(uniq_labels)
+        graphlabels = np.where(graphlabels == labels_list[0], 0, graphlabels)
+        graphlabels = np.where(graphlabels == labels_list[1], 1, graphlabels)
     for i, label in enumerate(graphlabels):
         if label == 0:
             normalinds.append(i)

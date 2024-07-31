@@ -48,6 +48,11 @@ def load_data(data):
     nodeattr_path = os.path.join(path, data + NODEATTR)
     nodeattrs = np.loadtxt(nodeattr_path, dtype=np.float64, delimiter=",")
 
+    # Ensure nodeattrs is 2-dimensional
+    if nodeattrs.ndim == 1:
+        print("Unexpected situation: the node attributes are 1 dim, converting them to 2 dim with reshape")
+        nodeattrs = nodeattrs.reshape(-1, 1)
+
     adjs = []
     features = []
     idx = 0
@@ -72,7 +77,8 @@ def sparse_mx_to_torch_sparse_tensor(sparse_mx):
                                           sparse_mx.col))).long()
     values = torch.from_numpy(sparse_mx.data)
     shape = torch.Size(sparse_mx.shape)
-    return torch.sparse.FloatTensor(indices, values, shape)
+    # return torch.sparse.FloatTensor(indices, values, shape)
+    return torch.sparse_coo_tensor(indices, values, shape, dtype=torch.float)
 
 def generate_batches(adjs, features, graphlabels, batchsize, shuffle):
     N = len(graphlabels)

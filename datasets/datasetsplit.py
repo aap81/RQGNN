@@ -3,11 +3,13 @@ import subprocess
 import logging
 import time
 from torch_geometric.datasets import TUDataset
+import urllib.request
 import shutil
+import zipfile
 
 # Define the datasets and GNN layers to test
-datasets = [
-    "MOLT-4", "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD", "ENZYMES"
+DATASETS = [
+    "MOLT-4", "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
 ]
 trainsize = "0.7"
 testsize = "0.15"
@@ -38,21 +40,25 @@ def log_time(start_time, action_start_time, message):
     log_data(f"[TIMER: {current_time_str} | {message} | Time_taken_since_start: {elapsed_time_since_start:.2f} ms ({milliseconds_to_seconds(elapsed_time_since_start)}) | Time_taken_since_last: {elapsed_time_since_last:.2f} ms ({milliseconds_to_seconds(elapsed_time_since_last)})]")
 
 
-# def run_tud():
-#     datasets_path = f'{get_repo_root()}/datasets'
-#     dataset_path = f'{datasets_path}/{'AIDS'}'
-#     data = TUDataset(root=datasets_path, name=f'{'AIDS'}')
-#     raw_path = os.path.join(dataset_path, 'raw')
-#     processed_path = os.path.join(dataset_path, 'processed')
-#     for filename in os.listdir(raw_path):
-#         shutil.move(os.path.join(raw_path, filename), dataset_path)
-#     shutil.rmtree(raw_path)
-#     shutil.rmtree(processed_path)
+def download_and_extract_tu_dataset(datasets_path, dataset_name):
+    dataset_url = f'https://www.chrsmrrs.com/graphkerneldatasets/{dataset_name}.zip'
+    dataset_zip = os.path.join(datasets_path, f'{dataset_name}.zip')
 
-# Run the experiments
+    # Create directory if it doesn't exist
+    os.makedirs(datasets_path, exist_ok=True)
+
+    # Download the dataset
+    print(f'Downloading {dataset_name} dataset...')
+    urllib.request.urlretrieve(dataset_url, dataset_zip)
+
+    # Extract the dataset
+    print(f'Extracting {dataset_name} dataset...')
+    with zipfile.ZipFile(dataset_zip, 'r') as zip_ref:
+        zip_ref.extractall(datasets_path)
+
 def run_experiments():
     experiment_counter = 0
-    for dataset in datasets:
+    for dataset in DATASETS:
             experiment_name = f"[Experiment {experiment_counter + 1} - Dataset: {dataset}]"
             log_data(experiment_name)
 
@@ -60,13 +66,7 @@ def run_experiments():
             dataset_path = f'{datasets_path}/{dataset}'
             if not os.path.isdir(dataset_path):
                 print(f"Adding {dataset} folder to {dataset_path}")
-                data = TUDataset(root=datasets_path, name=f'{dataset}')
-                raw_path = os.path.join(dataset_path, 'raw')
-                processed_path = os.path.join(dataset_path, 'processed')
-                for filename in os.listdir(raw_path):
-                    shutil.move(os.path.join(raw_path, filename), dataset_path)
-                shutil.rmtree(raw_path)
-                shutil.rmtree(processed_path)
+                download_and_extract_tu_dataset(datasets_path, dataset)
 
             
             # Construct the command to run main.py
