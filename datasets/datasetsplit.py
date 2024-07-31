@@ -59,6 +59,7 @@ def run_experiments():
             datasets_path = f'{get_repo_root()}/datasets'
             dataset_path = f'{datasets_path}/{dataset}'
             if not os.path.isdir(dataset_path):
+                print(f"Adding {dataset} folder to {dataset}")
                 data = TUDataset(root=datasets_path, name=f'{dataset}')
                 raw_path = os.path.join(dataset_path, 'raw')
                 processed_path = os.path.join(dataset_path, 'processed')
