@@ -7,6 +7,11 @@ from sklearn.preprocessing import OneHotEncoder
 
 from name import *
 
+# fixes the pattern for randomness. 
+# when you set this you will always generate the same random numbers
+# helpful in reproducing the results, since randomness is used to shuffle and split the dataset
+# you should change the seed if you want to run the same code in a different manner
+# helps in debugging if you know the right seed number
 def set_seed(seed):
     if seed == 0:
         seed = int(time.time())
@@ -23,6 +28,8 @@ def set_seed(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)
     return seed
 
+# Generating node attributes is a crucial preprocessing step in graph-based machine learning tasks. 
+# It transforms categorical labels into a format that can be used by GNNs and other algorithms, enabling the model to learn meaningful patterns from the data. 
 def gen_nodeattr(data):
     nodeattr_path = os.path.join(data, data + NODEATTR)
     if not os.path.exists(nodeattr_path):
@@ -55,6 +62,7 @@ def split_train_val_test(data, trainsz, testsz):
             print("Generate fail")
             exit()
 
+    # from here on out we are seperating based on indices of the graphs
     random.shuffle(normalinds)
     random.shuffle(abnormalinds)
 

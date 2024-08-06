@@ -56,6 +56,10 @@ def load_data(data):
     adjs = []
     features = []
     idx = 0
+    # below loop seperates the adj matrix and features for a graph
+    # so len(adj) == no of graphs 
+    # each i th element in the matrix would be the adj matrix for the i th graph
+    # similarly for the features
     for i in range(graph_size.size):
         adjs.append(adj[idx:idx + graph_size[i], idx:idx + graph_size[i]])
         features.append(nodeattrs[idx:idx + graph_size[i], :])

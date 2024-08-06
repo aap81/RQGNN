@@ -1,1080 +1,1167 @@
-
-(gmapadconda) F:\workspace\RQGNN>python main.py --data MCF-7 --lr 5e-3 --batchsize 512 --nepoch 3 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-Model info:
-{
-        "data": "MCF-7",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 3,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
-}
-Starts training...
-F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
-Epoch: 0, loss: 0.3503787564603906, time cost: 32.00072526931763
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-Val auc: 0.47836390692805364, f1: 0.47846230904082143
-Epoch: 1, loss: 0.2376369908452034, time cost: 33.82896280288696
-Val auc: 0.6071298150368526, f1: 0.48931811530582386
-Epoch: 2, loss: 0.21826649731711337, time cost: 32.846962451934814
-Val auc: 0.6643183630244122, f1: 0.48395342617676246
-Under the condition of auc, best idx: 2
-Test auc: 0.6861867600998036, f1: 0.48404594904093906
-Under the condition of f1, best idx: 1
-Test auc: 0.6364044168391996, f1: 0.4992727483208221
-
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>python main.py --data P388 --lr 5e-3 --batchsize 512 --nepoch 3 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-Model info:
-{
-        "data": "P388",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 3,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
-}
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\main.py", line 55, in <module>
-    adjs, features, graphlabels, train_index, val_index, test_index = utils.load_data(data)
-                                                                      ^^^^^^^^^^^^^^^^^^^^^
-  File "F:\workspace\RQGNN\utils.py", line 36, in load_data
-    graphlabels = np.loadtxt(graphlabel_path, dtype=np.int64)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
-    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
-    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
-    return ds.open(path, mode, encoding=encoding, newline=newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
-    raise FileNotFoundError(f"{path} not found.")
-FileNotFoundError: datasets\P388\P388_graph_newlabel.txt not found.
-
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>python datasets/dataset.py --data P388 --trainsz 0.7 --testsz 0.15
-Generator info:
-{
-        "seed": 2023,
-        "data": "P388",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
-    datautils.gen_nodeattr(data)
-  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
-    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
-    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
-    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
-    return ds.open(path, mode, encoding=encoding, newline=newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
-    raise FileNotFoundError(f"{path} not found.")
-FileNotFoundError: P388\P388_node_labels.txt not found.
-
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>python datasets/dataset.py --data P388 --trainsz 0.7 --testsz 0.15
-Generator info:
-{
-        "seed": 2023,
-        "data": "P388",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
-    datautils.gen_nodeattr(data)
-  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
-    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
-    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
-    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
-    return ds.open(path, mode, encoding=encoding, newline=newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
-    raise FileNotFoundError(f"{path} not found.")
-FileNotFoundError: P388\P388_node_labels.txt not found.
-
-(gmapadconda) F:\workspace\RQGNN>python datasets/dataset.py --data P388 --trainsz 0.7 --testsz 0.15
-Generator info:
-{
-        "seed": 2023,
-        "data": "P388",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
-    datautils.gen_nodeattr(data)
-  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
-    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
-    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
-    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
-    return ds.open(path, mode, encoding=encoding, newline=newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
-    raise FileNotFoundError(f"{path} not found.")
-FileNotFoundError: P388\P388_node_labels.txt not found.
-
-(gmapadconda) F:\workspace\RQGNN>cd datasets
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python dataset.py --data P388 --trainsz 0.7 --testsz 0.15
-Generator info:
-{
-        "seed": 2023,
-        "data": "P388",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 29029, normal size: 27421, abnormal size: 1608
-Val size: 6221, normal size: 5876, abnormal size: 345
-Test size: 6222, normal size: 5877, abnormal size: 345
-Total size: 41472, generate size: 41472
-Generate successfully, time cost: 11.081099510192871
-
-(gmapadconda) F:\workspace\RQGNN\datasets>cd ..
-
-(gmapadconda) F:\workspace\RQGNN>python main.py --data P388 --lr 5e-3 --batchsize 512 --nepoch 3 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-
-(gmapadconda) F:\workspace\RQGNN>python main.py --data P388 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-Model info:
-{
-        "data": "P388",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
-}
-Starts training...
-F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
-Epoch: 0, loss: 0.2667046508245301, time cost: 50.40495014190674
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-Val auc: 0.6704494332139581, f1: 0.48574026618169797
-Epoch: 1, loss: 0.16516085622603432, time cost: 51.2759428024292
-Val auc: 0.7823243160584445, f1: 0.49401370579728887
-Epoch: 2, loss: 0.15857173711584324, time cost: 52.5640082359314
-Val auc: 0.6874892710213988, f1: 0.48565522943365025
-Epoch: 3, loss: 0.15750092660125933, time cost: 53.80033326148987
-Val auc: 0.794705310721086, f1: 0.49661752267337544
-Epoch: 4, loss: 0.15481292404103697, time cost: 53.397799015045166
-Val auc: 0.7884218289085545, f1: 0.5101825341191666
-Epoch: 5, loss: 0.15296135921227305, time cost: 54.72384428977966
-Val auc: 0.8002256785154054, f1: 0.5018237995692026
-Epoch: 6, loss: 0.1506140093531525, time cost: 51.79294300079346
-Val auc: 0.7902094987223883, f1: 0.49335621542590297
-Epoch: 7, loss: 0.1507113077922871, time cost: 50.67089056968689
-Val auc: 0.7929432917986207, f1: 0.503801098587505
-Epoch: 8, loss: 0.15105039090440983, time cost: 51.60430192947388
-Val auc: 0.8086307850159332, f1: 0.5098536746984301
-Epoch: 9, loss: 0.14893322150435365, time cost: 51.0626323223114
-Val auc: 0.7998981363640848, f1: 0.5024433250301891
-Under the condition of auc, best idx: 8
-Test auc: 0.7934815899860177, f1: 0.5202081365481813
-Under the condition of f1, best idx: 4
-Test auc: 0.7793237208178284, f1: 0.5428038857522418
-
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>cd datasets/
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasets/dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
-python: can't open file 'F:\\workspace\\RQGNN\\datasets\\datasets\\dataset.py': [Errno 2] No such file or directory
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasets/dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
-python: can't open file 'F:\\workspace\\RQGNN\\datasets\\datasets\\dataset.py': [Errno 2] No such file or directory
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
-Generator info:
-{
-        "seed": 2023,
-        "data": "PC-3",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 19255, normal size: 18158, abnormal size: 1097
-Val size: 4126, normal size: 3891, abnormal size: 235
-Test size: 4128, normal size: 3892, abnormal size: 236
-Total size: 27509, generate size: 27509
-Generate successfully, time cost: 5.928061008453369
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python main.py --data PC-3 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-python: can't open file 'F:\\workspace\\RQGNN\\datasets\\main.py': [Errno 2] No such file or directory
-
-(gmapadconda) F:\workspace\RQGNN\datasets>cd..
-
-(gmapadconda) F:\workspace\RQGNN>python main.py --data PC-3 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-Model info:
-{
-        "data": "PC-3",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
-}
-Starts training...
-F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
-Epoch: 0, loss: 0.29451985774855866, time cost: 33.251962661743164
-Val auc: 0.7038036494474429, f1: 0.5921046055220115
-Epoch: 1, loss: 0.19088479170673772, time cost: 33.357481718063354
-Val auc: 0.71161162967459, f1: 0.5223984257437203
-Epoch: 2, loss: 0.18245343667896172, time cost: 33.05065369606018
-Val auc: 0.6834544529929953, f1: 0.48964147975235967
-Epoch: 3, loss: 0.1729666182869359, time cost: 32.558963775634766
-Val auc: 0.7050449209031207, f1: 0.5047162698412698
-Epoch: 4, loss: 0.16617323889544136, time cost: 33.960963010787964
-Val auc: 0.7406442581625902, f1: 0.505148420747842
-Epoch: 5, loss: 0.16554643801952662, time cost: 32.66196393966675
-Val auc: 0.7364037030353736, f1: 0.5932038883370987
-Epoch: 6, loss: 0.16133026974765877, time cost: 32.82896375656128
-Val auc: 0.7641053823061402, f1: 0.6006007686571792
-Epoch: 7, loss: 0.15891382313872637, time cost: 32.50896406173706
-Val auc: 0.776722605904515, f1: 0.5385242160442091
-Epoch: 8, loss: 0.15704598630729474, time cost: 32.410964488983154
-Val auc: 0.7548237339851376, f1: 0.5245226763958053
-Epoch: 9, loss: 0.1552739047298306, time cost: 32.24696445465088
-Val auc: 0.7553082126237853, f1: 0.5366927438588677
-Under the condition of auc, best idx: 7
-Test auc: 0.7622426272057415, f1: 0.5678327880829428
-Under the condition of f1, best idx: 6
-Test auc: 0.7391563746581427, f1: 0.6173429402098344
-
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>python main.py --data PC-3 --lr 5e-3 --batchsize 512 --nepoch 10 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-(gmapadconda) F:\workspace\RQGNN>cd datasets
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 50
-    python dataset.py --data PC-3 --trainsz 0.7 --testsz 0.15
-           ^^^^^^^
-SyntaxError: invalid syntax
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 3, in <module>
-    from utils import get_repo_root, log_data
-ModuleNotFoundError: No module named 'utils'
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 70, in <module>
-    run_experiments()
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 41, in run_experiments
-    if experiment_counter > 0:
-       ^^^^^^^^^^^^^^^^^^
-UnboundLocalError: cannot access local variable 'experiment_counter' where it is not associated with a value
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
-[Experiment 1 - Dataset: MOLT-4]
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 71, in <module>
-    run_experiments()
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 57, in run_experiments
-    log_data(f"Running command: {' '.join(command)}")
-                                 ^^^^^^^^^^^^^^^^^
-TypeError: sequence item 5: expected str instance, float found
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
 [Experiment 1 - Dataset: MOLT-4]
 Running command: for dataset MOLT-4
-Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 71, in <module>
-    run_experiments()
-  File "F:\workspace\RQGNN\datasets\datasetsplit.py", line 60, in run_experiments
-    result = subprocess.run(command, capture_output=True, text=True)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 548, in run
-    with Popen(*popenargs, **kwargs) as process:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 1026, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 1462, in _execute_child
-    args = list2cmdline(args)
-           ^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\subprocess.py", line 608, in list2cmdline
-    for arg in map(os.fsdecode, seq):
-  File "<frozen os>", line 830, in fsdecode
-TypeError: expected str, bytes or os.PathLike object, not float
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
-[Experiment 1 - Dataset: MOLT-4]
-Running command: for dataset MOLT-4
-Generator info:
+Model info:
 {
-        "seed": 2023,
-        "data": "MOLT-4",
-        "trainsz": 0.7,
-        "testsz": 0.15
+  "data": "MOLT-4",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
-Train size: 27835, normal size: 25637, abnormal size: 2198
-Val size: 5965, normal size: 5494, abnormal size: 471
-Test size: 5965, normal size: 5494, abnormal size: 471
-Total size: 39765, generate size: 39765
-Generate successfully, time cost: 11.381628513336182
+Starts training...
+Epoch: 0, loss: 0.3086976587772369, time cost: 52.159152030944824
+Val auc: 0.42255168154875766, f1: 0.4794484684527446
+Epoch: 1, loss: 0.2196777124296535, time cost: 52.9150071144104
+Val auc: 0.6522019388841099, f1: 0.4792212327571154
+Epoch: 2, loss: 0.20590392486615613, time cost: 53.45861291885376
+Val auc: 0.7203625727197476, f1: 0.5146559890623018
+Epoch: 3, loss: 0.19739802967418324, time cost: 53.649043560028076
+Val auc: 0.7314083999761949, f1: 0.5547120951196847
+Epoch: 4, loss: 0.19378118067979813, time cost: 54.248836517333984
+Val auc: 0.7229805609207343, f1: 0.5213215763589488
+Epoch: 5, loss: 0.19128344790502028, time cost: 52.25759720802307
+Val auc: 0.7529257935891461, f1: 0.5752042283066273
+Epoch: 6, loss: 0.18889632848176088, time cost: 52.832096576690674
+Val auc: 0.76451554562128, f1: 0.5489307082545631
+Epoch: 7, loss: 0.1870358171788129, time cost: 53.248592138290405
+Val auc: 0.7659805678767881, f1: 0.5468025852831682
+Epoch: 8, loss: 0.18727855546907946, time cost: 55.173466205596924
+Val auc: 0.7216330186878255, f1: 0.6110139283455991
+Epoch: 9, loss: 0.1827043349092657, time cost: 55.35920834541321
+Val auc: 0.7874272416077142, f1: 0.611997619574845
+Epoch: 10, loss: 0.17916034243323586, time cost: 54.9533634185791
+Val auc: 0.7798233085002207, f1: 0.6467593055469533
+Epoch: 11, loss: 0.17971260222521696, time cost: 54.70555806159973
+Val auc: 0.7756782732291625, f1: 0.5389078066586087
+Epoch: 12, loss: 0.17933626540682532, time cost: 54.28609871864319
+Val auc: 0.7984402208315267, f1: 0.6301264400235738
+Epoch: 13, loss: 0.17631458802656694, time cost: 54.30370593070984
+Val auc: 0.7870823372650496, f1: 0.63121404946864
+Epoch: 14, loss: 0.17603166076270016, time cost: 53.14564609527588
+Val auc: 0.7957103560958606, f1: 0.5191300334362994
+Epoch: 15, loss: 0.17603938037698919, time cost: 52.77698278427124
+Val auc: 0.7902314974761117, f1: 0.5432324160500395
+Epoch: 16, loss: 0.17356360039927743, time cost: 53.86838173866272
+Val auc: 0.7957086170823683, f1: 0.5155851565745925
+Epoch: 17, loss: 0.17212651669979095, time cost: 54.054638385772705
+Val auc: 0.799114958066588, f1: 0.620656806872472
+Epoch: 18, loss: 0.17207644771445882, time cost: 54.23042178153992
+Val auc: 0.7964525284096836, f1: 0.643816116928245
+Epoch: 19, loss: 0.1679981220852245, time cost: 54.4681875705719
+Val auc: 0.8116153734975889, f1: 0.627414254673061
 
+Under the condition of auc, best idx: 19
+Best F1 score 0.6467593055469533 found at epoch count: 10 and patience_count: 9
+Test auc: 0.8079334954866804, f1: 0.6259432296614273
+
+Under the condition of f1, best idx: 10
+Test auc: 0.7880679714678124, f1: 0.659556508783313
+
+
+[Time taken for MOLT-4 | Time_taken_since_last: 1274267.14 ms (1274.27 seconds)]
 [End of [Experiment 1 - Dataset: MOLT-4]]
 Waiting for 15 seconds before the next experiment...
-[Experiment 2 - Dataset: SW-620]
-Running command: for dataset SW-620
-Generator info:
-{
-        "seed": 2023,
-        "data": "SW-620",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 28372, normal size: 26685, abnormal size: 1687
-Val size: 6079, normal size: 5718, abnormal size: 361
-Test size: 6081, normal size: 5719, abnormal size: 362
-Total size: 40532, generate size: 40532
-Generate successfully, time cost: 11.8224458694458
 
-[End of [Experiment 2 - Dataset: SW-620]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 3 - Dataset: NC1-H23]
-Running command: for dataset NC1-H23
-Generator info:
-{
-        "seed": 2023,
-        "data": "NC1-H23",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-
-Error: Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
-    datautils.gen_nodeattr(data)
-  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
-    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
-    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
-    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
-    return ds.open(path, mode, encoding=encoding, newline=newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
-    raise FileNotFoundError(f"{path} not found.")
-FileNotFoundError: NC1-H23\NC1-H23_node_labels.txt not found.
-
-[End of [Experiment 3 - Dataset: NC1-H23]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 4 - Dataset: OVCAR-8]
-Running command: for dataset OVCAR-8
-Generator info:
-{
-        "seed": 2023,
-        "data": "OVCAR-8",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 28360, normal size: 26905, abnormal size: 1455
-Val size: 6078, normal size: 5766, abnormal size: 312
-Test size: 6078, normal size: 5766, abnormal size: 312
-Total size: 40516, generate size: 40516
-Generate successfully, time cost: 11.68390703201294
-
-[End of [Experiment 4 - Dataset: OVCAR-8]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 5 - Dataset: P388]
-Running command: for dataset P388
-Generator info:
-{
-        "seed": 2023,
-        "data": "P388",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 29029, normal size: 27421, abnormal size: 1608
-Val size: 6221, normal size: 5876, abnormal size: 345
-Test size: 6222, normal size: 5877, abnormal size: 345
-Total size: 41472, generate size: 41472
-Generate successfully, time cost: 0.16499590873718262
-
-[End of [Experiment 5 - Dataset: P388]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 6 - Dataset: SF-295]
-Running command: for dataset SF-295
-Generator info:
-{
-        "seed": 2023,
-        "data": "SF-295",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 28189, normal size: 26772, abnormal size: 1417
-Val size: 6041, normal size: 5737, abnormal size: 304
-Test size: 6041, normal size: 5737, abnormal size: 304
-Total size: 40271, generate size: 40271
-Generate successfully, time cost: 11.730144262313843
-
-[End of [Experiment 6 - Dataset: SF-295]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 7 - Dataset: SN12C]
-Running command: for dataset SN12C
-Generator info:
-{
-        "seed": 2023,
-        "data": "SN12C",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 28002, normal size: 26634, abnormal size: 1368
-Val size: 6000, normal size: 5707, abnormal size: 293
-Test size: 6002, normal size: 5708, abnormal size: 294
-Total size: 40004, generate size: 40004
-Generate successfully, time cost: 11.686315774917603
-
-[End of [Experiment 7 - Dataset: SN12C]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 8 - Dataset: UACC257]
-Running command: for dataset UACC257
-Generator info:
-{
-        "seed": 2023,
-        "data": "UACC257",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 27991, normal size: 26841, abnormal size: 1150
-Val size: 5998, normal size: 5752, abnormal size: 246
-Test size: 5999, normal size: 5752, abnormal size: 247
-Total size: 39988, generate size: 39988
-Generate successfully, time cost: 11.592099666595459
-
-[End of [Experiment 8 - Dataset: UACC257]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 9 - Dataset: NC1]
-Running command: for dataset NC1
-Generator info:
-{
-        "seed": 2023,
-        "data": "NC1",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-
-Error: Traceback (most recent call last):
-  File "F:\workspace\RQGNN\datasets\dataset.py", line 28, in <module>
-    datautils.gen_nodeattr(data)
-  File "F:\workspace\RQGNN\datasets\datautils.py", line 30, in gen_nodeattr
-    nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 1373, in loadtxt
-    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\npyio.py", line 992, in _read
-    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 193, in open
-    return ds.open(path, mode, encoding=encoding, newline=newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\conda\envs\gmapadconda\Lib\site-packages\numpy\lib\_datasource.py", line 533, in open
-    raise FileNotFoundError(f"{path} not found.")
-FileNotFoundError: NC1\NC1_node_labels.txt not found.
-
-[End of [Experiment 9 - Dataset: NC1]]
-
-(gmapadconda) F:\workspace\RQGNN\datasets>python datasetsplit.py
-[Experiment 1 - Dataset: NCI-H23]
-Running command: for dataset NCI-H23
-Generator info:
-{
-        "seed": 2023,
-        "data": "NCI-H23",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 28246, normal size: 26807, abnormal size: 1439
-Val size: 6053, normal size: 5744, abnormal size: 309
-Test size: 6054, normal size: 5745, abnormal size: 309
-Total size: 40353, generate size: 40353
-Generate successfully, time cost: 11.760912656784058
-
-[End of [Experiment 1 - Dataset: NCI-H23]]
-Waiting for 15 seconds before the next experiment...
-[Experiment 2 - Dataset: NCI1]
-Running command: for dataset NCI1
-Generator info:
-{
-        "seed": 2023,
-        "data": "NCI1",
-        "trainsz": 0.7,
-        "testsz": 0.15
-}
-Train size: 2876, normal size: 1437, abnormal size: 1439
-Val size: 617, normal size: 308, abnormal size: 309
-Test size: 617, normal size: 308, abnormal size: 309
-Total size: 4110, generate size: 4110
-Generate successfully, time cost: 0.8689985275268555
-
-[End of [Experiment 2 - Dataset: NCI1]]
-
-(gmapadconda) F:\workspace\RQGNN\datasets>cd ..
-
-(gmapadconda) F:\workspace\RQGNN>python evaluate.py
-[Experiment 1 - Dataset: MOLT-4]
-Running command: for dataset MOLT-4
-Model info:
-{
-        "data": "MOLT-4",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
-}
-Starts training...
-Epoch: 0, loss: 0.31067015474492854, time cost: 52.25452136993408
-Val auc: 0.6458365698306665, f1: 0.4794484684527446
-Epoch: 1, loss: 0.21821206997741352, time cost: 55.91393852233887
-Val auc: 0.6795798079665367, f1: 0.5325824769648166
-Epoch: 2, loss: 0.21362640234557065, time cost: 53.72094106674194
-Val auc: 0.6780239705619795, f1: 0.5010006236542577
-Epoch: 3, loss: 0.21037229787219655, time cost: 53.97896599769592
-Val auc: 0.6850752838263244, f1: 0.4811103282096784
-Epoch: 4, loss: 0.2084075545722788, time cost: 53.057979345321655
-Val auc: 0.6869936089321916, f1: 0.4800166843095252
-Epoch: 5, loss: 0.2080459638075395, time cost: 52.5619421005249
-Val auc: 0.6958981309082983, f1: 0.5097000756373886
-Epoch: 6, loss: 0.20691605427048423, time cost: 52.010942459106445
-Val auc: 0.6964036041634303, f1: 0.4813096541211854
-Epoch: 7, loss: 0.20897698700428008, time cost: 53.76545190811157
-Val auc: 0.6951766335326628, f1: 0.4874711725775217
-Epoch: 8, loss: 0.20574052171273666, time cost: 51.63794279098511
-Val auc: 0.6937137367380899, f1: 0.5094894575747398
-Epoch: 9, loss: 0.2045494009147991, time cost: 51.56894373893738
-Val auc: 0.6910418391188381, f1: 0.4964280178474552
-Under the condition of auc, best idx: 6
-Test auc: 0.6829799657916723, f1: 0.4813096541211854
-Under the condition of f1, best idx: 1
-Test auc: 0.6732318290480175, f1: 0.5282434491214427
-
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-
-[End of [Experiment 1 - Dataset: MOLT-4]]
-Waiting for 15 seconds before the next experiment...
 [Experiment 2 - Dataset: SW-620]
 Running command: for dataset SW-620
 Model info:
 {
-        "data": "SW-620",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "SW-620",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.2755239773541689, time cost: 53.455801486968994
-Val auc: 0.7205960862281623, f1: 0.5412270233810829
-Epoch: 1, loss: 0.18545205944350787, time cost: 54.63096046447754
-Val auc: 0.7310907190104825, f1: 0.5221809605542118
-Epoch: 2, loss: 0.1769850898001875, time cost: 54.71100974082947
-Val auc: 0.7388612914071226, f1: 0.49011509145776333
-Epoch: 3, loss: 0.1745022926479578, time cost: 54.73796224594116
-Val auc: 0.7336127638918359, f1: 0.4927343734375506
-Epoch: 4, loss: 0.17034938213016307, time cost: 55.547115087509155
-Val auc: 0.7294382612520698, f1: 0.5056000929476008
-Epoch: 5, loss: 0.1692374904773065, time cost: 58.06714153289795
-Val auc: 0.7785643625272382, f1: 0.6324001779149333
-Epoch: 6, loss: 0.16445515916815825, time cost: 54.06919026374817
-Val auc: 0.7545012639291385, f1: 0.5471945860594725
-Epoch: 7, loss: 0.16006261269961083, time cost: 54.031317472457886
-Val auc: 0.7907114530679711, f1: 0.559624109424725
-Epoch: 8, loss: 0.1551071942916938, time cost: 54.29503154754639
-Val auc: 0.8003558767133772, f1: 0.6270576138951297
-Epoch: 9, loss: 0.15409380184220417, time cost: 54.55644631385803
-Val auc: 0.78543410079847, f1: 0.5527866133696206
-Under the condition of auc, best idx: 8
-Test auc: 0.7601793092521875, f1: 0.6074099326040655
-Under the condition of f1, best idx: 5
-Test auc: 0.752852756972735, f1: 0.6111518546812664
+Epoch: 0, loss: 0.2749909588268825, time cost: 57.043606996536255
+Val auc: 0.6993873649717711, f1: 0.5005101543284564
+Epoch: 1, loss: 0.1830211491989238, time cost: 58.86195373535156
+Val auc: 0.7207520790156758, f1: 0.542660897765271
+Epoch: 2, loss: 0.17810268966214998, time cost: 59.499468088150024
+Val auc: 0.7359524134797146, f1: 0.4900564948511738
+Epoch: 3, loss: 0.17496819581304277, time cost: 59.55040502548218
+Val auc: 0.7438818853617726, f1: 0.5006829708369184
+Epoch: 4, loss: 0.1718300934880972, time cost: 59.42026662826538
+Val auc: 0.7236909928214251, f1: 0.5056000929476008
+Epoch: 5, loss: 0.1732184658093112, time cost: 60.04448747634888
+Val auc: 0.7379577928086356, f1: 0.4977657046269643
+Epoch: 6, loss: 0.169385145551392, time cost: 58.91458463668823
+Val auc: 0.7351426558886308, f1: 0.4981636079951941
+Epoch: 7, loss: 0.17320474396858895, time cost: 60.46319389343262
+Val auc: 0.7406341349037253, f1: 0.507685752967875
+Epoch: 8, loss: 0.17269084230065346, time cost: 61.13517713546753
+Val auc: 0.7450985806594135, f1: 0.4927343734375506
+Epoch: 9, loss: 0.16982871733073676, time cost: 60.32717323303223
+Val auc: 0.7410028010878801, f1: 0.5001671269360359
+Epoch: 10, loss: 0.16938802573297704, time cost: 60.18404006958008
+Val auc: 0.7379868597876754, f1: 0.5100301628979972
+Epoch: 11, loss: 0.1699944870280368, time cost: 60.19381022453308
+Val auc: 0.7441684373301398, f1: 0.5240643499074887
+Epoch: 12, loss: 0.16825726654912745, time cost: 59.1358585357666
+Val auc: 0.7502725029284981, f1: 0.503068603408162
+Epoch: 13, loss: 0.16661037118839367, time cost: 59.84663653373718
+Val auc: 0.7344629730287501, f1: 0.5005964525163371
+Epoch: 14, loss: 0.1678622134828142, time cost: 60.224586486816406
+Val auc: 0.7467311759821491, f1: 0.5244951821683641
+Epoch: 15, loss: 0.16393237161849225, time cost: 59.61484408378601
+Val auc: 0.7736220071911706, f1: 0.5158371400110974
+Epoch: 16, loss: 0.15877270818288838, time cost: 59.911131858825684
+Val auc: 0.7834384104625624, f1: 0.5086362814557541
+Epoch: 17, loss: 0.1560744202828833, time cost: 60.10399842262268
+Val auc: 0.7994361490515929, f1: 0.5187833230779464
+Epoch: 18, loss: 0.15105654897966556, time cost: 61.462297677993774
+Val auc: 0.7909934027646572, f1: 0.5385179874319936
+Epoch: 19, loss: 0.15022855225418294, time cost: 60.45846176147461
+Val auc: 0.8027103020156012, f1: 0.6181617816497804
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
+Under the condition of auc, best idx: 19
+Best F1 score 0.6181617816497804 found at epoch count: 19 and patience_count: 0
+Test auc: 0.7698603762393263, f1: 0.5802633071364397
 
+Under the condition of f1, best idx: 19
+Test auc: 0.7698603762393263, f1: 0.5802633071364397
+
+
+[Time taken for SW-620 | Time_taken_since_last: 1404534.36 ms (1404.53 seconds)]
 [End of [Experiment 2 - Dataset: SW-620]]
 Waiting for 15 seconds before the next experiment...
+
 [Experiment 3 - Dataset: NCI-H23]
 Running command: for dataset NCI-H23
 Model info:
 {
-        "data": "NCI-H23",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "NCI-H23",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.256638927385211, time cost: 54.901939868927
-Val auc: 0.7028355464207481, f1: 0.5620968863908289
-Epoch: 1, loss: 0.17501297859208925, time cost: 54.41394019126892
-Val auc: 0.6793640303431863, f1: 0.5448202743194488
-Epoch: 2, loss: 0.16112922744027205, time cost: 56.927937269210815
-Val auc: 0.7029479473726912, f1: 0.568629623352583
-Epoch: 3, loss: 0.15447664141122783, time cost: 56.78393745422363
-Val auc: 0.7040646325193138, f1: 0.5788210910393222
-Epoch: 4, loss: 0.15092950074800424, time cost: 55.64650535583496
-Val auc: 0.7298244516861833, f1: 0.5235251958056414
-Epoch: 5, loss: 0.14588392632348196, time cost: 57.70093607902527
-Val auc: 0.7571705609793477, f1: 0.5202558876811595
-Epoch: 6, loss: 0.1427788252809218, time cost: 55.61993908882141
-Val auc: 0.7804327690185792, f1: 0.5445830564999817
-Epoch: 7, loss: 0.14174324606678315, time cost: 56.42589497566223
-Val auc: 0.7870554105705349, f1: 0.5086705628855633
-Epoch: 8, loss: 0.1375969714884247, time cost: 53.60396885871887
-Val auc: 0.7950401037581919, f1: 0.5689348451420113
-Epoch: 9, loss: 0.13685532938688993, time cost: 54.91280746459961
-Val auc: 0.7881923785957036, f1: 0.585519829543377
-Under the condition of auc, best idx: 8
-Test auc: 0.7939753436927003, f1: 0.5703944514398794
-Under the condition of f1, best idx: 9
-Test auc: 0.785504209373002, f1: 0.5699475023242608
+Epoch: 0, loss: 0.2543869035850678, time cost: 56.5499906539917
+Val auc: 0.6848364636575889, f1: 0.526463171486206
+Epoch: 1, loss: 0.16115609210516726, time cost: 56.61323952674866
+Val auc: 0.7017464685254798, f1: 0.4961270492729757
+Epoch: 2, loss: 0.1538317860769374, time cost: 57.74411106109619
+Val auc: 0.6997207160306856, f1: 0.5477271434182683
+Epoch: 3, loss: 0.15049938152411155, time cost: 57.89048886299133
+Val auc: 0.7183437790157845, f1: 0.5737259685100775
+Epoch: 4, loss: 0.1485547102721674, time cost: 58.41646671295166
+Val auc: 0.7169544018353751, f1: 0.5290812783794494
+Epoch: 5, loss: 0.14829235171367014, time cost: 58.15433216094971
+Val auc: 0.7759125041692584, f1: 0.5168709490586775
+Epoch: 6, loss: 0.14637877526027815, time cost: 58.450639963150024
+Val auc: 0.7614544739522766, f1: 0.5196823478425412
+Epoch: 7, loss: 0.1458942943385669, time cost: 57.46917462348938
+Val auc: 0.7256884347026531, f1: 0.49309756176120073
+Epoch: 8, loss: 0.14005372739796126, time cost: 58.401259899139404
+Val auc: 0.7801761342636413, f1: 0.5088934965212966
+Epoch: 9, loss: 0.13785687075661762, time cost: 60.02998089790344
+Val auc: 0.7803857240086179, f1: 0.5915026482145908
+Epoch: 10, loss: 0.13392193828310286, time cost: 60.30875253677368
+Val auc: 0.8009877761851962, f1: 0.5931154673480731
+Epoch: 11, loss: 0.13466059416532516, time cost: 60.226648569107056
+Val auc: 0.8060610311815453, f1: 0.6066764822004342
+Epoch: 12, loss: 0.13174224432025636, time cost: 57.492077589035034
+Val auc: 0.8235800858191128, f1: 0.5873892297205181
+Epoch: 13, loss: 0.12854181722338712, time cost: 57.70167922973633
+Val auc: 0.8323566563900082, f1: 0.5555434349377356
+Epoch: 14, loss: 0.12858045407171761, time cost: 59.04465842247009
+Val auc: 0.8221752147731474, f1: 0.505683650093331
+Epoch: 15, loss: 0.126579495812101, time cost: 59.49552869796753
+Val auc: 0.8259168424516141, f1: 0.6550061712380997
+Epoch: 16, loss: 0.12461647085313286, time cost: 59.60818386077881
+Val auc: 0.8190868648078535, f1: 0.6286980646449536
+Epoch: 17, loss: 0.12348554749041796, time cost: 60.08697533607483
+Val auc: 0.8313309624901967, f1: 0.5325359041956113
+Epoch: 18, loss: 0.12235049184943948, time cost: 57.445910930633545
+Val auc: 0.8512895966862284, f1: 0.6520760981413596
+Epoch: 19, loss: 0.11984263506851026, time cost: 57.74116063117981
+Val auc: 0.8445553993022689, f1: 0.6448948873445771
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
+Under the condition of auc, best idx: 18
+Best F1 score 0.6550061712380997 found at epoch count: 15 and patience_count: 4
+Test auc: 0.8434085077498092, f1: 0.648900576133957
 
+Under the condition of f1, best idx: 15
+Test auc: 0.82445745702609, f1: 0.6593292808339707
+
+
+[Time taken for NCI-H23 | Time_taken_since_last: 1372878.43 ms (1372.88 seconds)]
 [End of [Experiment 3 - Dataset: NCI-H23]]
 Waiting for 15 seconds before the next experiment...
+
 [Experiment 4 - Dataset: OVCAR-8]
 Running command: for dataset OVCAR-8
 Model info:
 {
-        "data": "OVCAR-8",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "OVCAR-8",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.25962307171097826, time cost: 53.351393938064575
-Val auc: 0.6891309133114544, f1: 0.5488663967611336
-Epoch: 1, loss: 0.16246909648180008, time cost: 56.49893927574158
-Val auc: 0.7200768541494348, f1: 0.5126032450348827
-Epoch: 2, loss: 0.15636283212474414, time cost: 53.78146457672119
-Val auc: 0.6931323207662958, f1: 0.5010031375823719
-Epoch: 3, loss: 0.15510763028370483, time cost: 54.137516021728516
-Val auc: 0.6736219505145103, f1: 0.4866554054054054
-Epoch: 4, loss: 0.15235233173838683, time cost: 53.694523096084595
-Val auc: 0.7084497874365199, f1: 0.5041515591007977
-Epoch: 5, loss: 0.1519804181797164, time cost: 54.01789712905884
-Val auc: 0.7179412137463645, f1: 0.5118884917297449
-Epoch: 6, loss: 0.15155095194599458, time cost: 53.670989990234375
-Val auc: 0.7112977711963144, f1: 0.5010907662557409
-Epoch: 7, loss: 0.15199026026363885, time cost: 53.654948711395264
-Val auc: 0.7142291349822566, f1: 0.4929008955728286
-Epoch: 8, loss: 0.15111680209104503, time cost: 53.17725896835327
-Val auc: 0.7220587973709721, f1: 0.5062774937144077
-Epoch: 9, loss: 0.1507157517064895, time cost: 53.499969244003296
-Val auc: 0.7161966256659285, f1: 0.49850714142951585
-Under the condition of auc, best idx: 8
-Test auc: 0.7187794609425723, f1: 0.5072123519458545
-Under the condition of f1, best idx: 0
-Test auc: 0.6670527161877318, f1: 0.5686810930236846
+Epoch: 0, loss: 0.2585212600284389, time cost: 57.498448848724365
+Val auc: 0.6951212123233456, f1: 0.5075303672106514
+Epoch: 1, loss: 0.16472107411495276, time cost: 59.43735909461975
+Val auc: 0.6021919497140621, f1: 0.48678544287764924
+Epoch: 2, loss: 0.15950970032385417, time cost: 60.06189155578613
+Val auc: 0.7019430881293524, f1: 0.4982676154967452
+Epoch: 3, loss: 0.1548834296741656, time cost: 59.76672625541687
+Val auc: 0.6970067126479719, f1: 0.49866789841385056
+Epoch: 4, loss: 0.15459391408200776, time cost: 61.33282995223999
+Val auc: 0.6941909691649546, f1: 0.48958522501225543
+Epoch: 5, loss: 0.15292611372257983, time cost: 60.87381291389465
+Val auc: 0.7109225610786485, f1: 0.5101590433148054
+Epoch: 6, loss: 0.15244091448507138, time cost: 60.13560509681702
+Val auc: 0.7140412519900033, f1: 0.503863116059734
+Epoch: 7, loss: 0.15264421302293027, time cost: 61.42534303665161
+Val auc: 0.7100629130090629, f1: 0.4896382897235746
+Epoch: 8, loss: 0.1499666776508093, time cost: 60.75258803367615
+Val auc: 0.71327304401576, f1: 0.5152153627122645
+Epoch: 9, loss: 0.1507836708000728, time cost: 60.8730731010437
+Val auc: 0.7178528309186478, f1: 0.4981089813600132
+Epoch: 10, loss: 0.151339180501444, time cost: 60.56968855857849
+Val auc: 0.7241616416304242, f1: 0.5088208320885842
+Epoch: 11, loss: 0.14887403124677284, time cost: 59.855101108551025
+Val auc: 0.7160006826044807, f1: 0.48678544287764924
+Epoch: 12, loss: 0.14987404019172704, time cost: 59.863534450531006
+Val auc: 0.71844010423615, f1: 0.5033883555548556
+Epoch: 13, loss: 0.1489060940220952, time cost: 58.16235947608948
+Val auc: 0.7122363523573201, f1: 0.48958522501225543
+Epoch: 14, loss: 0.14998114109039307, time cost: 58.900463342666626
+Val auc: 0.716854494072236, f1: 0.50117865119879
+Epoch: 15, loss: 0.14806244349373238, time cost: 58.40259099006653
+Val auc: 0.7062149248023337, f1: 0.5034827223750876
+Epoch: 16, loss: 0.14963451054479396, time cost: 58.7607159614563
+Val auc: 0.7210268305806807, f1: 0.5066895181457043
+Epoch: 17, loss: 0.148217554337212, time cost: 58.25349807739258
+Val auc: 0.7148383650399779, f1: 0.5347832781175672
+Epoch: 18, loss: 0.14880928224218742, time cost: 58.56786251068115
+Val auc: 0.7282405925095833, f1: 0.49258779087534055
+Epoch: 19, loss: 0.14767692810190575, time cost: 59.21888089179993
+Val auc: 0.7311258193477237, f1: 0.49271269752769387
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
+Under the condition of auc, best idx: 19
+Best F1 score 0.5347832781175672 found at epoch count: 17 and patience_count: 2
+Test auc: 0.7263856648612111, f1: 0.504442783306016
 
+Under the condition of f1, best idx: 17
+Test auc: 0.6935100322847462, f1: 0.5399757493377407
+
+
+[Time taken for OVCAR-8 | Time_taken_since_last: 1400540.11 ms (1400.54 seconds)]
 [End of [Experiment 4 - Dataset: OVCAR-8]]
 Waiting for 15 seconds before the next experiment...
+
 [Experiment 5 - Dataset: P388]
 Running command: for dataset P388
 Model info:
 {
-        "data": "P388",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "P388",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.2667046508245301, time cost: 52.21794152259827
-Val auc: 0.6704494332139581, f1: 0.48574026618169797
-Epoch: 1, loss: 0.16516085622603432, time cost: 53.406943798065186
-Val auc: 0.7823243160584445, f1: 0.49401370579728887
-Epoch: 2, loss: 0.15857173711584324, time cost: 52.4992835521698
-Val auc: 0.6874892710213988, f1: 0.48565522943365025
-Epoch: 3, loss: 0.15750092660125933, time cost: 52.17007923126221
-Val auc: 0.794705310721086, f1: 0.49661752267337544
-Epoch: 4, loss: 0.15481292404103697, time cost: 55.26293897628784
-Val auc: 0.7884218289085545, f1: 0.5101825341191666
-Epoch: 5, loss: 0.15296135921227305, time cost: 53.35527443885803
-Val auc: 0.8002256785154054, f1: 0.5018237995692026
-Epoch: 6, loss: 0.1506140093531525, time cost: 52.570621490478516
-Val auc: 0.7902094987223883, f1: 0.49335621542590297
-Epoch: 7, loss: 0.1507113077922871, time cost: 50.598493337631226
-Val auc: 0.7929432917986207, f1: 0.503801098587505
-Epoch: 8, loss: 0.15105039090440983, time cost: 49.48142695426941
-Val auc: 0.8086307850159332, f1: 0.5098536746984301
-Epoch: 9, loss: 0.14893322150435365, time cost: 53.197521686553955
-Val auc: 0.7998981363640848, f1: 0.5024433250301891
-Under the condition of auc, best idx: 8
-Test auc: 0.7934815899860177, f1: 0.5202081365481813
+Epoch: 0, loss: 0.2642979892460923, time cost: 53.71434235572815
+Val auc: 0.7412777103619735, f1: 0.488518186537619
+Epoch: 1, loss: 0.16318725454702712, time cost: 55.811161518096924
+Val auc: 0.7748828444865381, f1: 0.488518186537619
+Epoch: 2, loss: 0.1603751483193615, time cost: 56.96055579185486
+Val auc: 0.7776178707787018, f1: 0.49408013550348295
+Epoch: 3, loss: 0.15740845522336794, time cost: 56.81313943862915
+Val auc: 0.7853025325322364, f1: 0.4964706146713745
+Epoch: 4, loss: 0.15495002688023082, time cost: 56.74642562866211
+Val auc: 0.784651394520575, f1: 0.527602309121162
+Epoch: 5, loss: 0.15455421975307299, time cost: 56.696757555007935
+Val auc: 0.7899446039403715, f1: 0.509745132806763
+Epoch: 6, loss: 0.15159533865619124, time cost: 58.565534591674805
+Val auc: 0.7827904716804294, f1: 0.4990012715214361
+Epoch: 7, loss: 0.15150356501863713, time cost: 56.26186513900757
+Val auc: 0.7892480835824429, f1: 0.503801098587505
+Epoch: 8, loss: 0.1520318977142635, time cost: 56.03885054588318
+Val auc: 0.7904672408520041, f1: 0.5154393878072798
+Epoch: 9, loss: 0.15109717741347195, time cost: 57.29945206642151
+Val auc: 0.797859877073036, f1: 0.5078820455003519
+Epoch: 10, loss: 0.153013599807756, time cost: 57.713828325271606
+Val auc: 0.7912661181322205, f1: 0.5016489808812994
+Epoch: 11, loss: 0.15202918452651878, time cost: 57.771007776260376
+Val auc: 0.7652901510442872, f1: 0.4998953063597647
+Epoch: 12, loss: 0.1498579070494886, time cost: 57.33607482910156
+Val auc: 0.7966976943794951, f1: 0.5071623538901413
+Epoch: 13, loss: 0.15053758182023702, time cost: 57.51475548744202
+Val auc: 0.8012630597567112, f1: 0.505125623057257
+Epoch: 14, loss: 0.15121659139792124, time cost: 57.21865129470825
+Val auc: 0.8013538244492457, f1: 0.5053193751745232
+Epoch: 15, loss: 0.14944774160782495, time cost: 57.007264375686646
+Val auc: 0.7959345803612828, f1: 0.5126465312528551
+Epoch: 16, loss: 0.14901753175154067, time cost: 57.89103674888611
+Val auc: 0.7970286895354228, f1: 0.5123001131393039
+Epoch: 17, loss: 0.14984846886312753, time cost: 57.65883493423462
+Val auc: 0.7918551020609504, f1: 0.5048371864107664
+Epoch: 18, loss: 0.14889315842536457, time cost: 57.63702988624573
+Val auc: 0.7969199198902932, f1: 0.5053193751745232
+Epoch: 19, loss: 0.14913321848501238, time cost: 58.79454064369202
+Val auc: 0.8009318179575972, f1: 0.5069595937886195
+
+Under the condition of auc, best idx: 14
+Best F1 score 0.527602309121162 found at epoch count: 4 and patience_count: 15
+Test auc: 0.783920614135675, f1: 0.5168258763775808
+
 Under the condition of f1, best idx: 4
-Test auc: 0.7793237208178284, f1: 0.5428038857522418
+Test auc: 0.778916828806968, f1: 0.5609240040011623
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
 
+[Time taken for P388 | Time_taken_since_last: 1338909.84 ms (1338.91 seconds)]
 [End of [Experiment 5 - Dataset: P388]]
 Waiting for 15 seconds before the next experiment...
+
 [Experiment 6 - Dataset: SF-295]
 Running command: for dataset SF-295
 Model info:
 {
-        "data": "SF-295",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "SF-295",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.2608192791896207, time cost: 52.48989677429199
-Val auc: 0.6394012664789043, f1: 0.4870945831210732
-Epoch: 1, loss: 0.16281955702496426, time cost: 53.92698073387146
-Val auc: 0.7223029412034532, f1: 0.5291364476546088
-Epoch: 2, loss: 0.15445077838376164, time cost: 56.79849624633789
-Val auc: 0.7006361063456968, f1: 0.4869203329369798
-Epoch: 3, loss: 0.1530687495001725, time cost: 54.61593985557556
-Val auc: 0.7362409176811647, f1: 0.5046522062008787
-Epoch: 4, loss: 0.15144946306411708, time cost: 55.96046829223633
-Val auc: 0.7367176820821446, f1: 0.4931342832592089
-Epoch: 5, loss: 0.14901266725999968, time cost: 56.67544460296631
-Val auc: 0.7185754061814812, f1: 0.48705103167190283
-Epoch: 6, loss: 0.15028777226273501, time cost: 53.968615770339966
-Val auc: 0.7351492046090474, f1: 0.4931342832592089
-Epoch: 7, loss: 0.1499872069273676, time cost: 55.336467027664185
-Val auc: 0.74207389934222, f1: 0.5173163563752602
-Epoch: 8, loss: 0.1520803247445396, time cost: 56.082937717437744
-Val auc: 0.7419838788840675, f1: 0.516919285345419
-Epoch: 9, loss: 0.15178802609443665, time cost: 55.68893837928772
-Val auc: 0.7370232929368916, f1: 0.49019793796182753
-Under the condition of auc, best idx: 7
-Test auc: 0.7482626624955276, f1: 0.5346784721039787
-Under the condition of f1, best idx: 1
-Test auc: 0.7142538508114455, f1: 0.5413882244151488
+Epoch: 0, loss: 0.25909678398498465, time cost: 56.763609409332275
+Val auc: 0.7037025357100264, f1: 0.4870510316719029
+Epoch: 1, loss: 0.16386465222707816, time cost: 57.617151498794556
+Val auc: 0.6759246305147565, f1: 0.4936382870488126
+Epoch: 2, loss: 0.1599153390686427, time cost: 58.66926670074463
+Val auc: 0.7397026916690367, f1: 0.5040652136897669
+Epoch: 3, loss: 0.15298993047326803, time cost: 58.53451466560364
+Val auc: 0.7164458776363953, f1: 0.4869203329369797
+Epoch: 4, loss: 0.1529438395851425, time cost: 57.78124785423279
+Val auc: 0.7264395819381118, f1: 0.4870510316719029
+Epoch: 5, loss: 0.14875228982418776, time cost: 59.89680504798889
+Val auc: 0.7241509407997945, f1: 0.487007472826087
+Epoch: 6, loss: 0.1528499573469162, time cost: 58.361241817474365
+Val auc: 0.7378506784216947, f1: 0.4956643832479505
+Epoch: 7, loss: 0.15054753589044725, time cost: 57.813481092453
+Val auc: 0.7442621992055265, f1: 0.49834108095447816
+Epoch: 8, loss: 0.14968900462346418, time cost: 57.60139322280884
+Val auc: 0.7392322344339147, f1: 0.49602692994388714
+Epoch: 9, loss: 0.15260026564023324, time cost: 58.67646932601929
+Val auc: 0.7410271964991789, f1: 0.49559238253485494
+Epoch: 10, loss: 0.15496876356857164, time cost: 58.82671022415161
+Val auc: 0.7333978193260736, f1: 0.5039684795474556
+Epoch: 11, loss: 0.1507236881713782, time cost: 59.04738473892212
+Val auc: 0.741588534260525, f1: 0.4955205475710121
+Epoch: 12, loss: 0.14942102067704713, time cost: 59.46709060668945
+Val auc: 0.7380854770052201, f1: 0.4959540760012301
+Epoch: 13, loss: 0.1498050879953163, time cost: 59.27448081970215
+Val auc: 0.729182052328835, f1: 0.48982102475056855
+Epoch: 14, loss: 0.1484544560579317, time cost: 59.19860291481018
+Val auc: 0.740462705154904, f1: 0.49624655282671565
+Epoch: 15, loss: 0.14888682216405869, time cost: 59.44896364212036
+Val auc: 0.7394902548553709, f1: 0.48966034244244416
+Epoch: 16, loss: 0.14888540748506784, time cost: 59.7839252948761
+Val auc: 0.7470835091694724, f1: 0.4953060214122161
+Epoch: 17, loss: 0.1479759362659284, time cost: 60.098912715911865
+Val auc: 0.7417800427511171, f1: 0.4981810476746216
+Epoch: 18, loss: 0.14720267097332648, time cost: 58.67829251289368
+Val auc: 0.7367991018595819, f1: 0.4897674088116251
+Epoch: 19, loss: 0.14570746091859682, time cost: 59.34789538383484
+Val auc: 0.7420842201590783, f1: 0.486963906581741
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Under the condition of auc, best idx: 16
+Best F1 score 0.5040652136897669 found at epoch count: 2 and patience_count: 17
+Test auc: 0.7587833018357295, f1: 0.5151558254868975
 
+Under the condition of f1, best idx: 2
+Test auc: 0.7344201535737548, f1: 0.5179368289307622
+
+
+[Time taken for SF-295 | Time_taken_since_last: 1380300.76 ms (1380.30 seconds)]
 [End of [Experiment 6 - Dataset: SF-295]]
 Waiting for 15 seconds before the next experiment...
+
 [Experiment 7 - Dataset: SN12C]
 Running command: for dataset SN12C
 Model info:
 {
-        "data": "SN12C",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "SN12C",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.2555171990936453, time cost: 54.87879037857056
-Val auc: 0.5655730254026101, f1: 0.48748611941573416
-Epoch: 1, loss: 0.1693963724103841, time cost: 54.66080832481384
-Val auc: 0.7215107965727977, f1: 0.48748611941573416
-Epoch: 2, loss: 0.15576834285801108, time cost: 52.711941719055176
-Val auc: 0.7187090161115831, f1: 0.5199924192977545
-Epoch: 3, loss: 0.15176408304409547, time cost: 52.89394164085388
-Val auc: 0.731780802092634, f1: 0.5307119841576851
-Epoch: 4, loss: 0.14700893773273987, time cost: 54.903377294540405
-Val auc: 0.752012527576756, f1: 0.5253153021551712
-Epoch: 5, loss: 0.14074355296113275, time cost: 57.47893667221069
-Val auc: 0.7810855598567356, f1: 0.5891870247318856
-Epoch: 6, loss: 0.13871580308133905, time cost: 53.508827686309814
-Val auc: 0.7953435425389213, f1: 0.5168191370723016
-Epoch: 7, loss: 0.13573657301339237, time cost: 51.56690073013306
-Val auc: 0.8083899121550625, f1: 0.5500378159707854
-Epoch: 8, loss: 0.1332338186827573, time cost: 54.38587164878845
-Val auc: 0.8093593222143215, f1: 0.5850800132755253
-Epoch: 9, loss: 0.130335501649163, time cost: 51.95247030258179
-Val auc: 0.7975278548408605, f1: 0.6517445662478573
-Under the condition of auc, best idx: 8
-Test auc: 0.8210007198394424, f1: 0.5811045909689252
-Under the condition of f1, best idx: 9
-Test auc: 0.8133840081232213, f1: 0.645420795048341
+Epoch: 0, loss: 0.25864171439951117, time cost: 56.05401253700256
+Val auc: 0.677931598282691, f1: 0.48735475051264526
+Epoch: 1, loss: 0.16319511424411426, time cost: 56.25684571266174
+Val auc: 0.6862206224198651, f1: 0.48748611941573416
+Epoch: 2, loss: 0.15375127724625848, time cost: 57.39475440979004
+Val auc: 0.7072782302555213, f1: 0.5276326118621563
+Epoch: 3, loss: 0.15161329385909167, time cost: 59.81548309326172
+Val auc: 0.7114145193825199, f1: 0.4980038209197925
+Epoch: 4, loss: 0.14845087744972923, time cost: 58.5016975402832
+Val auc: 0.710796752207187, f1: 0.4991438356164383
+Epoch: 5, loss: 0.15259923948483034, time cost: 60.09872269630432
+Val auc: 0.7151845138387621, f1: 0.4935581882977399
+Epoch: 6, loss: 0.14966665438630364, time cost: 58.6433379650116
+Val auc: 0.7166440112166903, f1: 0.48739854762921836
+Epoch: 7, loss: 0.14830534011125565, time cost: 58.24928069114685
+Val auc: 0.7217661562861248, f1: 0.49092912408428263
+Epoch: 8, loss: 0.1466858286749233, time cost: 58.05332040786743
+Val auc: 0.7343439677397555, f1: 0.49059829059829063
+Epoch: 9, loss: 0.14387627013704993, time cost: 58.70643353462219
+Val auc: 0.7236212519084699, f1: 0.5240322846318564
+Epoch: 10, loss: 0.14280655045400967, time cost: 59.548842906951904
+Val auc: 0.7322326153559098, f1: 0.49395112567476734
+Epoch: 11, loss: 0.14217663204128092, time cost: 60.016831159591675
+Val auc: 0.7427176134212758, f1: 0.49401709401709404
+Epoch: 12, loss: 0.13921848061409864, time cost: 58.844868421554565
+Val auc: 0.7529379822755241, f1: 0.5101545734457127
+Epoch: 13, loss: 0.13906544826247474, time cost: 58.83779978752136
+Val auc: 0.7632115759880538, f1: 0.517293836406493
+Epoch: 14, loss: 0.1365755236961625, time cost: 59.20563626289368
+Val auc: 0.7511618268924278, f1: 0.5416989477923677
+Epoch: 15, loss: 0.13476585366509178, time cost: 59.362253189086914
+Val auc: 0.7634684307816699, f1: 0.5606077552966663
+Epoch: 16, loss: 0.1349353935230862, time cost: 58.88897371292114
+Val auc: 0.7784578067411376, f1: 0.5007665987296526
+Epoch: 17, loss: 0.13468903695995157, time cost: 60.047680139541626
+Val auc: 0.7714638211501234, f1: 0.4940832030192657
+Epoch: 18, loss: 0.13260521726174787, time cost: 57.67634439468384
+Val auc: 0.7881166234389119, f1: 0.5040755254478323
+Epoch: 19, loss: 0.13170270337299866, time cost: 58.65234613418579
+Val auc: 0.7999160960941925, f1: 0.5289035597122889
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
-E:\conda\envs\gmapadconda\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Under the condition of auc, best idx: 19
+Best F1 score 0.5606077552966663 found at epoch count: 15 and patience_count: 4
+Test auc: 0.8039045330816279, f1: 0.534965031376835
 
+Under the condition of f1, best idx: 15
+Test auc: 0.7804698263327756, f1: 0.5820779369721396
+
+
+[Time taken for SN12C | Time_taken_since_last: 1383184.20 ms (1383.18 seconds)]
 [End of [Experiment 7 - Dataset: SN12C]]
 Waiting for 15 seconds before the next experiment...
+
 [Experiment 8 - Dataset: UACC257]
 Running command: for dataset UACC257
 Model info:
 {
-        "data": "UACC257",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "UACC257",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.246560722860423, time cost: 52.62018013000488
-Val auc: 0.6311862540565601, f1: 0.504648419065597
-Epoch: 1, loss: 0.1509735879572955, time cost: 52.40834903717041
-Val auc: 0.7237945514886304, f1: 0.564193382228017
-Epoch: 2, loss: 0.13971779644489288, time cost: 54.538939476013184
-Val auc: 0.6937378444542442, f1: 0.4955028296870952
-Epoch: 3, loss: 0.1385333011096174, time cost: 54.07667326927185
-Val auc: 0.7263224809751575, f1: 0.4930885327938671
-Epoch: 4, loss: 0.13366521271792325, time cost: 52.747941732406616
-Val auc: 0.6167798121826837, f1: 0.49314735859423403
-Epoch: 5, loss: 0.13607835444537075, time cost: 54.36074113845825
-Val auc: 0.7372038145798704, f1: 0.5198719945912537
-Epoch: 6, loss: 0.13284644227136266, time cost: 56.59614610671997
-Val auc: 0.7380405684272421, f1: 0.5042411844321152
-Epoch: 7, loss: 0.13269294540990484, time cost: 53.63899850845337
-Val auc: 0.756770002939946, f1: 0.5360483458606319
-Epoch: 8, loss: 0.1276387802579186, time cost: 52.44117832183838
-Val auc: 0.7880804273098364, f1: 0.558419611800697
-Epoch: 9, loss: 0.12282770533453334, time cost: 52.20750427246094
-Val auc: 0.8044303430690773, f1: 0.5301659496781448
-Under the condition of auc, best idx: 9
-Test auc: 0.7803545184776427, f1: 0.5119892464787641
-Under the condition of f1, best idx: 1
-Test auc: 0.6812029471882337, f1: 0.568023814279057
+Epoch: 0, loss: 0.24961720650846309, time cost: 52.024542808532715
+Val auc: 0.7100969475445797, f1: 0.5256224659923315
+Epoch: 1, loss: 0.1484177840026942, time cost: 53.701738119125366
+Val auc: 0.7123824728337687, f1: 0.5683877468849899
+Epoch: 2, loss: 0.13737904144959015, time cost: 53.374701738357544
+Val auc: 0.7248853703766523, f1: 0.5043423394870469
+Epoch: 3, loss: 0.13461486981673673, time cost: 54.005446672439575
+Val auc: 0.7378038179721157, f1: 0.5253103823514864
+Epoch: 4, loss: 0.1327242916280573, time cost: 54.34882712364197
+Val auc: 0.7365773092710065, f1: 0.49314735859423403
+Epoch: 5, loss: 0.1302974749695171, time cost: 55.21469449996948
+Val auc: 0.76705203987019, f1: 0.5126437431966954
+Epoch: 6, loss: 0.13021455027840353, time cost: 55.77257513999939
+Val auc: 0.7288825661205153, f1: 0.48927111716621247
+Epoch: 7, loss: 0.13271808529442006, time cost: 53.05245018005371
+Val auc: 0.76688666791049, f1: 0.5180423637449488
+Epoch: 8, loss: 0.1272062741897323, time cost: 53.95460033416748
+Val auc: 0.779284617863564, f1: 0.5427720027720029
+Epoch: 9, loss: 0.12521549314260483, time cost: 55.08899903297424
+Val auc: 0.8008755526533012, f1: 0.5116014181693125
+Epoch: 10, loss: 0.12521780837665905, time cost: 53.697372913360596
+Val auc: 0.7824129041012245, f1: 0.5695207389045619
+Epoch: 11, loss: 0.12521271394057706, time cost: 53.301856994628906
+Val auc: 0.8091596984293903, f1: 0.5781293448355955
+Epoch: 12, loss: 0.12184605070135811, time cost: 52.480939865112305
+Val auc: 0.8148728049345862, f1: 0.5598087033252431
+Epoch: 13, loss: 0.11880990348078987, time cost: 52.52237319946289
+Val auc: 0.8264523757024775, f1: 0.5436131827021624
+Epoch: 14, loss: 0.11641344400969418, time cost: 54.64396834373474
+Val auc: 0.8247944157988173, f1: 0.5897339536024644
+Epoch: 15, loss: 0.1132173482667316, time cost: 53.03187370300293
+Val auc: 0.8275477882560467, f1: 0.5301659496781448
+Epoch: 16, loss: 0.11157792779532345, time cost: 54.52457094192505
+Val auc: 0.8173088611101689, f1: 0.5455798314477025
+Epoch: 17, loss: 0.1111245328729803, time cost: 55.254650831222534
+Val auc: 0.8268460175039858, f1: 0.5429022582061162
+Epoch: 18, loss: 0.10644038590517911, time cost: 56.61608862876892
+Val auc: 0.8310128255142079, f1: 0.5271080514585696
+Epoch: 19, loss: 0.10402192222801122, time cost: 54.945947885513306
+Val auc: 0.841423131720886, f1: 0.6426675893411592
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
+Under the condition of auc, best idx: 19
+Best F1 score 0.6426675893411592 found at epoch count: 19 and patience_count: 0
+Test auc: 0.829172602523748, f1: 0.645760853157161
 
+Under the condition of f1, best idx: 19
+Test auc: 0.829172602523748, f1: 0.645760853157161
+
+
+[Time taken for UACC257 | Time_taken_since_last: 1277946.49 ms (1277.95 seconds)]
 [End of [Experiment 8 - Dataset: UACC257]]
 Waiting for 15 seconds before the next experiment...
-[Experiment 9 - Dataset: NCI1]
+
+[Experiment 9 - Dataset: PC-3]
+Running command: for dataset PC-3
+Model info:
+{
+  "data": "PC-3",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.2898029347783641, time cost: 34.703922510147095
+Val auc: 0.6976946253492785, f1: 0.5797099819019907
+Epoch: 1, loss: 0.1853553680212874, time cost: 34.31701612472534
+Val auc: 0.7058924851129447, f1: 0.5086510319718819
+Epoch: 2, loss: 0.17475182759134392, time cost: 33.96380662918091
+Val auc: 0.721559846235448, f1: 0.5144227962844753
+Epoch: 3, loss: 0.17121429839416555, time cost: 34.04876971244812
+Val auc: 0.7303318623993176, f1: 0.5013963104907092
+Epoch: 4, loss: 0.16968803735155807, time cost: 35.054080963134766
+Val auc: 0.7095900523302547, f1: 0.5122111837168585
+Epoch: 5, loss: 0.16865333287339462, time cost: 34.43751859664917
+Val auc: 0.725916873089563, f1: 0.5015269802188391
+Epoch: 6, loss: 0.16708295635486903, time cost: 35.33375835418701
+Val auc: 0.7395500801084882, f1: 0.5923764726586951
+Epoch: 7, loss: 0.16111724098262034, time cost: 36.66829061508179
+Val auc: 0.7682327466001738, f1: 0.6052934187196195
+Epoch: 8, loss: 0.15949611248154388, time cost: 36.258450508117676
+Val auc: 0.6963013391514515, f1: 0.5017899102193161
+Epoch: 9, loss: 0.16062572402389427, time cost: 35.94206094741821
+Val auc: 0.751632518031245, f1: 0.5427337607123409
+Epoch: 10, loss: 0.15655257494041794, time cost: 38.85542583465576
+Val auc: 0.774393171366547, f1: 0.5452100028377177
+Epoch: 11, loss: 0.1549328314630609, time cost: 36.050071477890015
+Val auc: 0.7676487475188242, f1: 0.6075167300036624
+Epoch: 12, loss: 0.1502847728368483, time cost: 35.77890586853027
+Val auc: 0.7420927727379605, f1: 0.4894774480793066
+Epoch: 13, loss: 0.1450491726006332, time cost: 35.71149253845215
+Val auc: 0.7710488470392668, f1: 0.5288034607076967
+Epoch: 14, loss: 0.1454445809910172, time cost: 40.53321623802185
+Val auc: 0.7972741241380819, f1: 0.6039871882396832
+Epoch: 15, loss: 0.14335664067613452, time cost: 36.224321603775024
+Val auc: 0.760668099323589, f1: 0.5440675293859818
+Epoch: 16, loss: 0.14295851850980207, time cost: 35.843520402908325
+Val auc: 0.7703795447213154, f1: 0.5621967891108117
+Epoch: 17, loss: 0.1426154937791197, time cost: 35.35542583465576
+Val auc: 0.7960897215068051, f1: 0.5606958417169685
+Epoch: 18, loss: 0.13987780225120092, time cost: 36.429810523986816
+Val auc: 0.7975070675918787, f1: 0.5767575690743753
+Epoch: 19, loss: 0.135505009050432, time cost: 36.31552720069885
+Val auc: 0.7904782996221503, f1: 0.5902780468901375
+
+Under the condition of auc, best idx: 18
+Best F1 score 0.6075167300036624 found at epoch count: 11 and patience_count: 8
+Test auc: 0.8169762616057274, f1: 0.5961425576519916
+
+Under the condition of f1, best idx: 11
+Test auc: 0.7665517706899856, f1: 0.633910533910534
+
+
+[Time taken for PC-3 | Time_taken_since_last: 855722.24 ms (855.72 seconds)]
+[End of [Experiment 9 - Dataset: PC-3]]
+Waiting for 15 seconds before the next experiment...
+
+[Experiment 10 - Dataset: MCF-7]
+Running command: for dataset MCF-7
+Model info:
+{
+  "data": "MCF-7",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.3517669709889512, time cost: 35.867613554000854
+Val auc: 0.514295615417856, f1: 0.47846230904082143
+Epoch: 1, loss: 0.240469922360621, time cost: 36.89544749259949
+Val auc: 0.6709204944523228, f1: 0.5094874804381847
+Epoch: 2, loss: 0.21951796781075628, time cost: 36.62661170959473
+Val auc: 0.6225715598619624, f1: 0.47846230904082143
+Epoch: 3, loss: 0.21464718329279045, time cost: 35.68443989753723
+Val auc: 0.729739033979903, f1: 0.551299112801014
+Epoch: 4, loss: 0.20572181947921453, time cost: 36.80472445487976
+Val auc: 0.7179973889703779, f1: 0.5654256117348039
+Epoch: 5, loss: 0.20209210091515592, time cost: 36.123045921325684
+Val auc: 0.7308661436492334, f1: 0.5010242903131402
+Epoch: 6, loss: 0.20155003313955508, time cost: 36.15398955345154
+Val auc: 0.7419999178347321, f1: 0.6025408837910782
+Epoch: 7, loss: 0.2000385746359825, time cost: 35.32348322868347
+Val auc: 0.7565831116899874, f1: 0.542691984757476
+Epoch: 8, loss: 0.19717136613632502, time cost: 35.64309024810791
+Val auc: 0.7589092256379981, f1: 0.5092009931837671
+Epoch: 9, loss: 0.1964777711974947, time cost: 36.39407753944397
+Val auc: 0.7765918759852225, f1: 0.5475470428443268
+Epoch: 10, loss: 0.19270958202449898, time cost: 36.301214933395386
+Val auc: 0.7722397795536295, f1: 0.5614407313997478
+Epoch: 11, loss: 0.18963713434181714, time cost: 35.54135775566101
+Val auc: 0.7678241571973731, f1: 0.6342388325021688
+Epoch: 12, loss: 0.18922686263134605, time cost: 35.95444893836975
+Val auc: 0.7891726718319203, f1: 0.601003108325508
+Epoch: 13, loss: 0.18659435134184987, time cost: 35.71117687225342
+Val auc: 0.7838600786352045, f1: 0.5882307709207548
+Epoch: 14, loss: 0.18257032393624908, time cost: 35.446067333221436
+Val auc: 0.7828600208152012, f1: 0.5225619443605148
+Epoch: 15, loss: 0.18053115237700312, time cost: 35.83539175987244
+Val auc: 0.7965477654090308, f1: 0.6020493358633776
+Epoch: 16, loss: 0.17748029549655162, time cost: 35.773138999938965
+Val auc: 0.7851191852857222, f1: 0.6185923468772538
+Epoch: 17, loss: 0.1772985599542919, time cost: 35.88540577888489
+Val auc: 0.7968513204262855, f1: 0.612757303870576
+Epoch: 18, loss: 0.17466750192014793, time cost: 35.3130624294281
+Val auc: 0.7991169516077005, f1: 0.6519790671406807
+Epoch: 19, loss: 0.16997255541776357, time cost: 35.38758707046509
+Val auc: 0.8040122517543805, f1: 0.6398068757016282
+
+Under the condition of auc, best idx: 19
+Best F1 score 0.6519790671406807 found at epoch count: 18 and patience_count: 1
+Test auc: 0.8165028553227311, f1: 0.6349608894191852
+
+Under the condition of f1, best idx: 18
+Test auc: 0.8112267649534731, f1: 0.6482384445090454
+
+
+[Time taken for MCF-7 | Time_taken_since_last: 853377.42 ms (853.38 seconds)]
+[End of [Experiment 10 - Dataset: MCF-7]]
+Waiting for 15 seconds before the next experiment...
+
+[Experiment 11 - Dataset: PROTEINS]
+Running command: for dataset PROTEINS
+Model info:
+{
+  "data": "PROTEINS",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
+}
+Unexpected situation: the node attributes are 1 dim, converting them to 2 dim with reshape
+Starts training...
+Epoch: 0, loss: 0.4843819886445999, time cost: 1.4913268089294434
+Val auc: 0.3331825719885421, f1: 0.3207161125319693
+Epoch: 1, loss: 0.5264075696468353, time cost: 1.380746603012085
+Val auc: 0.22734810794512286, f1: 0.2875536480686695
+Epoch: 2, loss: 0.4726403057575226, time cost: 1.386664628982544
+Val auc: 0.25041459369817576, f1: 0.3735849056603774
+Epoch: 3, loss: 0.4723910540342331, time cost: 1.3679149150848389
+Val auc: 0.2701643298658224, f1: 0.3735849056603774
+Epoch: 4, loss: 0.48756225407123566, time cost: 1.2249033451080322
+Val auc: 0.6072666968189356, f1: 0.3735849056603774
+Epoch: 5, loss: 0.47160495817661285, time cost: 1.251246452331543
+Val auc: 0.7963214231870949, f1: 0.3735849056603774
+Epoch: 6, loss: 0.475811704993248, time cost: 1.3647313117980957
+Val auc: 0.7841097542590081, f1: 0.3735849056603774
+Epoch: 7, loss: 0.46716465055942535, time cost: 1.4546339511871338
+Val auc: 0.7838082315694256, f1: 0.3735849056603774
+Epoch: 8, loss: 0.46718859672546387, time cost: 1.3565607070922852
+Val auc: 0.7816975727423489, f1: 0.3735849056603774
+Epoch: 9, loss: 0.46868419647216797, time cost: 1.3565192222595215
+Val auc: 0.7810945273631841, f1: 0.3735849056603774
+Epoch: 10, loss: 0.46789389848709106, time cost: 1.3935577869415283
+Val auc: 0.780943766018393, f1: 0.3735849056603774
+Epoch: 11, loss: 0.46889252960681915, time cost: 1.2031214237213135
+Val auc: 0.782602140811096, f1: 0.3735849056603774
+Epoch: 12, loss: 0.4676058441400528, time cost: 1.2418177127838135
+Val auc: 0.7823006181215136, f1: 0.3735849056603774
+Epoch: 13, loss: 0.6065540462732315, time cost: 1.3693277835845947
+Val auc: 0.2697120458314488, f1: 0.3735849056603774
+Epoch: 14, loss: 0.4687463045120239, time cost: 1.428788661956787
+Val auc: 0.783582089552239, f1: 0.3735849056603774
+Epoch: 15, loss: 0.4665229916572571, time cost: 1.3515279293060303
+Val auc: 0.7829036635006785, f1: 0.3735849056603774
+Epoch: 16, loss: 0.4606509357690811, time cost: 1.3306236267089844
+Val auc: 0.7869742198100408, f1: 0.3735849056603774
+Epoch: 17, loss: 0.4788023382425308, time cost: 1.2142643928527832
+Val auc: 0.7854666063621287, f1: 0.3735849056603774
+Epoch: 18, loss: 0.4735611379146576, time cost: 1.1950020790100098
+Val auc: 0.7893864013266998, f1: 0.3735849056603774
+Epoch: 19, loss: 0.4696993976831436, time cost: 1.3767309188842773
+Val auc: 0.7898386853610734, f1: 0.3735849056603774
+
+Under the condition of auc, best idx: 5
+Best F1 score 0.3735849056603774 found at epoch count: 19 and patience_count: 0
+Test auc: 0.8086764705882352, f1: 0.3731343283582089
+
+Under the condition of f1, best idx: 19
+Test auc: 0.7991176470588235, f1: 0.3731343283582089
+
+
+[Time taken for PROTEINS | Time_taken_since_last: 36079.77 ms (36.08 seconds)]
+[End of [Experiment 11 - Dataset: PROTEINS]]
+Waiting for 15 seconds before the next experiment...
+
+[Experiment 12 - Dataset: AIDS]
+Running command: for dataset AIDS
+Model info:
+{
+  "data": "AIDS",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.3256729443868001, time cost: 1.8382906913757324
+Val auc: 0.9552083333333333, f1: 0.6122209165687427
+Epoch: 1, loss: 0.21321185926596323, time cost: 1.8722374439239502
+Val auc: 0.9788194444444445, f1: 0.9095840867992767
+Epoch: 2, loss: 0.1924437334140142, time cost: 1.8674285411834717
+Val auc: 0.9574305555555556, f1: 0.9241931990470001
+Epoch: 3, loss: 0.19019893308480582, time cost: 1.8764832019805908
+Val auc: 0.9736805555555555, f1: 0.8780157224179995
+Epoch: 4, loss: 0.1684329311052958, time cost: 1.8707334995269775
+Val auc: 0.9620138888888888, f1: 0.9069478908188585
+Epoch: 5, loss: 0.1530782679716746, time cost: 1.7381925582885742
+Val auc: 0.9490972222222221, f1: 0.9003731124611748
+Epoch: 6, loss: 0.13007298856973648, time cost: 1.8536720275878906
+Val auc: 0.955625, f1: 0.8936924167257264
+Epoch: 7, loss: 0.10231567919254303, time cost: 1.9487590789794922
+Val auc: 0.9322222222222223, f1: 0.9069478908188585
+Epoch: 8, loss: 0.0876294697324435, time cost: 1.8587229251861572
+Val auc: 0.9490972222222221, f1: 0.9197922236651135
+Epoch: 9, loss: 0.10252876083056132, time cost: 1.846405029296875
+Val auc: 0.9661111111111111, f1: 0.9209575429087624
+Epoch: 10, loss: 0.09035254766543706, time cost: 1.7093520164489746
+Val auc: 0.97125, f1: 0.9392030066876693
+Epoch: 11, loss: 0.06784659127394359, time cost: 1.8089072704315186
+Val auc: 0.998125, f1: 0.9679395839270447
+Epoch: 12, loss: 0.07653394341468811, time cost: 2.000927448272705
+Val auc: 0.9991666666666668, f1: 0.9794224569586392
+Epoch: 13, loss: 0.06816834087173144, time cost: 1.7303388118743896
+Val auc: 0.9988194444444445, f1: 0.9842764548646902
+Epoch: 14, loss: 0.06872459997733434, time cost: 1.8473267555236816
+Val auc: 0.9970833333333333, f1: 0.9734564951956257
+Epoch: 15, loss: 0.05792281528313955, time cost: 1.7383906841278076
+Val auc: 0.9973611111111111, f1: 0.9679395839270447
+Epoch: 16, loss: 0.05619205782810847, time cost: 1.7127931118011475
+Val auc: 0.9989583333333334, f1: 0.9734564951956257
+Epoch: 17, loss: 0.051424977680047355, time cost: 1.9408276081085205
+Val auc: 0.9991666666666668, f1: 0.9842764548646902
+Epoch: 18, loss: 0.047046490013599396, time cost: 1.769129753112793
+Val auc: 0.9993055555555556, f1: 0.9789014698642662
+Epoch: 19, loss: 0.04591484616200129, time cost: 1.8960306644439697
+Val auc: 0.9992361111111111, f1: 0.9731062303899597
+
+Under the condition of auc, best idx: 18
+Best F1 score 0.9842764548646902 found at epoch count: 17 and patience_count: 2
+Test auc: 0.9857638888888889, f1: 0.9786263892846965
+
+Under the condition of f1, best idx: 17
+Test auc: 0.9853472222222223, f1: 0.9734564951956257
+
+
+[Time taken for AIDS | Time_taken_since_last: 48032.43 ms (48.03 seconds)]
+[End of [Experiment 12 - Dataset: AIDS]]
+Waiting for 15 seconds before the next experiment...
+
+[Experiment 13 - Dataset: Mutagenicity]
+Running command: for dataset Mutagenicity
+Model info:
+{
+  "data": "Mutagenicity",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.5654127597808838, time cost: 5.081649303436279
+Val auc: 0.6797030651340995, f1: 0.5137768144282533
+Epoch: 1, loss: 0.5008730043967565, time cost: 5.337414741516113
+Val auc: 0.7374042145593871, f1: 0.5811855670103092
+Epoch: 2, loss: 0.49094726145267487, time cost: 5.172018051147461
+Val auc: 0.675948275862069, f1: 0.5818645777698652
+Epoch: 3, loss: 0.48912134766578674, time cost: 5.11619234085083
+Val auc: 0.7227011494252873, f1: 0.6459617856598183
+Epoch: 4, loss: 0.4614966958761215, time cost: 5.139639377593994
+Val auc: 0.754022988505747, f1: 0.6379711879467073
+Epoch: 5, loss: 0.4452916483084361, time cost: 5.293608903884888
+Val auc: 0.7723850574712644, f1: 0.6507867629586006
+Epoch: 6, loss: 0.45022550225257874, time cost: 5.083812236785889
+Val auc: 0.7407471264367815, f1: 0.6634760098729757
+Epoch: 7, loss: 0.43289584418137866, time cost: 5.176638603210449
+Val auc: 0.7828448275862069, f1: 0.6757369614512472
+Epoch: 8, loss: 0.42011139790217084, time cost: 5.196354150772095
+Val auc: 0.7498275862068966, f1: 0.586998320367751
+Epoch: 9, loss: 0.4138489017883937, time cost: 5.2154457569122314
+Val auc: 0.782883141762452, f1: 0.6500159489633175
+Epoch: 10, loss: 0.4123510917027791, time cost: 4.981319189071655
+Val auc: 0.7867049808429118, f1: 0.685077519379845
+Epoch: 11, loss: 0.4087777187426885, time cost: 4.988824367523193
+Val auc: 0.7746455938697318, f1: 0.6762597717577254
+Epoch: 12, loss: 0.4006608823935191, time cost: 5.137892246246338
+Val auc: 0.7904022988505748, f1: 0.6743609948164615
+Epoch: 13, loss: 0.3969431320826213, time cost: 5.093448162078857
+Val auc: 0.782978927203065, f1: 0.6729513176881599
+Epoch: 14, loss: 0.3972051938374837, time cost: 5.382704019546509
+Val auc: 0.7837547892720306, f1: 0.680353306278348
+Epoch: 15, loss: 0.3920200566450755, time cost: 5.76863956451416
+Val auc: 0.7741858237547892, f1: 0.6629272284387607
+Epoch: 16, loss: 0.3940438429514567, time cost: 5.22953724861145
+Val auc: 0.7844971264367817, f1: 0.6625028707226234
+Epoch: 17, loss: 0.3940237412850062, time cost: 5.2235400676727295
+Val auc: 0.7977011494252874, f1: 0.6882002964066068
+Epoch: 18, loss: 0.3852146913607915, time cost: 5.298832654953003
+Val auc: 0.7947318007662837, f1: 0.6907626434645945
+Epoch: 19, loss: 0.3861967126528422, time cost: 5.0024871826171875
+Val auc: 0.8030651340996169, f1: 0.7034671532846716
+
+Under the condition of auc, best idx: 19
+Best F1 score 0.7034671532846716 found at epoch count: 19 and patience_count: 0
+Test auc: 0.7849996668284928, f1: 0.6895895048666949
+
+Under the condition of f1, best idx: 19
+Test auc: 0.7849996668284928, f1: 0.6895895048666949
+
+
+[Time taken for Mutagenicity | Time_taken_since_last: 127078.04 ms (127.08 seconds)]
+[End of [Experiment 13 - Dataset: Mutagenicity]]
+Waiting for 15 seconds before the next experiment...
+
+[Experiment 14 - Dataset: NCI109]
+Running command: for dataset NCI109
+Model info:
+{
+  "data": "NCI109",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.5421075026194254, time cost: 5.900773048400879
+Val auc: 0.3942412093877892, f1: 0.4159821634922577
+Epoch: 1, loss: 0.4765596588452657, time cost: 5.728225469589233
+Val auc: 0.7035099807901111, f1: 0.5060921696750125
+Epoch: 2, loss: 0.47362446784973145, time cost: 5.628722667694092
+Val auc: 0.7075398813998163, f1: 0.5767661395266768
+Epoch: 3, loss: 0.4548272043466568, time cost: 5.656651973724365
+Val auc: 0.7249123026810322, f1: 0.6650861899969942
+Epoch: 4, loss: 0.44753578801949817, time cost: 5.493687391281128
+Val auc: 0.6949281717197027, f1: 0.5802019061222343
+Epoch: 5, loss: 0.4451066702604294, time cost: 5.861057758331299
+Val auc: 0.7245051365572539, f1: 0.6232807238203433
+Epoch: 6, loss: 0.42801403005917865, time cost: 5.832927942276001
+Val auc: 0.725820596341769, f1: 0.6385740304263982
+Epoch: 7, loss: 0.4062945991754532, time cost: 5.82076096534729
+Val auc: 0.7514929424538546, f1: 0.6708764134852281
+Epoch: 8, loss: 0.39447447657585144, time cost: 6.04118013381958
+Val auc: 0.7501983629833793, f1: 0.6536243112947658
+Epoch: 9, loss: 0.39281385640303296, time cost: 5.862164497375488
+Val auc: 0.76632318550071, f1: 0.6573457015714685
+Epoch: 10, loss: 0.3785648047924042, time cost: 5.776226043701172
+Val auc: 0.7951536791113338, f1: 0.7233985841845736
+Epoch: 11, loss: 0.37441560129324597, time cost: 5.629250526428223
+Val auc: 0.7831788190094379, f1: 0.7050029357788503
+Epoch: 12, loss: 0.3692244191964467, time cost: 5.878355026245117
+Val auc: 0.8073582226676689, f1: 0.7382322230343532
+Epoch: 13, loss: 0.3701539834340413, time cost: 5.861052513122559
+Val auc: 0.8107199532280965, f1: 0.7383296092759224
+Epoch: 14, loss: 0.3607386648654938, time cost: 5.548046588897705
+Val auc: 0.8109600768395556, f1: 0.7352571612248531
+Epoch: 15, loss: 0.35380033155282337, time cost: 5.781993865966797
+Val auc: 0.7990896183078593, f1: 0.677918699186992
+Epoch: 16, loss: 0.34643373886744183, time cost: 5.642843723297119
+Val auc: 0.8100622233358389, f1: 0.7126943606405198
+Epoch: 17, loss: 0.34081634879112244, time cost: 6.0263378620147705
+Val auc: 0.8123381775661904, f1: 0.7245607521913022
+Epoch: 18, loss: 0.3379691441853841, time cost: 5.775281667709351
+Val auc: 0.8150943790194606, f1: 0.7403027084439724
+Epoch: 19, loss: 0.33740119139353436, time cost: 5.934355020523071
+Val auc: 0.8160548734652969, f1: 0.7343903715332287
+
+Under the condition of auc, best idx: 19
+Best F1 score 0.7403027084439724 found at epoch count: 18 and patience_count: 1
+Test auc: 0.76758658008658, f1: 0.7012830583922494
+
+Under the condition of f1, best idx: 18
+Test auc: 0.762471903096903, f1: 0.7108693829644533
+
+
+[Time taken for NCI109 | Time_taken_since_last: 140004.22 ms (140.00 seconds)]
+[End of [Experiment 14 - Dataset: NCI109]]
+Waiting for 15 seconds before the next experiment...
+
+[Experiment 15 - Dataset: NCI1]
 Running command: for dataset NCI1
 Model info:
 {
-        "data": "NCI1",
-        "lr": 0.005,
-        "batchsize": 512,
-        "nepoch": 10,
-        "hdim": 64,
-        "width": 4,
-        "depth": 6,
-        "dropout": 0.4,
-        "normalize": 1,
-        "beta": 0.999,
-        "gamma": 1.5,
-        "decay": 0.0,
-        "seed": 10,
-        "patience": 50
+  "data": "NCI1",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
 }
 Starts training...
-Epoch: 0, loss: 0.5331641733646393, time cost: 4.908994436264038
-Val auc: 0.7065103181608036, f1: 0.4213995139475909
-Epoch: 1, loss: 0.4697383443514506, time cost: 5.001994609832764
-Val auc: 0.7331673181187744, f1: 0.544932261946353
-Epoch: 2, loss: 0.45242591698964435, time cost: 5.142994165420532
-Val auc: 0.7498423906190897, f1: 0.6388104313858787
-Epoch: 3, loss: 0.4574356625477473, time cost: 4.848503112792969
-Val auc: 0.7504938427268525, f1: 0.6645752063836389
-Epoch: 4, loss: 0.44795792798201245, time cost: 4.895994663238525
-Val auc: 0.7521960240406842, f1: 0.6770555767034641
-Epoch: 5, loss: 0.4436793029308319, time cost: 5.386994361877441
-Val auc: 0.7627663598537385, f1: 0.651810661638198
-Epoch: 6, loss: 0.43399375180403393, time cost: 5.083508491516113
-Val auc: 0.7588576472071618, f1: 0.6635950422145926
-Epoch: 7, loss: 0.43016470968723297, time cost: 4.880994558334351
-Val auc: 0.7580801075946707, f1: 0.6602643000583015
-Epoch: 8, loss: 0.42613063255945843, time cost: 4.957296133041382
-Val auc: 0.7529210271928718, f1: 0.6601879057703838
-Epoch: 9, loss: 0.42605289816856384, time cost: 5.0099945068359375
-Val auc: 0.7480771655528937, f1: 0.5832035722463934
-Under the condition of auc, best idx: 5
-Test auc: 0.7280817887614005, f1: 0.6473730856200977
-Under the condition of f1, best idx: 4
-Test auc: 0.7224603875089312, f1: 0.6480468172311074
+Epoch: 0, loss: 0.5331327269474665, time cost: 5.574885845184326
+Val auc: 0.7066469129575925, f1: 0.4213995139475909
+Epoch: 1, loss: 0.470092977086703, time cost: 5.377452611923218
+Val auc: 0.7330727524902283, f1: 0.5435590586739316
+Epoch: 2, loss: 0.45353205998738605, time cost: 5.866175174713135
+Val auc: 0.749117387466902, f1: 0.632511361380282
+Epoch: 3, loss: 0.4562974621852239, time cost: 5.580693960189819
+Val auc: 0.7452507039885681, f1: 0.612516861969816
+Epoch: 4, loss: 0.4393596847852071, time cost: 5.785264730453491
+Val auc: 0.7604547556003867, f1: 0.6662757320652057
+Epoch: 5, loss: 0.43797436853249866, time cost: 5.929747581481934
+Val auc: 0.7655928214180641, f1: 0.6780489519375569
+Epoch: 6, loss: 0.433261642853419, time cost: 5.799742698669434
+Val auc: 0.7685768923633002, f1: 0.6810230259329333
+Epoch: 7, loss: 0.42946014801661175, time cost: 5.853209733963013
+Val auc: 0.7658134745513385, f1: 0.6643484916827271
+Epoch: 8, loss: 0.42332543432712555, time cost: 5.594037055969238
+Val auc: 0.7669587693859539, f1: 0.6998900308759463
+Epoch: 9, loss: 0.41397538781166077, time cost: 5.661438226699829
+Val auc: 0.7456394737948137, f1: 0.654341736694678
+Epoch: 10, loss: 0.40132688482602435, time cost: 5.62165093421936
+Val auc: 0.794046568318413, f1: 0.7177760252365932
+Epoch: 11, loss: 0.39022907614707947, time cost: 5.548318147659302
+Val auc: 0.7940150464422309, f1: 0.6960135381188013
+Epoch: 12, loss: 0.38061512509981793, time cost: 5.682531356811523
+Val auc: 0.747289118648342, f1: 0.6783107403545361
+Epoch: 13, loss: 0.38067179918289185, time cost: 5.7451441287994385
+Val auc: 0.8004455091833732, f1: 0.723849104859335
+Epoch: 14, loss: 0.3767130523920059, time cost: 5.869352102279663
+Val auc: 0.8157020972554953, f1: 0.7135286583413385
+Epoch: 15, loss: 0.3807176450888316, time cost: 5.711125373840332
+Val auc: 0.8081893834321019, f1: 0.6327224049785676
+Epoch: 16, loss: 0.36361204584439594, time cost: 5.779019117355347
+Val auc: 0.8298554196612451, f1: 0.7369504886779552
+Epoch: 17, loss: 0.3666575650374095, time cost: 5.922531843185425
+Val auc: 0.8320724582860505, f1: 0.7713884034739649
+Epoch: 18, loss: 0.3644845336675644, time cost: 5.666867256164551
+Val auc: 0.8386605304081033, f1: 0.7778738388364057
+Epoch: 19, loss: 0.36503422260284424, time cost: 5.882481098175049
+Val auc: 0.8106060606060607, f1: 0.6726646490135766
 
-Error: F:\workspace\RQGNN\utils.py:75: UserWarning: torch.sparse.SparseTensor(indices, values, shape, *, device=) is deprecated.  Please use torch.sparse_coo_tensor(indices, values, shape, dtype=, device=). (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:623.)
-  return torch.sparse.FloatTensor(indices, values, shape)
+Under the condition of auc, best idx: 18
+Best F1 score 0.7778738388364057 found at epoch count: 18 and patience_count: 1
+Test auc: 0.8145883242970622, f1: 0.7405273560704824
 
-[End of [Experiment 9 - Dataset: NCI1]]
+Under the condition of f1, best idx: 18
+Test auc: 0.8145883242970622, f1: 0.7405273560704824
 
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
-(gmapadconda) F:\workspace\RQGNN>
+
+[Time taken for NCI1 | Time_taken_since_last: 138209.26 ms (138.21 seconds)]
+[End of [Experiment 15 - Dataset: NCI1]]
+Waiting for 15 seconds before the next experiment...
+
+[Experiment 16 - Dataset: DD]
+Running command: for dataset DD
+Model info:
+{
+  "data": "DD",
+  "lr": 0.005,
+  "batchsize": 512,
+  "nepoch": 20,
+  "hdim": 64,
+  "width": 4,
+  "depth": 6,
+  "dropout": 0.4,
+  "normalize": 1,
+  "beta": 0.999,
+  "gamma": 1.5,
+  "decay": 0.0,
+  "seed": 10,
+  "patience": 50
+}
+Starts training...
+Epoch: 0, loss: 0.5259392559528351, time cost: 25.581526041030884
+Val auc: 0.8061116965226555, f1: 0.37010676156583633
+Epoch: 1, loss: 0.409285306930542, time cost: 24.18506407737732
+Val auc: 0.8079557428872498, f1: 0.4273993154859581
+Epoch: 2, loss: 0.40765291452407837, time cost: 20.007919788360596
+Val auc: 0.5578240252897787, f1: 0.6089211950430689
+Epoch: 3, loss: 0.40467336773872375, time cost: 19.9127140045166
+Val auc: 0.8173076923076923, f1: 0.6996015348288076
+Epoch: 4, loss: 0.38477425277233124, time cost: 20.141899824142456
+Val auc: 0.8340358271865121, f1: 0.7237157029380139
+Epoch: 5, loss: 0.4042217284440994, time cost: 20.044119119644165
+Val auc: 0.8300842992623814, f1: 0.7289055973266501
+Epoch: 6, loss: 0.37326012551784515, time cost: 19.961654901504517
+Val auc: 0.83377239199157, f1: 0.7021037868162693
+Epoch: 7, loss: 0.39609502255916595, time cost: 19.378283262252808
+Val auc: 0.8358798735511065, f1: 0.6822033898305084
+Epoch: 8, loss: 0.3740423023700714, time cost: 19.62039279937744
+Val auc: 0.8420706006322445, f1: 0.6570789865871833
+Epoch: 9, loss: 0.36458054184913635, time cost: 18.517536401748657
+Val auc: 0.8464172813487881, f1: 0.7025210084033613
+Epoch: 10, loss: 0.3774493634700775, time cost: 19.70536780357361
+Val auc: 0.8481296101159116, f1: 0.7624798711755233
+Epoch: 11, loss: 0.35640332102775574, time cost: 18.66838526725769
+Val auc: 0.846022128556375, f1: 0.7883337762423597
+Epoch: 12, loss: 0.35910865664482117, time cost: 18.68340253829956
+Val auc: 0.8465489989462591, f1: 0.7586363636363637
+Epoch: 13, loss: 0.3727564215660095, time cost: 19.949772119522095
+Val auc: 0.8423340358271865, f1: 0.772785622593068
+Epoch: 14, loss: 0.3611145317554474, time cost: 20.28131365776062
+Val auc: 0.8427291886195996, f1: 0.7399054433938155
+Epoch: 15, loss: 0.376902237534523, time cost: 18.1104519367218
+Val auc: 0.845231822971549, f1: 0.7937062937062938
+Epoch: 16, loss: 0.3506679981946945, time cost: 19.701928853988647
+Val auc: 0.8435194942044256, f1: 0.7571691484022085
+Epoch: 17, loss: 0.3669729679822922, time cost: 18.673924684524536
+Val auc: 0.8462855637513172, f1: 0.7678024824245686
+Epoch: 18, loss: 0.36184629797935486, time cost: 20.13860774040222
+Val auc: 0.8461538461538461, f1: 0.7701528318849264
+Epoch: 19, loss: 0.36935703456401825, time cost: 19.94199538230896
+Val auc: 0.8346944151738672, f1: 0.7937062937062938
+
+Under the condition of auc, best idx: 10
+Best F1 score 0.7937062937062938 found at epoch count: 19 and patience_count: 0
+Test auc: 0.8416060291060291, f1: 0.7793868232224396
+
+Under the condition of f1, best idx: 19
+Test auc: 0.8201663201663201, f1: 0.7745694022289766
+
+
+[Time taken for DD | Time_taken_since_last: 449496.16 ms (449.50 seconds)]
+[End of [Experiment 16 - Dataset: DD]]

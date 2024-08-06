@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import torch
 from torch_geometric.nn import ChebConv
 
-
+#bm
 class GADGNN(nn.Module):
     def __init__(self, featuredim, hdim, nclass, width, depth, dropout, normalize):
         super(GADGNN, self).__init__()
@@ -45,6 +45,7 @@ class GADGNN(nn.Module):
         h = self.linear2(h)
         h = self.act(h)
 
+        # self.conv represent the use of Chebyshev polynomials.
         h_final = torch.zeros([len(data.features_list), 0])
         for conv in self.conv:
             h0 = conv(h, data.edge_index)
@@ -57,10 +58,14 @@ class GADGNN(nn.Module):
         h = self.act(h)
 
 
+        # The linear8 and linear9 layers, followed by activation functions, can be seen as capturing some explicit features, 
+        # "potentially" aligning with the Rayleigh Quotient computation.
         tmpscores = self.linear8(data.xLx_batch)
         tmpscores = self.act(tmpscores)
+
         tmpscores = self.linear9(tmpscores)
         tmpscores = self.act(tmpscores)
+
         scores = torch.zeros([len(data.features_list), 1])
         for i, node_belong in enumerate(data.node_belong):
             scores[node_belong] = torch.unsqueeze(torch.mv(h[node_belong], tmpscores[i]), 1)

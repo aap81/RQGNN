@@ -22,6 +22,7 @@ def focal_loss(labels, logits, alpha, gamma):
     focal_loss /= torch.sum(labels)
     return focal_loss
 
+# actual_labels, pred_labels, [no_values_for_class1, no_values_for_class2], no_of_classes, beta, and gamma ]
 def CB_loss(labels, logits, samples_per_cls, nclass, beta, gamma):
     effective_num = 1.0 - np.power(beta, samples_per_cls)
     if effective_num[1] > 0:

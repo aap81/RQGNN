@@ -55,6 +55,8 @@ print(json.dumps(args.__dict__, indent='\t'))
 adjs, features, graphlabels, train_index, val_index, test_index = utils.load_data(data)
 featuredim = features[0].shape[1]
 
+# x_train contains all of the indices of graphs part of the training set, similarly for test and val
+# so we need to seperate the adj, features and labels based on that
 adj_train = [adjs[i] for i in train_index]
 feats_train = [features[i] for i in train_index]
 label_train = [graphlabels[i] for i in train_index]
@@ -70,6 +72,7 @@ label_test = [graphlabels[i] for i in test_index]
 ny_0 = label_train.count(0)
 ny_1 = label_train.count(1)
 
+#bm
 gad = model.GADGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
 optimizer = optim.Adam(gad.parameters(), lr=lr, weight_decay=decay)
 
@@ -85,17 +88,17 @@ patiencecount = 0
 print("Starts training...")
 for epoch in range(nepoch):
     epoch_start = time.time()
-    gad.train()
+    gad.train() # set to train mode
     train_batches = utils.generate_batches(adj_train, feats_train, label_train, batchsize, True)
     epoch_loss = 0
 
 
     for train_batch in train_batches:
-        optimizer.zero_grad()
+        optimizer.zero_grad() # clears old gradients
         outputs = gad(train_batch)
         loss = lossfunc.CB_loss(train_batch.label_list, outputs, [ny_0, ny_1], nclass, beta, gamma)
-        loss.backward()
-        optimizer.step()
+        loss.backward() # Backpropagate the error to compute gradients.
+        optimizer.step() # Update the model parameters using the computed gradients.
         epoch_loss += loss.item()
 
     epoch_end = time.time()
