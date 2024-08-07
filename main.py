@@ -118,8 +118,8 @@ for epoch in range(nepoch):
             preds = torch.cat((preds, outputs), dim=0)
             truths = torch.cat((truths, val_batch.label_list), dim=0)
 
-    auc_val, f1_score_val = utils.compute_metrics(preds, truths)
-    print("Val auc: {}, f1: {}".format(auc_val, f1_score_val))
+    auc_val, f1_score_val, accuracy_val, macro_precision_val, macro_recall_val = utils.compute_metrics(preds, truths)
+    print("Val auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}".format(auc_val, f1_score_val, accuracy_val, macro_precision_val, macro_recall_val))
 
     if bestauc <= auc_val:
         bestauc = auc_val
@@ -152,8 +152,8 @@ for i, test_batch in enumerate(test_batches):
         preds = torch.cat((preds, outputs), dim=0)
         truths = torch.cat((truths, test_batch.label_list), dim=0)
 
-auc_test, f1_score_test = utils.compute_metrics(preds, truths)
-print("Test auc: {}, f1: {}\n".format(auc_test, f1_score_test))
+auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test = utils.compute_metrics(preds, truths)
+print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test))
 
 print("Under the condition of f1, best idx: {}".format(bestepochf1))
 test_batches = utils.generate_batches(adj_test, feats_test, label_test, batchsize, False)
@@ -169,5 +169,5 @@ for i, test_batch in enumerate(test_batches):
         preds = torch.cat((preds, outputs), dim=0)
         truths = torch.cat((truths, test_batch.label_list), dim=0)
 
-auc_test, f1_score_test = utils.compute_metrics(preds, truths)
-print("Test auc: {}, f1: {}\n".format(auc_test, f1_score_test))
+auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test = utils.compute_metrics(preds, truths)
+print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test))

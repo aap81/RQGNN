@@ -142,5 +142,11 @@ def compute_metrics(preds, truths):
 
     macro_f1 = DICT['macro avg']['f1-score']
 
-    return auc, macro_f1
+    # Extract other metrics
+    accuracy = DICT['accuracy']
+    macro_precision = DICT['macro avg']['precision']
+    macro_recall = DICT['macro avg']['recall']
+
+    return auc, macro_f1, accuracy, macro_precision, macro_recall
+
 
