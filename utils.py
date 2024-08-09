@@ -30,7 +30,8 @@ def set_seed(seed):
     return seed
 
 def load_data(data):
-    path = os.path.join(DATADIR, data)
+    print(f"Loading dataset: {data}")
+    path = os.path.join(DATADIR, data, "raw")
 
     graphlabel_path = os.path.join(path, data + NEWLABEL)
     graphlabels = np.loadtxt(graphlabel_path, dtype=np.int64)

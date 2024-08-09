@@ -4,7 +4,6 @@ import numpy as np
 import os
 import torch
 from sklearn.preprocessing import OneHotEncoder
-
 from name import *
 
 # fixes the pattern for randomness. 
@@ -31,16 +30,18 @@ def set_seed(seed):
 # Generating node attributes is a crucial preprocessing step in graph-based machine learning tasks. 
 # It transforms categorical labels into a format that can be used by GNNs and other algorithms, enabling the model to learn meaningful patterns from the data. 
 def gen_nodeattr(data):
-    nodeattr_path = os.path.join(data, data + NODEATTR)
+    nodeattr_path = os.path.join(data, "raw", data + NODEATTR)
     if not os.path.exists(nodeattr_path):
-        nodelabel_path = os.path.join(data, data + NODELABEL)
+        nodelabel_path = os.path.join(data, "raw", data + NODELABEL)
         nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
         enc = OneHotEncoder(sparse_output=False)
         nodeattrs = enc.fit_transform(nodelabels)
         np.savetxt(nodeattr_path, nodeattrs, fmt='%f', delimiter=',')
 
+# data is just the name of the dataset
+# other are ratios
 def split_train_val_test(data, trainsz, testsz):
-    graphlabel_path = os.path.join(data, data + GRAPHLABEL)
+    graphlabel_path = os.path.join(data, "raw", data + GRAPHLABEL)
     graphlabels = np.loadtxt(graphlabel_path, dtype=np.int64)
     graphlabels = np.where(graphlabels == -1, 0, graphlabels)
 
@@ -61,6 +62,8 @@ def split_train_val_test(data, trainsz, testsz):
             print("Exist wrong label: {}, index: {}".format(label, i))
             print("Generate fail")
             exit()
+    print(f"Class 0 - marked as normal with {len(normalinds)} graphs")
+    print(f"Class 1 - marked as abnormal with {len(abnormalinds)} graphs")
 
     # from here on out we are seperating based on indices of the graphs
     random.shuffle(normalinds)
@@ -88,12 +91,12 @@ def split_train_val_test(data, trainsz, testsz):
 
     print("Total size: {}, generate size: {}".format(len(graphlabels), len(train_index) + len(val_index) + len(test_index)))
 
-    train_path = os.path.join(data, data + TRAIN)
-    val_path = os.path.join(data, data + VAL)
-    test_path = os.path.join(data, data + TEST)
+    train_path = os.path.join(data, "raw", data + TRAIN)
+    val_path = os.path.join(data, "raw", data + VAL)
+    test_path = os.path.join(data, "raw", data + TEST)
 
     np.savetxt(train_path, train_index, fmt='%d')
     np.savetxt(val_path, val_index, fmt='%d')
     np.savetxt(test_path, test_index, fmt='%d')
 
-    np.savetxt(os.path.join(data, data + NEWLABEL), graphlabels, fmt='%d')
+    np.savetxt(os.path.join(data, "raw", data + NEWLABEL), graphlabels, fmt='%d')

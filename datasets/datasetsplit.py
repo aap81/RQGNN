@@ -43,18 +43,34 @@ def log_time(start_time, action_start_time, message):
 def download_and_extract_tu_dataset(datasets_path, dataset_name):
     dataset_url = f'https://www.chrsmrrs.com/graphkerneldatasets/{dataset_name}.zip'
     dataset_zip = os.path.join(datasets_path, f'{dataset_name}.zip')
+    dataset_dir = os.path.join(datasets_path, dataset_name)
+    raw_dir = os.path.join(dataset_dir, 'raw')
 
-    # Create directory if it doesn't exist
-    os.makedirs(datasets_path, exist_ok=True)
+    if not os.path.exists(raw_dir):
+        # Create directory if it doesn't exist
+        os.makedirs(datasets_path, exist_ok=True)
 
-    # Download the dataset
-    print(f'Downloading {dataset_name} dataset...')
-    urllib.request.urlretrieve(dataset_url, dataset_zip)
+        # Download the dataset
+        print(f'Downloading {dataset_name} dataset...')
+        urllib.request.urlretrieve(dataset_url, dataset_zip)
 
-    # Extract the dataset
-    print(f'Extracting {dataset_name} dataset...')
-    with zipfile.ZipFile(dataset_zip, 'r') as zip_ref:
-        zip_ref.extractall(datasets_path)
+        # Extract the dataset
+        print(f'Extracting {dataset_name} dataset...')
+        with zipfile.ZipFile(dataset_zip, 'r') as zip_ref:
+            zip_ref.extractall(datasets_path)
+
+        # Create the raw directory if it doesn't exist
+        os.makedirs(raw_dir, exist_ok=True)
+
+        # Move the extracted files into the raw directory
+        for filename in os.listdir(dataset_dir):
+            file_path = os.path.join(dataset_dir, filename)
+            if os.path.isfile(file_path):
+                shutil.move(file_path, raw_dir)
+
+        # Clean up the zip file
+        os.remove(dataset_zip)
+
 
 def run_experiments():
     experiment_counter = 0
@@ -67,7 +83,8 @@ def run_experiments():
             if not os.path.isdir(dataset_path):
                 print(f"Adding {dataset} folder to {dataset_path}")
                 download_and_extract_tu_dataset(datasets_path, dataset)
-
+            else:
+                print(f"Loading existing {dataset} data")
             
             # Construct the command to run main.py
             command = [
