@@ -1,0 +1,69 @@
+import argparse
+import time
+from sklearn.model_selection import StratifiedShuffleSplit
+import torch
+import json
+import numpy as np
+import torch.nn as nn
+import torch.optim as optim
+from copy import deepcopy
+from evaluate import get_repo_root
+import pdb
+import os
+import subprocess
+import logging
+import time
+from torch_geometric.datasets import TUDataset
+import urllib.request
+import shutil
+import zipfile
+
+import utils
+import model
+from name import *
+import lossfunc
+from torch_geometric.data import DataLoader
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--data', default='PROTEINS', help='Dataset used')
+args = parser.parse_args()
+
+
+data = args.data
+
+DATASETS = [
+    "MOLT-4"#, "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
+]
+
+for data in DATASETS:
+	adjs, features, graphlabels, train_index, val_index, test_index = utils.load_data(data)
+	graphs = TUDataset(root= f'{get_repo_root()}/datasets', name=f'{data}')
+	train_graphs = [graphs[i] for i in train_index]
+	val_graphs = [graphs[i] for i in val_index]
+	test_graphs = [graphs[i] for i in test_index]
+	# pdb.set_trace()
+
+	print(data)
+	print(f"graph features: {graphs.num_features} and {graphs[0].x.shape}")
+	print(f"features shape: {features[0].shape}")
+
+# TEST 
+# Initialize the Graph2Vec model
+# model = model.Graph2Vec(graphs.num_features, 64, 128, "mean")
+
+# all_embeddings = []
+
+# model.eval()  # Set the model to evaluation mode
+# with torch.no_grad():
+#     for batch in dataloader:
+#         # Generate graph embeddings
+#         embeddings = model(batch)
+        
+#         # Collect the embeddings
+#         all_embeddings.append(embeddings)
+
+# # Concatenate all embeddings into a single tensor
+# all_embeddings = torch.cat(all_embeddings, dim=0)
+
+
