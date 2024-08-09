@@ -9,7 +9,7 @@ import zipfile
 
 # Define the datasets and GNN layers to test
 DATASETS = [
-    "MOLT-4", "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
+    "MOLT-4" #, "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
 ]
 trainsize = "0.7"
 testsize = "0.15"
