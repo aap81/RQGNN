@@ -8,6 +8,8 @@ import numpy as np
 from scipy.sparse import csr_matrix, lil_matrix, csgraph
 from sklearn.metrics import roc_auc_score, classification_report
 from torch_geometric.utils.convert import from_scipy_sparse_matrix
+from torch_geometric.datasets import TUDataset
+from torch_geometric.utils import to_scipy_sparse_matrix
 
 from name import *
 import batchdata
@@ -150,4 +152,40 @@ def compute_metrics(preds, truths):
 
     return auc, macro_f1, accuracy, macro_precision, macro_recall
 
+def get_repo_root():
+    current_dir = os.path.abspath(os.path.dirname(__file__))
+    while not os.path.isdir(os.path.join(current_dir, '.git')):
+        parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+        if parent_dir == current_dir:
+            raise FileNotFoundError("Could not find the root directory of the repository")
+        current_dir = parent_dir
+    return current_dir
 
+def load_dataset(dataset):
+    print(f"Loading dataset: {dataset}")
+
+    path = os.path.join(DATADIR, dataset, "raw")
+    graphlabel_path = os.path.join(path, dataset + NEWLABEL)
+    graphlabels = np.loadtxt(graphlabel_path, dtype=np.int64)
+
+    train_path = os.path.join(path, dataset + TRAIN)
+    train_index = np.loadtxt(train_path, dtype=np.int64)
+
+    val_path = os.path.join(path, dataset + VAL)
+    val_index = np.loadtxt(val_path, dtype=np.int64)
+
+    test_path = os.path.join(path, dataset + TEST)
+    test_index = np.loadtxt(test_path, dtype=np.int64)
+
+    datasets_path = f"{get_repo_root()}/datasets"
+
+    graphs = TUDataset(root=datasets_path, name=f'{dataset}')
+
+    adjs = []
+    features = []
+
+    for graph in graphs:
+        adjs.append(to_scipy_sparse_matrix(graph.edge_index).tocoo())
+        features.append(graph.x.numpy())
+
+    return graphs, adjs, features, graphlabels, train_index, val_index, test_index

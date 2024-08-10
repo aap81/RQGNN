@@ -97,7 +97,10 @@ def run_experiments():
             log_data(f"Running command: for dataset {dataset}")
             
             # Run the command
+            print("Split the dataset")
             result = subprocess.run(command, capture_output=True, text=True)
+            print("Process the graph structure of the dataset")
+            graphs = TUDataset(root= f'{get_repo_root()}/datasets', name=f'{dataset}')
             
             # log_data the output and errors
             log_data(result.stdout)
