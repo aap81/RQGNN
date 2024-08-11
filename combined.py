@@ -33,8 +33,14 @@ args = parser.parse_args()
 
 data = args.data
 
-
-graphs, adjs, features, graphlabels, train_index, val_index, test_index = utils.load_dataset(data)
+DATASETS = [
+    "MOLT-4" , "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
+]
+for data in DATASETS:
+	print(data)
+	graphs, adjs, features, graphlabels, train_index, val_index, test_index = utils.load_dataset(data)
+	print("\n\n")
+exit()
 featuredim = graphs.num_features
 
 train_graphs = [graphs[i] for i in train_index]

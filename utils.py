@@ -10,6 +10,7 @@ from sklearn.metrics import roc_auc_score, classification_report
 from torch_geometric.utils.convert import from_scipy_sparse_matrix
 from torch_geometric.datasets import TUDataset
 from torch_geometric.utils import to_scipy_sparse_matrix
+import pdb
 
 from name import *
 import batchdata
@@ -98,7 +99,6 @@ def generate_batches(adjs, features, graphlabels, batchsize, shuffle):
     for i in range(0, N, batchsize):
         ngraph = min(i + batchsize, N) - i
         nnode = sum([adjs[index[j]].shape[0] for j in range(i, min(i + batchsize, N))])
-
         adj_batch = lil_matrix((nnode, nnode))
         features_batch = np.zeros((nnode, features[0].shape[1]))
         label_batch = np.zeros(ngraph)
@@ -184,8 +184,28 @@ def load_dataset(dataset):
     adjs = []
     features = []
 
-    for graph in graphs:
-        adjs.append(to_scipy_sparse_matrix(graph.edge_index).tocoo())
-        features.append(graph.x.numpy())
+    for i, graph in enumerate(graphs):
+        adj = to_scipy_sparse_matrix(graph.edge_index).tocoo()
+        feature_matrix = graph.x.numpy()
 
+        n_adj_nodes = adj.shape[0]
+        n_feature_nodes = feature_matrix.shape[0]
+
+        if n_adj_nodes != n_feature_nodes:
+            # Identify isolated nodes
+            edge_index_nodes = np.unique(graph.edge_index.numpy())
+            isolated_nodes = [node for node in range(n_feature_nodes) if node not in edge_index_nodes]
+
+            if isolated_nodes:
+                # Optionally, handle isolated nodes by adding them as self-loops in the adjacency matrix
+                adj_padded = lil_matrix((n_feature_nodes, n_feature_nodes))
+                adj_padded[:n_adj_nodes, :n_adj_nodes] = adj
+
+                for node_idx in isolated_nodes:
+                    adj_padded[node_idx, node_idx] = 1  # self-loop for isolated nodes
+
+                adj = adj_padded.tocoo()
+
+        adjs.append(adj)
+        features.append(feature_matrix)
     return graphs, adjs, features, graphlabels, train_index, val_index, test_index

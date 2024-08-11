@@ -9,6 +9,7 @@ import torch.optim as optim
 from copy import deepcopy
 
 import utils
+import pdb
 import model
 from name import *
 import lossfunc
@@ -52,7 +53,7 @@ utils.set_seed(seed)
 print("Model info:")
 print(json.dumps(args.__dict__, indent='\t'))
 
-adjs, features, graphlabels, train_index, val_index, test_index = utils.load_data(data)
+graphs, adjs, features, graphlabels, train_index, val_index, test_index = utils.load_dataset(data)
 featuredim = features[0].shape[1]
 
 # x_train contains all of the indices of graphs part of the training set, similarly for test and val
@@ -73,7 +74,7 @@ ny_0 = label_train.count(0)
 ny_1 = label_train.count(1)
 
 #bm
-gad = model.GADGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
+gad = model.RQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
 optimizer = optim.Adam(gad.parameters(), lr=lr, weight_decay=decay)
 
 bestauc = 0

@@ -1,3 +1,4 @@
 !datasets/*.py
 datasets/*
+datasets/__pycache__/*
 __pycache__/*
