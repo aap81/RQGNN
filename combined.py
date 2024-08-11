@@ -37,9 +37,8 @@ DATASETS = [
     "MOLT-4" , "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
 ]
 for data in DATASETS:
-	print(data)
-	graphs, adjs, features, graphlabels, train_index, val_index, test_index = utils.load_dataset(data)
-	print("\n\n")
+	print(f"python main.py --data {data} --lr 5e-3 --batchsize 512 --nepoch 20 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50")
+	print("\n")
 exit()
 featuredim = graphs.num_features
 
