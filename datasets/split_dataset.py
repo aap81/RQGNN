@@ -10,7 +10,7 @@ from datautils import download_and_process_tu_dataset, get_repo_root, split_grap
 
 def split_all_datasets(train_ratio, test_ratio):
     DATASETS = [
-        "MOLT-4" , "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
+        "MOLT-4" #, "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
     ]
     print(f"Splitting all listed datasets: {DATASETS}")
     datasets_processed = 0

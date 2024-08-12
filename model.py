@@ -49,13 +49,16 @@ class RQGNN(nn.Module):
 
         self.linear8 = nn.Linear(featuredim, hdim)
         self.linear9 = nn.Linear(hdim, hdim)
+        self.residual = nn.Linear(featuredim, featuredim)  # For residual connections
 
     def forward(self, data):
         h = self.linear(data.features_list)
         h = self.act(h)
+        residual = h
 
         h = self.linear2(h)
         h = self.act(h)
+        h += residual  # Applying residual connection
 
         # self.conv represent the use of Chebyshev polynomials.
         h_final = []

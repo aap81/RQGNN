@@ -51,7 +51,7 @@ def run_experiments():
                 '--data', dataset,
                 '--lr', "5e-3",
                 '--batchsize', "512",
-                '--nepoch', "20",
+                '--nepoch', "4",
                 '--hdim', "64",
                 '--width', "4",
                 '--depth', "6",
