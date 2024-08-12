@@ -3,7 +3,7 @@ import json
 import time
 import os
 
-import datautils
+import datautils_old
 from name import *
 
 if __name__ == '__main__':
@@ -21,13 +21,13 @@ if __name__ == '__main__':
 
     assert trainsz + testsz < 1
 
-    datautils.set_seed(seed)
+    datautils_old.set_seed(seed)
     print("Generator info:")
     print(json.dumps(args.__dict__, indent='\t'))
 
     start = time.time()
-    datautils.gen_nodeattr(data)
-    datautils.split_train_val_test(data, trainsz, testsz)
+    datautils_old.gen_nodeattr(data)
+    datautils_old.split_train_val_test(data, trainsz, testsz)
     end = time.time()
 
     print("Generate successfully, time cost: {}".format(end - start))
