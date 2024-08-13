@@ -7,3 +7,694 @@ cd datasets/
 python dataset.py --data AIDS --trainsz 0.7 --testsz 0.15
 cd..
 python main.py --data AIDS --lr 5e-3 --batchsize 512 --nepoch 1 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
+
+
+[Experiment 1 - Dataset: MOLT-4]
+Running command: for dataset MOLT-4
+Model info:
+{
+	"data": "MOLT-4",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: MOLT-4
+Starts training...
+Epoch: 0, loss: 0.31354345083236695, time cost: 118.94794607162476
+Val auc: 0.5703121799732114, f1: 0.4794484684527446, accuracy: 0.9210393964794635, precision: 0.46051969823973177, recall: 0.5
+Epoch: 1, loss: 0.21943589774045077, time cost: 120.8894853591919
+Val auc: 0.6768325530959465, f1: 0.49521714742528034, accuracy: 0.9196982397317687, precision: 0.6277001627111036, recall: 0.5070364350377985
+Epoch: 2, loss: 0.20831785445863552, time cost: 125.8462963104248
+Val auc: 0.6737765267185898, f1: 0.5214079025619663, accuracy: 0.9178541492036881, precision: 0.6389569752281616, recall: 0.5205937842247517
+Epoch: 3, loss: 0.2049752341075377, time cost: 122.11251544952393
+Val auc: 0.6831534806934723, f1: 0.47926669576604103, accuracy: 0.9203688181056161, precision: 0.4604932058379467, recall: 0.49963596650891884
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.5214079025619663 found at epoch count: 2 and patience_count: 1
+Test auc: 0.6830758047574772, f1: 0.48145925704702613, accuracy: 0.9207041072925398, precision: 0.5855770843818151, recall: 0.5007885460069545
+
+Under the condition of f1, best idx: 2
+Test auc: 0.6816884584379639, f1: 0.5178588684260909, accuracy: 0.9176865046102263, precision: 0.6312386266141328, recall: 0.5185616503469912
+
+
+Error: /usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+[Time taken for MOLT-4 | Time_taken_since_last: 612073.17 ms (612.07 seconds)]
+[End of [Experiment 1 - Dataset: MOLT-4]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 2 - Dataset: SW-620]
+Running command: for dataset SW-620
+Model info:
+{
+	"data": "SW-620",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: SW-620
+Starts training...
+Epoch: 0, loss: 0.2765018889414413, time cost: 124.9165678024292
+Val auc: 0.6296205596556145, f1: 0.49011509145776333, accuracy: 0.9404507320282941, precision: 0.6704478103391505, recall: 0.5025077536166589
+Epoch: 1, loss: 0.1917233211653573, time cost: 126.85053300857544
+Val auc: 0.6529213767283952, f1: 0.5315076938885606, accuracy: 0.853923342655042, precision: 0.5282604106697371, recall: 0.5499397344634575
+Epoch: 2, loss: 0.1744360431496586, time cost: 131.03699612617493
+Val auc: 0.6979703497435809, f1: 0.4845247180530823, accuracy: 0.9399572298075342, precision: 0.4702880658436214, recall: 0.49965022735222103
+Epoch: 3, loss: 0.17372348279293096, time cost: 128.36008024215698
+Val auc: 0.7165126601227207, f1: 0.5216286493089382, accuracy: 0.9389702253660142, precision: 0.6588528729922172, recall: 0.5185895442200796
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.5315076938885606 found at epoch count: 1 and patience_count: 2
+Test auc: 0.6800876500643875, f1: 0.5203863758975904, accuracy: 0.9403058707449433, precision: 0.7126284841716617, recall: 0.5180255984945017
+
+Under the condition of f1, best idx: 1
+Test auc: 0.6468025067164893, f1: 0.5246330189762235, accuracy: 0.8511757934550238, precision: 0.5228614940520039, recall: 0.5405042221382829
+
+
+[Time taken for SW-620 | Time_taken_since_last: 634751.10 ms (634.75 seconds)]
+[End of [Experiment 2 - Dataset: SW-620]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 3 - Dataset: NCI-H23]
+Running command: for dataset NCI-H23
+Model info:
+{
+	"data": "NCI-H23",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: NCI-H23
+Starts training...
+Epoch: 0, loss: 0.2604833088283028, time cost: 123.55472731590271
+Val auc: 0.7144987649980619, f1: 0.501564558629776, accuracy: 0.9471336527341814, precision: 0.5938486800555766, recall: 0.5066978572265642
+Epoch: 1, loss: 0.16407529238079274, time cost: 125.54130816459656
+Val auc: 0.6045971144224789, f1: 0.4868599525262801, accuracy: 0.9487857260862382, precision: 0.4744712491738268, recall: 0.49991295264623953
+Epoch: 2, loss: 0.1568517220605697, time cost: 133.82400727272034
+Val auc: 0.7489475439687733, f1: 0.5211358099540485, accuracy: 0.9469684453989757, precision: 0.641986593540524, recall: 0.5173283392379047
+Epoch: 3, loss: 0.1562504977253931, time cost: 129.00564002990723
+Val auc: 0.7396582673012954, f1: 0.501564558629776, accuracy: 0.9471336527341814, precision: 0.5938486800555766, recall: 0.5066978572265642
+
+Under the condition of auc, best idx: 2
+Best F1 score 0.5211358099540485 found at epoch count: 2 and patience_count: 1
+Test auc: 0.734342512554888, f1: 0.520707248416608, accuracy: 0.9464816650148662, precision: 0.6291578745444082, recall: 0.5170676062764582
+
+Under the condition of f1, best idx: 2
+Test auc: 0.734342512554888, f1: 0.520707248416608, accuracy: 0.9464816650148662, precision: 0.6291578745444082, recall: 0.5170676062764582
+
+
+[Time taken for NCI-H23 | Time_taken_since_last: 634466.00 ms (634.47 seconds)]
+[End of [Experiment 3 - Dataset: NCI-H23]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 4 - Dataset: OVCAR-8]
+Running command: for dataset OVCAR-8
+Model info:
+{
+	"data": "OVCAR-8",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: OVCAR-8
+Starts training...
+Epoch: 0, loss: 0.2563880305471165, time cost: 122.2895073890686
+Val auc: 0.6434342120476356, f1: 0.48990442182689026, accuracy: 0.9483382691674893, precision: 0.5993990780375371, recall: 0.5013424184209825
+Epoch: 1, loss: 0.16515485024345772, time cost: 128.1031153202057
+Val auc: 0.6862626404119642, f1: 0.4867421043742611, accuracy: 0.9483382691674893, precision: 0.47432521395655036, recall: 0.4998265695456122
+Epoch: 2, loss: 0.1579305568177785, time cost: 128.7788405418396
+Val auc: 0.6759162909006822, f1: 0.499237569540686, accuracy: 0.9485027969726884, precision: 0.6968473663975394, recall: 0.505976680274287
+Epoch: 3, loss: 0.15454224230987684, time cost: 128.74835467338562
+Val auc: 0.688180658946788, f1: 0.4867421043742611, accuracy: 0.9483382691674893, precision: 0.47432521395655036, recall: 0.4998265695456122
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.499237569540686 found at epoch count: 2 and patience_count: 1
+Test auc: 0.6647925616122806, f1: 0.48678544287764924, accuracy: 0.9485027969726884, precision: 0.47432943886786244, recall: 0.4999132847728061
+
+Under the condition of f1, best idx: 2
+Test auc: 0.6645588196056458, f1: 0.4958931821826926, accuracy: 0.9478446857518921, precision: 0.6108980026072494, recall: 0.5041139704901412
+
+
+[Time taken for OVCAR-8 | Time_taken_since_last: 634357.22 ms (634.36 seconds)]
+[End of [Experiment 4 - Dataset: OVCAR-8]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 5 - Dataset: P388]
+Running command: for dataset P388
+Model info:
+{
+	"data": "P388",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: P388
+Starts training...
+Epoch: 0, loss: 0.2647418714406198, time cost: 117.30232787132263
+Val auc: 0.5939907854105623, f1: 0.4856977513227513, accuracy: 0.9443819321652468, precision: 0.47226688102893893, recall: 0.4999149081007488
+Epoch: 1, loss: 0.16499726513498708, time cost: 126.04133582115173
+Val auc: 0.7456778248044119, f1: 0.4990012715214361, accuracy: 0.9429352194181, precision: 0.5975850669246896, recall: 0.5059699983228263
+Epoch: 2, loss: 0.1584728809825161, time cost: 120.67920017242432
+Val auc: 0.7595011888201576, f1: 0.5299571281454285, accuracy: 0.939238064619836, precision: 0.607298751860758, recall: 0.523111453122996
+Epoch: 3, loss: 0.1562750606160415, time cost: 120.46365451812744
+Val auc: 0.7668659543611449, f1: 0.5199365505809052, accuracy: 0.9435782028612764, precision: 0.6763032194215544, recall: 0.5172238336243723
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.5299571281454285 found at epoch count: 2 and patience_count: 1
+Test auc: 0.7726198666873811, f1: 0.5042703967412345, accuracy: 0.9429443908711025, precision: 0.6185664730558245, recall: 0.5086986113885374
+
+Under the condition of f1, best idx: 2
+Test auc: 0.7645434301736319, f1: 0.5234571537985684, accuracy: 0.9394085503053681, precision: 0.5982867814225398, recall: 0.519104689615376
+
+
+[Time taken for P388 | Time_taken_since_last: 604180.48 ms (604.18 seconds)]
+[End of [Experiment 5 - Dataset: P388]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 6 - Dataset: SF-295]
+Running command: for dataset SF-295
+Model info:
+{
+	"data": "SF-295",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: SF-295
+Starts training...
+Epoch: 0, loss: 0.2584773392549583, time cost: 124.88204884529114
+Val auc: 0.6052267483463758, f1: 0.5082025729714835, accuracy: 0.948352921701705, precision: 0.6344190366868553, recall: 0.510205854426025
+Epoch: 1, loss: 0.16654104606381484, time cost: 132.44828367233276
+Val auc: 0.7257595547828959, f1: 0.4933903448471788, accuracy: 0.9491805992385367, precision: 0.6178322837255552, recall: 0.5028537058613066
+Epoch: 2, loss: 0.15546563187880175, time cost: 126.27209687232971
+Val auc: 0.7417490803005421, f1: 0.5356551806279155, accuracy: 0.9481873861943387, precision: 0.6737497770574687, recall: 0.5256945336366889
+Epoch: 3, loss: 0.1513137383652585, time cost: 138.33090996742249
+Val auc: 0.7449903901727475, f1: 0.533400786841698, accuracy: 0.9485184572090714, precision: 0.681136202462427, recall: 0.524311257488326
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.5356551806279155 found at epoch count: 2 and patience_count: 1
+Test auc: 0.7252283194040532, f1: 0.5189509748731247, accuracy: 0.9475252441648734, precision: 0.6327505827505828, recall: 0.5160004197132189
+
+Under the condition of f1, best idx: 2
+Test auc: 0.7178902186178363, f1: 0.5302292890908875, accuracy: 0.9480218506869723, precision: 0.6634206798866855, recall: 0.5224922135170592
+
+
+[Time taken for SF-295 | Time_taken_since_last: 651982.74 ms (651.98 seconds)]
+[End of [Experiment 6 - Dataset: SF-295]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 7 - Dataset: SN12C]
+Running command: for dataset SN12C
+Model info:
+{
+	"data": "SN12C",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: SN12C
+Starts training...
+Epoch: 0, loss: 0.25602777356451206, time cost: 134.26182985305786
+Val auc: 0.6826560519953043, f1: 0.48744233726294206, accuracy: 0.951, precision: 0.47557926321053506, recall: 0.4999123882950762
+Epoch: 1, loss: 0.1602100063454021, time cost: 141.8993420600891
+Val auc: 0.5824770011799174, f1: 0.48484588306001547, accuracy: 0.9411666666666667, precision: 0.47533670033670034, recall: 0.4947432977045733
+Epoch: 2, loss: 0.1550242852080952, time cost: 130.75162410736084
+Val auc: 0.7198228509267405, f1: 0.48717948717948717, accuracy: 0.95, precision: 0.47555481394960786, recall: 0.49938671806553353
+Epoch: 3, loss: 0.14778079268607228, time cost: 132.68028855323792
+Val auc: 0.7292020876105089, f1: 0.4970528248726161, accuracy: 0.9501666666666667, precision: 0.6007849031396126, recall: 0.5043309485806007
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.4970528248726161 found at epoch count: 3 and patience_count: 0
+Test auc: 0.7414513107275145, f1: 0.4936930296690623, accuracy: 0.9498500499833389, precision: 0.5665392027435092, recall: 0.5026129933402933
+
+Under the condition of f1, best idx: 3
+Test auc: 0.7414513107275145, f1: 0.4936930296690623, accuracy: 0.9498500499833389, precision: 0.5665392027435092, recall: 0.5026129933402933
+
+
+[Time taken for SN12C | Time_taken_since_last: 667990.42 ms (667.99 seconds)]
+[End of [Experiment 7 - Dataset: SN12C]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 8 - Dataset: UACC257]
+Running command: for dataset UACC257
+Model info:
+{
+	"data": "UACC257",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: UACC257
+Starts training...
+Epoch: 0, loss: 0.24281557446176355, time cost: 127.18833875656128
+Val auc: 0.4966625253004964, f1: 0.489531914893617, accuracy: 0.9589863287762588, precision: 0.4794931643881294, recall: 0.5
+Epoch: 1, loss: 0.14321251796050505, time cost: 129.73692321777344
+Val auc: 0.7124616252247362, f1: 0.4935623908530759, accuracy: 0.9589863287762588, precision: 0.7295697131420947, recall: 0.5019455940386942
+Epoch: 2, loss: 0.13925022320313887, time cost: 125.98148131370544
+Val auc: 0.7175895694109932, f1: 0.4976039340814351, accuracy: 0.9591530510170057, precision: 0.8129830414234084, recall: 0.5039781143638975
+Epoch: 3, loss: 0.13593615821816704, time cost: 131.21595311164856
+Val auc: 0.7309832847111503, f1: 0.5016134854418525, accuracy: 0.9593197732577526, precision: 0.8547297297297297, recall: 0.5060106346891007
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.5016134854418525 found at epoch count: 3 and patience_count: 0
+Test auc: 0.7204696975669086, f1: 0.5012524405157802, accuracy: 0.9586597766294382, precision: 0.6939252336448598, recall: 0.5057251693478909
+
+Under the condition of f1, best idx: 3
+Test auc: 0.7204696975669086, f1: 0.5012524405157802, accuracy: 0.9586597766294382, precision: 0.6939252336448598, recall: 0.5057251693478909
+
+
+Error: /usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+[Time taken for UACC257 | Time_taken_since_last: 639030.15 ms (639.03 seconds)]
+[End of [Experiment 8 - Dataset: UACC257]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 9 - Dataset: PC-3]
+Running command: for dataset PC-3
+Model info:
+{
+	"data": "PC-3",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: PC-3
+Starts training...
+Epoch: 0, loss: 0.2959385612293294, time cost: 77.48997521400452
+Val auc: 0.6833877414874479, f1: 0.5333521520653247, accuracy: 0.9413475521085798, precision: 0.6698502246999681, recall: 0.5250895410576508
+Epoch: 1, loss: 0.18997501817188764, time cost: 77.44908308982849
+Val auc: 0.6975967453534342, f1: 0.5061792593968283, accuracy: 0.9437712069801261, precision: 0.8292234592307426, recall: 0.510381294531297
+Epoch: 2, loss: 0.17502914996523605, time cost: 78.78950548171997
+Val auc: 0.7015283496557796, f1: 0.549983552824547, accuracy: 0.9391662627241881, precision: 0.6494033326056902, recall: 0.5359279734466336
+Epoch: 3, loss: 0.16904318058177045, time cost: 77.52237367630005
+Val auc: 0.7119949474236782, f1: 0.4936054251955401, accuracy: 0.9428017450315075, precision: 0.6717301625818977, recall: 0.503869814137371
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.549983552824547 found at epoch count: 2 and patience_count: 1
+Test auc: 0.7096940486351839, f1: 0.4893213572854292, accuracy: 0.9423449612403101, precision: 0.5965082444228904, recall: 0.5017332381068511
+
+Under the condition of f1, best idx: 2
+Test auc: 0.7082297237270716, f1: 0.5720339312957237, accuracy: 0.9387112403100775, precision: 0.6643828958468583, recall: 0.551550769069974
+
+
+[Time taken for PC-3 | Time_taken_since_last: 390138.08 ms (390.14 seconds)]
+[End of [Experiment 9 - Dataset: PC-3]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 10 - Dataset: MCF-7]
+Running command: for dataset MCF-7
+Model info:
+{
+	"data": "MCF-7",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: MCF-7
+Starts training...
+Epoch: 0, loss: 0.3523648671413723, time cost: 76.74663877487183
+Val auc: 0.6510851901669477, f1: 0.47846230904082143, accuracy: 0.917406962785114, precision: 0.458703481392557, recall: 0.5
+Epoch: 1, loss: 0.23123218158358022, time cost: 78.25679564476013
+Val auc: 0.64894661083486, f1: 0.47846230904082143, accuracy: 0.917406962785114, precision: 0.458703481392557, recall: 0.5
+Epoch: 2, loss: 0.22495755553245544, time cost: 79.25498366355896
+Val auc: 0.6649220495060955, f1: 0.48931811530582386, accuracy: 0.9162064825930372, precision: 0.6129020305320884, recall: 0.5046362513161659
+Epoch: 3, loss: 0.22150111825842606, time cost: 78.87122654914856
+Val auc: 0.6755582673475226, f1: 0.49266499543127007, accuracy: 0.9176470588235294, precision: 0.736993369693081, recall: 0.5067440186728179
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.49266499543127007 found at epoch count: 3 and patience_count: 0
+Test auc: 0.7005638598806301, f1: 0.5089129914120505, accuracy: 0.9181665466762658, precision: 0.7653048927452398, recall: 0.5150262780697563
+
+Under the condition of f1, best idx: 3
+Test auc: 0.7005638598806301, f1: 0.5089129914120505, accuracy: 0.9181665466762658, precision: 0.7653048927452398, recall: 0.5150262780697563
+
+
+Error: /usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+[Time taken for MCF-7 | Time_taken_since_last: 401810.89 ms (401.81 seconds)]
+[End of [Experiment 10 - Dataset: MCF-7]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 11 - Dataset: PROTEINS]
+Running command: for dataset PROTEINS
+Model info:
+{
+	"data": "PROTEINS",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: PROTEINS
+Starts training...
+Epoch: 0, loss: 0.4674621969461441, time cost: 2.7477564811706543
+Val auc: 0.7639077340569878, f1: 0.5651345558466302, accuracy: 0.6686746987951807, precision: 0.7409909909909911, recall: 0.5967887833559475
+Epoch: 1, loss: 0.44035668671131134, time cost: 2.883759021759033
+Val auc: 0.7639077340569878, f1: 0.6577319587628865, accuracy: 0.7168674698795181, precision: 0.7622549019607843, recall: 0.6613146389265793
+Epoch: 2, loss: 0.41880442202091217, time cost: 3.250455617904663
+Val auc: 0.7614955525403286, f1: 0.6525379382522241, accuracy: 0.7108433734939759, precision: 0.7476702508960573, recall: 0.6562641338760742
+Epoch: 3, loss: 0.404196560382843, time cost: 3.253688097000122
+Val auc: 0.7568219508518016, f1: 0.643167361263435, accuracy: 0.7048192771084337, precision: 0.7419117647058824, recall: 0.64880144730891
+
+Under the condition of auc, best idx: 1
+Best F1 score 0.6577319587628865 found at epoch count: 1 and patience_count: 2
+Test auc: 0.8326470588235294, f1: 0.7326041709178468, accuracy: 0.7678571428571429, precision: 0.8041144901610018, recall: 0.725
+
+Under the condition of f1, best idx: 1
+Test auc: 0.8326470588235294, f1: 0.7326041709178468, accuracy: 0.7678571428571429, precision: 0.8041144901610018, recall: 0.725
+
+
+[Time taken for PROTEINS | Time_taken_since_last: 21147.28 ms (21.15 seconds)]
+[End of [Experiment 11 - Dataset: PROTEINS]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 12 - Dataset: AIDS]
+Running command: for dataset AIDS
+Model info:
+{
+	"data": "AIDS",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: AIDS
+Starts training...
+Epoch: 0, loss: 0.2741776655117671, time cost: 3.794607400894165
+Val auc: 0.99, f1: 0.17128029681341672, accuracy: 0.20333333333333334, precision: 0.6003344481605352, recall: 0.5020833333333333
+Epoch: 1, loss: 0.11569152524073918, time cost: 3.8495230674743652
+Val auc: 0.9875694444444444, f1: 0.20271260997067447, accuracy: 0.22666666666666666, precision: 0.6027397260273972, recall: 0.5166666666666667
+Epoch: 2, loss: 0.08363858610391617, time cost: 4.818282127380371
+Val auc: 0.9871527777777778, f1: 0.2285285148604979, accuracy: 0.24666666666666667, precision: 0.6048951048951049, recall: 0.5291666666666667
+Epoch: 3, loss: 0.0511080672343572, time cost: 3.746657133102417
+Val auc: 0.992986111111111, f1: 0.265494014509596, accuracy: 0.27666666666666667, precision: 0.6083032490974729, recall: 0.5479166666666667
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.265494014509596 found at epoch count: 3 and patience_count: 0
+Test auc: 0.9931944444444445, f1: 0.2813037756857981, accuracy: 0.29, precision: 0.6098901098901099, recall: 0.55625
+
+Under the condition of f1, best idx: 3
+Test auc: 0.9931944444444445, f1: 0.2813037756857981, accuracy: 0.29, precision: 0.6098901098901099, recall: 0.55625
+
+
+[Time taken for AIDS | Time_taken_since_last: 26712.83 ms (26.71 seconds)]
+[End of [Experiment 12 - Dataset: AIDS]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 13 - Dataset: Mutagenicity]
+Running command: for dataset Mutagenicity
+Model info:
+{
+	"data": "Mutagenicity",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: Mutagenicity
+Starts training...
+Epoch: 0, loss: 0.5390367905298868, time cost: 11.455463647842407
+Val auc: 0.6682662835249041, f1: 0.6058515879633138, accuracy: 0.6061538461538462, precision: 0.6180750077808901, recall: 0.6162835249042146
+Epoch: 1, loss: 0.4872175504763921, time cost: 11.205333709716797
+Val auc: 0.6998132183908046, f1: 0.6348900658000322, accuracy: 0.6553846153846153, precision: 0.6566736639552173, recall: 0.6372605363984675
+Epoch: 2, loss: 0.4730220139026642, time cost: 11.447027683258057
+Val auc: 0.7223467432950191, f1: 0.6753939393939393, accuracy: 0.683076923076923, precision: 0.6794871794871795, recall: 0.6743295019157087
+Epoch: 3, loss: 0.4577094167470932, time cost: 11.006654500961304
+Val auc: 0.736551724137931, f1: 0.6783111763400856, accuracy: 0.6876923076923077, precision: 0.6852296968422318, recall: 0.6771551724137932
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.6783111763400856 found at epoch count: 3 and patience_count: 0
+Test auc: 0.7312543431285756, f1: 0.6701150441608457, accuracy: 0.6840490797546013, precision: 0.6847888053899974, recall: 0.6697032869748979
+
+Under the condition of f1, best idx: 3
+Test auc: 0.7312543431285756, f1: 0.6701150441608457, accuracy: 0.6840490797546013, precision: 0.6847888053899974, recall: 0.6697032869748979
+
+
+[Time taken for Mutagenicity | Time_taken_since_last: 61403.22 ms (61.40 seconds)]
+[End of [Experiment 13 - Dataset: Mutagenicity]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 14 - Dataset: NCI109]
+Running command: for dataset NCI109
+Model info:
+{
+	"data": "NCI109",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: NCI109
+Starts training...
+Epoch: 0, loss: 0.5272191216548284, time cost: 12.073239088058472
+Val auc: 0.6603503716695899, f1: 0.4144594594594594, accuracy: 0.5250403877221325, precision: 0.5833938953488372, recall: 0.5215641443247306
+Epoch: 1, loss: 0.4806124617656072, time cost: 11.908802270889282
+Val auc: 0.7015576714273783, f1: 0.5046908450768018, accuracy: 0.5718901453957996, precision: 0.6469626168224298, recall: 0.5689520170383363
+Epoch: 2, loss: 0.4668776293595632, time cost: 12.013515710830688
+Val auc: 0.7036457028313706, f1: 0.5897119652311075, accuracy: 0.617124394184168, precision: 0.6552814718809873, recall: 0.6150766307525265
+Epoch: 3, loss: 0.45292432606220245, time cost: 12.481353759765625
+Val auc: 0.7113087780840224, f1: 0.6600964354447327, accuracy: 0.6607431340872375, precision: 0.6626053518752634, recall: 0.661138603524597
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.6600964354447327 found at epoch count: 3 and patience_count: 0
+Test auc: 0.7485379204129206, f1: 0.6770148612954485, accuracy: 0.6790322580645162, precision: 0.6845581236162954, recall: 0.6795704295704296
+
+Under the condition of f1, best idx: 3
+Test auc: 0.7485379204129206, f1: 0.6770148612954485, accuracy: 0.6790322580645162, precision: 0.6845581236162954, recall: 0.6795704295704296
+
+
+[Time taken for NCI109 | Time_taken_since_last: 64923.10 ms (64.92 seconds)]
+[End of [Experiment 14 - Dataset: NCI109]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 15 - Dataset: NCI1]
+Running command: for dataset NCI1
+Model info:
+{
+	"data": "NCI1",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: NCI1
+Starts training...
+Epoch: 0, loss: 0.5381458948055903, time cost: 11.901512622833252
+Val auc: 0.3290673727566932, f1: 0.33607115615124766, accuracy: 0.4878444084278768, precision: 0.3620733571064697, recall: 0.4886206026982726
+Epoch: 1, loss: 0.4876433064540227, time cost: 11.805190563201904
+Val auc: 0.7217458916488043, f1: 0.4655262681935441, accuracy: 0.5575364667747164, precision: 0.6810517864311522, recall: 0.5568654646324549
+Epoch: 2, loss: 0.4667063355445862, time cost: 11.69088625907898
+Val auc: 0.7212100197537092, f1: 0.5443547082101299, accuracy: 0.593192868719611, precision: 0.6616089426424776, recall: 0.5926638086832261
+Epoch: 3, loss: 0.4660862882932027, time cost: 11.325492143630981
+Val auc: 0.7398919850376162, f1: 0.5859095581551427, accuracy: 0.6158833063209076, precision: 0.662100557670178, recall: 0.6154488715168327
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.5859095581551427 found at epoch count: 3 and patience_count: 0
+Test auc: 0.7381057453872989, f1: 0.5899270640024168, accuracy: 0.6256077795786061, precision: 0.6913707215169532, recall: 0.6251313411507586
+
+Under the condition of f1, best idx: 3
+Test auc: 0.7381057453872989, f1: 0.5899270640024168, accuracy: 0.6256077795786061, precision: 0.6913707215169532, recall: 0.6251313411507586
+
+
+[Time taken for NCI1 | Time_taken_since_last: 64697.13 ms (64.70 seconds)]
+[End of [Experiment 15 - Dataset: NCI1]]
+Waiting for 15 seconds before the next experiment...
+[Experiment 16 - Dataset: DD]
+Running command: for dataset DD
+Model info:
+{
+	"data": "DD",
+	"lr": 0.005,
+	"batchsize": 512,
+	"nepoch": 4,
+	"hdim": 64,
+	"width": 4,
+	"depth": 6,
+	"dropout": 0.4,
+	"normalize": 1,
+	"beta": 0.999,
+	"gamma": 1.5,
+	"decay": 0.0,
+	"seed": 10,
+	"patience": 50
+}
+Loading dataset: DD
+Starts training...
+Epoch: 0, loss: 0.47499261796474457, time cost: 96.2528805732727
+Val auc: 0.7862223393045311, f1: 0.37010676156583633, accuracy: 0.5875706214689266, precision: 0.2937853107344633, recall: 0.5
+Epoch: 1, loss: 0.4175475537776947, time cost: 70.83732461929321
+Val auc: 0.7953108535300316, f1: 0.4378365937859609, accuracy: 0.6101694915254238, precision: 0.7178362573099415, recall: 0.5294388830347735
+Epoch: 2, loss: 0.40107716619968414, time cost: 69.28004360198975
+Val auc: 0.8051896733403583, f1: 0.5843529847979236, accuracy: 0.6779661016949152, precision: 0.7748407643312102, recall: 0.6136722866174921
+Epoch: 3, loss: 0.3892873078584671, time cost: 72.7175223827362
+Val auc: 0.8196786090621707, f1: 0.6323846153846153, accuracy: 0.6949152542372882, precision: 0.7388422448077773, recall: 0.6423867228661749
+
+Under the condition of auc, best idx: 3
+Best F1 score 0.6323846153846153 found at epoch count: 3 and patience_count: 0
+Test auc: 0.8367983367983369, f1: 0.6507169811320754, accuracy: 0.7078651685393258, precision: 0.760916095890411, recall: 0.6583939708939709
+
+Under the condition of f1, best idx: 3
+Test auc: 0.8367983367983369, f1: 0.6507169811320754, accuracy: 0.7078651685393258, precision: 0.760916095890411, recall: 0.6583939708939709
+
+
+Error: /usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+[Time taken for DD | Time_taken_since_last: 348295.35 ms (348.30 seconds)]
+[End of [Experiment 16 - Dataset: DD]]
