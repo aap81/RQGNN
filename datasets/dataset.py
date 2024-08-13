@@ -1,33 +1,33 @@
-import argparse
-import json
-import time
-import os
+# import argparse
+# import json
+# import time
+# import os
 
-import datautils_old
-from name import *
+# import datautils_old
+# from name import *
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--seed', type=int, default=2023, help='seed')
-    parser.add_argument('--data', type=str, default='MCF-7', help='data')
-    parser.add_argument('--trainsz', type=float, default=0.7, help='train size')
-    parser.add_argument('--testsz', type=float, default=0.15, help='test size')
-    args = parser.parse_args()
+# if __name__ == '__main__':
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument('--seed', type=int, default=2023, help='seed')
+#     parser.add_argument('--data', type=str, default='MCF-7', help='data')
+#     parser.add_argument('--trainsz', type=float, default=0.7, help='train size')
+#     parser.add_argument('--testsz', type=float, default=0.15, help='test size')
+#     args = parser.parse_args()
 
-    seed = args.seed
-    data = args.data
-    trainsz = args.trainsz
-    testsz = args.testsz
+#     seed = args.seed
+#     data = args.data
+#     trainsz = args.trainsz
+#     testsz = args.testsz
 
-    assert trainsz + testsz < 1
+#     assert trainsz + testsz < 1
 
-    datautils_old.set_seed(seed)
-    print("Generator info:")
-    print(json.dumps(args.__dict__, indent='\t'))
+#     datautils_old.set_seed(seed)
+#     print("Generator info:")
+#     print(json.dumps(args.__dict__, indent='\t'))
 
-    start = time.time()
-    datautils_old.gen_nodeattr(data)
-    datautils_old.split_train_val_test(data, trainsz, testsz)
-    end = time.time()
+#     start = time.time()
+#     datautils_old.gen_nodeattr(data)
+#     datautils_old.split_train_val_test(data, trainsz, testsz)
+#     end = time.time()
 
-    print("Generate successfully, time cost: {}".format(end - start))
+#     print("Generate successfully, time cost: {}".format(end - start))

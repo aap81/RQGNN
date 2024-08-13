@@ -32,52 +32,52 @@ def set_seed(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)
     return seed
 
-def load_data(data):
-    print(f"Loading dataset: {data}")
-    path = os.path.join(DATADIR, data, "raw")
+# def load_data(data):
+#     print(f"Loading dataset: {data}")
+#     path = os.path.join(DATADIR, data, "raw")
 
-    graphlabel_path = os.path.join(path, data + NEWLABEL)
-    graphlabels = np.loadtxt(graphlabel_path, dtype=np.int64)
+#     graphlabel_path = os.path.join(path, data + NEWLABEL)
+#     graphlabels = np.loadtxt(graphlabel_path, dtype=np.int64)
 
-    edge_path = os.path.join(path, data + ADJ)
-    edges = np.loadtxt(edge_path, dtype=np.int64, delimiter=",")
-    edges -= 1
+#     edge_path = os.path.join(path, data + ADJ)
+#     edges = np.loadtxt(edge_path, dtype=np.int64, delimiter=",")
+#     edges -= 1
 
-    graphindicator_path = os.path.join(path, data + GRAPHIND)
-    graphindicator = np.loadtxt(graphindicator_path, dtype=np.int64)
+#     graphindicator_path = os.path.join(path, data + GRAPHIND)
+#     graphindicator = np.loadtxt(graphindicator_path, dtype=np.int64)
 
-    _, graph_size = np.unique(graphindicator, return_counts=True)
-    adj = csr_matrix((np.ones(edges.shape[0]), (edges[:, 0], edges[:, 1])), shape=(graphindicator.size, graphindicator.size))
+#     _, graph_size = np.unique(graphindicator, return_counts=True)
+#     adj = csr_matrix((np.ones(edges.shape[0]), (edges[:, 0], edges[:, 1])), shape=(graphindicator.size, graphindicator.size))
 
-    nodeattr_path = os.path.join(path, data + NODEATTR)
-    nodeattrs = np.loadtxt(nodeattr_path, dtype=np.float64, delimiter=",")
+#     nodeattr_path = os.path.join(path, data + NODEATTR)
+#     nodeattrs = np.loadtxt(nodeattr_path, dtype=np.float64, delimiter=",")
 
-    # Ensure nodeattrs is 2-dimensional
-    if nodeattrs.ndim == 1:
-        print("Unexpected situation: the node attributes are 1 dim, converting them to 2 dim with reshape")
-        nodeattrs = nodeattrs.reshape(-1, 1)
+#     # Ensure nodeattrs is 2-dimensional
+#     if nodeattrs.ndim == 1:
+#         print("Unexpected situation: the node attributes are 1 dim, converting them to 2 dim with reshape")
+#         nodeattrs = nodeattrs.reshape(-1, 1)
 
-    adjs = []
-    features = []
-    idx = 0
-    # below loop seperates the adj matrix and features for a graph
-    # so len(adj) == no of graphs 
-    # each i th element in the matrix would be the adj matrix for the i th graph
-    # similarly for the features
-    for i in range(graph_size.size):
-        adjs.append(adj[idx:idx + graph_size[i], idx:idx + graph_size[i]])
-        features.append(nodeattrs[idx:idx + graph_size[i], :])
-        idx += graph_size[i]
+#     adjs = []
+#     features = []
+#     idx = 0
+#     # below loop seperates the adj matrix and features for a graph
+#     # so len(adj) == no of graphs 
+#     # each i th element in the matrix would be the adj matrix for the i th graph
+#     # similarly for the features
+#     for i in range(graph_size.size):
+#         adjs.append(adj[idx:idx + graph_size[i], idx:idx + graph_size[i]])
+#         features.append(nodeattrs[idx:idx + graph_size[i], :])
+#         idx += graph_size[i]
 
-    train_path = os.path.join(path, data + TRAIN)
-    train_index = np.loadtxt(train_path, dtype=np.int64)
+#     train_path = os.path.join(path, data + TRAIN)
+#     train_index = np.loadtxt(train_path, dtype=np.int64)
 
-    val_path = os.path.join(path, data + VAL)
-    val_index = np.loadtxt(val_path, dtype=np.int64)
+#     val_path = os.path.join(path, data + VAL)
+#     val_index = np.loadtxt(val_path, dtype=np.int64)
 
-    test_path = os.path.join(path, data + TEST)
-    test_index = np.loadtxt(test_path, dtype=np.int64)
-    return adjs, features, graphlabels, train_index, val_index, test_index
+#     test_path = os.path.join(path, data + TEST)
+#     test_index = np.loadtxt(test_path, dtype=np.int64)
+#     return adjs, features, graphlabels, train_index, val_index, test_index
 
 def sparse_mx_to_torch_sparse_tensor(sparse_mx):
     sparse_mx = sparse_mx.tocoo().astype(np.float32)
