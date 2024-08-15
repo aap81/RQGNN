@@ -3,6 +3,9 @@ from torch.nn import init
 import torch.nn.functional as F
 import torch
 from torch_geometric.nn import ChebConv, GCNConv, global_mean_pool, global_max_pool
+from torch_geometric.data import Batch
+import pdb
+
 
 class RQGNN(nn.Module):
     def __init__(self, featuredim, hdim, nclass, width, depth, dropout, normalize):
@@ -129,3 +132,23 @@ class Graph2Vec(torch.nn.Module):
         
         return graph_embedding
 
+class EnhancedRQGNN(nn.Module):
+    def __init__(self, feature_dim, hidden_dim, n_class, gnn_width, gnn_depth, dropout, normalize, embedding_dim=128, inter_graph_pooling="mean"):
+        super(EnhancedRQGNN, self).__init__()
+        self.intra_analyzer = RQGNN(feature_dim, hidden_dim, n_class, gnn_width, gnn_depth, dropout, normalize)
+        self.inter_analyzer = Graph2Vec(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim, pooling=inter_graph_pooling)
+        # self.fc = nn.Linear(nclass + embedding_dim, n_class)
+        self.projection = nn.Linear(embedding_dim, n_class)
+        self.fc = nn.Linear(n_class + n_class, n_class)  # Combine intra and inter outputs
+        
+
+    def forward(self, batch_data):
+        intra_output = self.intra_analyzer(batch_data)
+        batch_graphs = Batch.from_data_list(batch_data.graphs)
+        graph_embeddings = self.inter_analyzer(batch_graphs)
+        # Project Graph2Vec embeddings to match nclass dimension
+        graph_embeddings = self.projection(graph_embeddings)
+        
+        combined_output = torch.cat((intra_output, graph_embeddings), dim=1)
+        final_output = self.fc(combined_output)
+        return final_output

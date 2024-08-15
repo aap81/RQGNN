@@ -14,6 +14,10 @@ import pdb
 
 from name import *
 import batchdata
+import logging
+# Configure logging
+logging.basicConfig(filename='output.txt', level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 def set_seed(seed):
     if seed == 0:
@@ -88,7 +92,7 @@ def sparse_mx_to_torch_sparse_tensor(sparse_mx):
     # return torch.sparse.FloatTensor(indices, values, shape)
     return torch.sparse_coo_tensor(indices, values, shape, dtype=torch.float)
 
-def generate_batches(adjs, features, graphlabels, batchsize, shuffle):
+def generate_batches(adjs, features, graphlabels, batchsize, shuffle, graphs=None):
     N = len(graphlabels)
     if shuffle:
         index = np.random.permutation(N)
@@ -110,6 +114,7 @@ def generate_batches(adjs, features, graphlabels, batchsize, shuffle):
 
         label_count = [0, 0]
         node_belong = []
+        batch_graphs = []
         for j in range(i, min(i + batchsize, N)):
             n = adjs[index[j]].shape[0]
             adj_batch[idx:idx + n, idx:idx + n] = adjs[index[j]]
@@ -122,7 +127,8 @@ def generate_batches(adjs, features, graphlabels, batchsize, shuffle):
             temp_L = sparse_mx_to_torch_sparse_tensor(csgraph.laplacian(adjs[index[j]], normed=True))
             temp_x = torch.FloatTensor(features[index[j]])
             xLx_batch[j - i] = torch.diag(torch.mm(torch.mm(temp_x.T, temp_L.to_dense()), temp_x))
-
+            if graphs != None:
+                batch_graphs.append(graphs[index[j]])
             idx += n
 
         adj_list = sparse_mx_to_torch_sparse_tensor(adj_batch)
@@ -133,7 +139,7 @@ def generate_batches(adjs, features, graphlabels, batchsize, shuffle):
         edge_index = from_scipy_sparse_matrix(adj_batch)[0]
 
 
-        batchs.append(batchdata.Batch(adj_list, features_list, label_list, graphpool_list, lap_list, edge_index, label_count, node_belong, xLx_batch))
+        batchs.append(batchdata.Batch(adj_list, features_list, label_list, graphpool_list, lap_list, edge_index, label_count, node_belong, xLx_batch, batch_graphs))
     return batchs
 
 def compute_metrics(preds, truths):
@@ -209,3 +215,7 @@ def load_dataset(dataset):
         adjs.append(adj)
         features.append(feature_matrix)
     return graphs, adjs, features, graphlabels, train_index, val_index, test_index
+
+def log_print(text):
+    print(text)
+    logging.info(text)

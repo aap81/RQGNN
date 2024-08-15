@@ -1,24 +1,11 @@
 import argparse
-import time
-from sklearn.model_selection import StratifiedShuffleSplit
-import torch
-import json
-import numpy as np
-import torch.nn as nn
-import torch.optim as optim
-from copy import deepcopy
-
-import utils
-import pdb
-import model
-from name import *
-import lossfunc
-
+import test
+from utils import log_print
 parser = argparse.ArgumentParser()
-parser.add_argument('--data', default='MCF-7', help='Dataset used')
+parser.add_argument('--data', default='AIDS', help='Dataset used')
 parser.add_argument('--lr', type=float, default=5e-3, help='Learning rate')
 parser.add_argument('--batchsize', type=int, default=512, help='Training batch size')
-parser.add_argument('--nepoch', type=int, default=100, help='Number of training epochs')
+parser.add_argument('--nepoch', type=int, default=20, help='Number of training epochs')
 parser.add_argument('--hdim', type=int, default=64, help='Hidden feature dim')
 parser.add_argument('--width', type=int, default=4, help='Width of GCN')
 parser.add_argument('--depth', type=int, default=6, help='Depth of GCN')
@@ -29,148 +16,64 @@ parser.add_argument('--gamma', type=float, default=1.5, help='CB loss gamma')
 parser.add_argument('--decay', type=float, default=0, help='Weight decay')
 parser.add_argument('--seed', type=int, default=10, help='Random seed')
 parser.add_argument('--patience', type=int, default=50, help='Patience')
+parser.add_argument('--intergraph', type=int, default=1, help="Combine existing intra graph analysis with inter graph analysis")
+parser.add_argument('--intergraphpooling', default='mean', help="mean or max")
+parser.add_argument('--alltests', type=int, default=0, help='Run all tests for the data and hyperparameter')
 args = parser.parse_args()
 
-data = args.data
-lr = args.lr
-batchsize = args.batchsize
-nepoch = args.nepoch
-hdim = args.hdim
-width = args.width
-depth = args.depth
-dropout = args.dropout
-normalize = args.normalize
-beta = args.beta
-gamma = args.gamma
-decay = args.decay
-seed = args.seed
-patience = args.patience
 
-nclass = 2
+if args.alltests:
+    # Define your range of hyperparameters
+    learning_rates = [5e-3, 1e-3]
+    batch_sizes = [256, 512, 1024]
+    hidden_dims = [64, 128]
+    widths = [4, 8]
+    depths = [6, 10]
+    dropouts = [0.4, 0.5]
+    decay_values = [0, 1e-4, 1e-5]  # Add decay parameter values
 
-utils.set_seed(seed)
+    intergraph_options = 3
+    total_tests = (
+        len(learning_rates) *
+        len(batch_sizes) *
+        len(hidden_dims) *
+        len(widths) *
+        len(depths) *
+        len(dropouts) *
+        len(decay_values) *
+        intergraph_options
+    )
 
-print("Model info:")
-print(json.dumps(args.__dict__, indent='\t'))
+    log_print(f"There will be {total_tests} total tests below")
 
-_, adjs, features, graphlabels, train_index, val_index, test_index = utils.load_dataset(data)
-# adjs, features, graphlabels, train_index, val_index, test_index = utils.load_data(data)
-featuredim = features[0].shape[1]
+    index = 1
+    # Automate testing
+    for lr in learning_rates:
+        for batchsize in batch_sizes:
+            for hdim in hidden_dims:
+                for width in widths:
+                    for depth in depths:
+                        for dropout in dropouts:
+                            for decay in decay_values:  # Loop through decay values
+                                for pooling_type in ['mean', 'max']:
+                                    # Run intergraph analysis with mean/max pooling
+                                    args.intergraph = 1
+                                    args.intergraphpooling = pooling_type
+                                    args.lr = lr
+                                    args.batchsize = batchsize
+                                    args.hdim = hdim
+                                    args.width = width
+                                    args.depth = depth
+                                    args.dropout = dropout
+                                    args.decay = decay  # Set decay value
+                                    log_print(f"Test number: {index}/{total_tests}")
+                                    index += 1
+                                    test.execute(args)  # Assuming you move your training loop logic to a function
 
-# x_train contains all of the indices of graphs part of the training set, similarly for test and val
-# so we need to seperate the adj, features and labels based on that
-adj_train = [adjs[i] for i in train_index]
-feats_train = [features[i] for i in train_index]
-label_train = [graphlabels[i] for i in train_index]
-
-adj_val = [adjs[i] for i in val_index]
-feats_val = [features[i] for i in val_index]
-label_val = [graphlabels[i] for i in val_index]
-
-adj_test = [adjs[i] for i in test_index]
-feats_test = [features[i] for i in test_index]
-label_test = [graphlabels[i] for i in test_index]
-
-ny_0 = label_train.count(0)
-ny_1 = label_train.count(1)
-
-#bm
-gad = model.RQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
-# gad = model.GADGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
-optimizer = optim.Adam(gad.parameters(), lr=lr, weight_decay=decay)
-
-bestauc = 0
-bestf1 = 0
-bestepochauc = 0
-bestepochf1 = 0
-bestmodelauc = deepcopy(gad)
-bestmodelf1 = deepcopy(gad)
-
-patiencecount = 0
-
-print("Starts training...")
-for epoch in range(nepoch):
-    epoch_start = time.time()
-    gad.train() # set to train mode
-    train_batches = utils.generate_batches(adj_train, feats_train, label_train, batchsize, True)
-    epoch_loss = 0
-
-
-    for train_batch in train_batches:
-        optimizer.zero_grad() # clears old gradients
-        outputs = gad(train_batch)
-        loss = lossfunc.CB_loss(train_batch.label_list, outputs, [ny_0, ny_1], nclass, beta, gamma)
-        loss.backward() # Backpropagate the error to compute gradients.
-        optimizer.step() # Update the model parameters using the computed gradients.
-        epoch_loss += loss.item()
-
-    epoch_end = time.time()
-    print('Epoch: {}, loss: {}, time cost: {}'.format(epoch, epoch_loss / len(train_batches), epoch_end - epoch_start))
-
-    gad.eval()
-    val_batches = utils.generate_batches(adj_val, feats_val, label_val, batchsize, False)
-    preds = torch.Tensor()
-    truths = torch.Tensor()
-    for i, val_batch in enumerate(val_batches):
-        outputs = gad(val_batch)
-        outputs = nn.functional.softmax(outputs, dim=1)
-        if i == 0:
-            preds = outputs
-            truths = val_batch.label_list
-        else:
-            preds = torch.cat((preds, outputs), dim=0)
-            truths = torch.cat((truths, val_batch.label_list), dim=0)
-
-    auc_val, f1_score_val, accuracy_val, macro_precision_val, macro_recall_val = utils.compute_metrics(preds, truths)
-    print("Val auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}".format(auc_val, f1_score_val, accuracy_val, macro_precision_val, macro_recall_val))
-
-    if bestauc <= auc_val:
-        bestauc = auc_val
-        bestepochauc = epoch
-        bestmodelauc = deepcopy(gad)
-
-    if bestf1 <= f1_score_val:
-        patiencecount = 0
-        bestf1 = f1_score_val
-        bestepochf1 = epoch
-        bestmodelf1 = deepcopy(gad)
-    else:
-        patiencecount += 1
-
-    if patiencecount > patience:
-        break
-
-print("\nUnder the condition of auc, best idx: {}".format(bestepochauc))
-print("Best F1 score {} found at epoch count: {} and patience_count: {}".format(bestf1, bestepochf1, patiencecount))
-test_batches = utils.generate_batches(adj_test, feats_test, label_test, batchsize, False)
-preds = torch.Tensor()
-truths = torch.Tensor()
-for i, test_batch in enumerate(test_batches):
-    outputs = bestmodelauc(test_batch)
-    outputs = nn.functional.softmax(outputs, dim=1)
-    if i == 0:
-        preds = outputs
-        truths = test_batch.label_list
-    else:
-        preds = torch.cat((preds, outputs), dim=0)
-        truths = torch.cat((truths, test_batch.label_list), dim=0)
-
-auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test = utils.compute_metrics(preds, truths)
-print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test))
-
-print("Under the condition of f1, best idx: {}".format(bestepochf1))
-test_batches = utils.generate_batches(adj_test, feats_test, label_test, batchsize, False)
-preds = torch.Tensor()
-truths = torch.Tensor()
-for i, test_batch in enumerate(test_batches):
-    outputs = bestmodelf1(test_batch)
-    outputs = nn.functional.softmax(outputs, dim=1)
-    if i == 0:
-        preds = outputs
-        truths = test_batch.label_list
-    else:
-        preds = torch.cat((preds, outputs), dim=0)
-        truths = torch.cat((truths, test_batch.label_list), dim=0)
-
-auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test = utils.compute_metrics(preds, truths)
-print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test))
+                                # Run without intergraph analysis
+                                args.intergraph = 0
+                                log_print(f"Test number: {index}/{total_tests}")
+                                index += 1
+                                test.execute(args)
+else:
+    test.execute(args)
