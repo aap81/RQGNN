@@ -138,7 +138,7 @@ elif args.alltests == 3:
     hidden_dims = [64]
     widths = [4]
     depths = [6]
-    dropouts = [0.5]
+    dropouts = [0.4]
     decay_values = [0]  # Add decay parameter values
 
     intergraph_options = 3
