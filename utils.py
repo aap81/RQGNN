@@ -16,8 +16,9 @@ from name import *
 import batchdata
 import logging
 # Configure logging
-logging.basicConfig(filename='output.txt', level=logging.INFO, 
+logging.basicConfig(filename=f"output.txt", level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 def set_seed(seed):
     if seed == 0:
@@ -216,6 +217,7 @@ def load_dataset(dataset):
         features.append(feature_matrix)
     return graphs, adjs, features, graphlabels, train_index, val_index, test_index
 
-def log_print(text):
+def log_print(text, dataset_name=""):
+    # logging.basicConfig(filename=f"output-{dataset_name}.txt", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     print(text)
     logging.info(text)

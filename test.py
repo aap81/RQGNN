@@ -36,8 +36,8 @@ def execute(args):
 
     utils.set_seed(seed)
 
-    utils.log_print("\n[NEW TEST]  - Model info:")
-    utils.log_print(json.dumps(args.__dict__, indent='\t'))
+    utils.log_print("\n[NEW TEST]  - Model info:", data)
+    utils.log_print(json.dumps(args.__dict__, indent='\t'), data)
 
     graphs, adjs, features, graphlabels, train_index, val_index, test_index = utils.load_dataset(data)
     # adjs, features, graphlabels, train_index, val_index, test_index = utils.load_data(data)
@@ -83,7 +83,7 @@ def execute(args):
     patiencecount = 0
 
 
-    utils.log_print("Starts training...")
+    utils.log_print("Starts training...", data)
     for epoch in range(nepoch):
         epoch_start = time.time()
         gad.train() # set to train mode
@@ -99,7 +99,7 @@ def execute(args):
             epoch_loss += loss.item()
 
         epoch_end = time.time()
-        utils.log_print('Epoch: {}, loss: {}, time cost: {}'.format(epoch, epoch_loss / len(train_batches), epoch_end - epoch_start))
+        utils.log_print('Epoch: {}, loss: {}, time cost: {}'.format(epoch, epoch_loss / len(train_batches), epoch_end - epoch_start), data)
 
         gad.eval()
         val_batches = utils.generate_batches(adj_val, feats_val, label_val, batchsize, False, graphs_val)
@@ -116,7 +116,7 @@ def execute(args):
                 truths = torch.cat((truths, val_batch.label_list), dim=0)
 
         auc_val, f1_score_val, accuracy_val, macro_precision_val, macro_recall_val = utils.compute_metrics(preds, truths)
-        utils.log_print("Val auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}".format(auc_val, f1_score_val, accuracy_val, macro_precision_val, macro_recall_val))
+        utils.log_print("Val auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}".format(auc_val, f1_score_val, accuracy_val, macro_precision_val, macro_recall_val), data)
 
         if bestauc <= auc_val:
             bestauc = auc_val
@@ -134,8 +134,8 @@ def execute(args):
         if patiencecount > patience:
             break
 
-    utils.log_print("\nUnder the condition of auc, best idx: {}".format(bestepochauc))
-    utils.log_print("Best F1 score {} found at epoch count: {} and patience_count: {}".format(bestf1, bestepochf1, patiencecount))
+    utils.log_print("\nUnder the condition of auc, best idx: {}".format(bestepochauc), data)
+    utils.log_print("Best F1 score {} found at epoch count: {} and patience_count: {}".format(bestf1, bestepochf1, patiencecount), data)
     test_batches = utils.generate_batches(adj_test, feats_test, label_test, batchsize, False, graphs_test)
     preds = torch.Tensor()
     truths = torch.Tensor()
@@ -150,9 +150,9 @@ def execute(args):
             truths = torch.cat((truths, test_batch.label_list), dim=0)
 
     auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test = utils.compute_metrics(preds, truths)
-    utils.log_print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test))
+    utils.log_print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test), data)
 
-    utils.log_print("Under the condition of f1, best idx: {}".format(bestepochf1))
+    utils.log_print("Under the condition of f1, best idx: {}".format(bestepochf1), data)
     test_batches = utils.generate_batches(adj_test, feats_test, label_test, batchsize, False, graphs_test)
     preds = torch.Tensor()
     truths = torch.Tensor()
@@ -167,4 +167,4 @@ def execute(args):
             truths = torch.cat((truths, test_batch.label_list), dim=0)
 
     auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test = utils.compute_metrics(preds, truths)
-    utils.log_print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test))
+    utils.log_print("Test auc: {}, f1: {}, accuracy: {}, precision: {}, recall: {}\n".format(auc_test, f1_score_test, accuracy_test, macro_precision_test, macro_recall_test), data)
