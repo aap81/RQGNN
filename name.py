@@ -14,5 +14,6 @@ TEST = '_test.txt'
 NODELABEL = '_node_labels.txt'
 NODEATTR = '_node_attributes.txt'
 DATASETS = [
-    "MOLT-4", "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "Mutagenicity", "NCI109", "NCI1", "DD"
+    # "MOLT-4", 
+    "Mutagenicity", "SW-620", "NCI-H23", "OVCAR-8", "P388", "SF-295", "SN12C", "UACC257", "PC-3", "MCF-7", "PROTEINS", "AIDS", "NCI109", "NCI1", "DD"
 ]
