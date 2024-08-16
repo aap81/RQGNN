@@ -5,10 +5,10 @@ from utils import log_print
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data', default='AIDS', help='Dataset used')
-parser.add_argument('--lr', type=float, default=5e-3, help='Learning rate')
-parser.add_argument('--batchsize', type=int, default=512, help='Training batch size')
+parser.add_argument('--lr', type=float, default=1e-3, help='Learning rate')
+parser.add_argument('--batchsize', type=int, default=256, help='Training batch size')
 parser.add_argument('--nepoch', type=int, default=20, help='Number of training epochs')
-parser.add_argument('--hdim', type=int, default=64, help='Hidden feature dim')
+parser.add_argument('--hdim', type=int, default=128, help='Hidden feature dim')
 parser.add_argument('--width', type=int, default=4, help='Width of GCN')
 parser.add_argument('--depth', type=int, default=6, help='Depth of GCN')
 parser.add_argument('--dropout', type=float, default=0.4, help='Dropout rate')
@@ -18,12 +18,12 @@ parser.add_argument('--gamma', type=float, default=1.5, help='CB loss gamma')
 parser.add_argument('--decay', type=float, default=0, help='Weight decay')
 parser.add_argument('--seed', type=int, default=10, help='Random seed')
 parser.add_argument('--patience', type=int, default=50, help='Patience')
-parser.add_argument('--intergraph', type=int, default=0, help="Combine existing intra graph analysis with inter graph analysis")
-parser.add_argument('--intergraphpooling', default='mean', help="mean or max")
+parser.add_argument('--intergraph', default='none', help="mean or max or attention or none")
 parser.add_argument('--alltests', type=int, default=0, help='Run all tests for the data and hyperparameter')
 args = parser.parse_args()
 
 
+#checking all hyper parameters with intergraph max and mean with integraph 0 (disabled)
 if args.alltests == 1:
     # Define your range of hyperparameters
     learning_rates = [5e-3, 1e-3]
@@ -76,7 +76,8 @@ if args.alltests == 1:
                                 args.intergraph = 0
                                 log_print(f"Test number: {index}/{total_tests}")
                                 index += 1
-                                test.execute(args)
+                                test.execute(args) 
+#checking selective hyper parameters with intergraph max and mean with integraph 0 (disabled)
 elif args.alltests == 2:
     # Define your range of hyperparameters
     learning_rates = [5e-3, 1e-3]
@@ -130,6 +131,7 @@ elif args.alltests == 2:
                                 log_print(f"Test number: {index}/{total_tests}")
                                 index += 1
                                 test.execute(args)
+# checking selective hyperparameters with all datasets
 elif args.alltests == 3:
     # Define your range of hyperparameters
     datas = DATASETS
@@ -187,5 +189,105 @@ elif args.alltests == 3:
                                     log_print(f"Test number: {index}/{total_tests}")
                                     index += 1
                                     test.execute(args)
+# selective hyper parameters with all intergraph methods including new attention
+elif args.alltests == 4:
+    # Define your range of hyperparameters
+    learning_rates = [1e-3]
+    batch_sizes = [256]
+    hidden_dims = [128]
+    widths = [4]
+    depths = [6]
+    dropouts = [0.4]
+    decay_values = [0]  # Add decay parameter values
+
+    intergraph_options = 3
+    total_tests = (
+        len(learning_rates) *
+        len(batch_sizes) *
+        len(hidden_dims) *
+        len(widths) *
+        len(depths) *
+        len(dropouts) *
+        len(decay_values) *
+        intergraph_options
+    )
+
+    log_print(f"There will be {total_tests} total tests below")
+
+    index = 1
+    # Automate testing
+    for width in widths:
+        for depth in depths:
+            for decay in decay_values:  # Loop through decay values
+                for hdim in hidden_dims:
+                    for dropout in dropouts:
+                        for batchsize in batch_sizes:
+                            for lr in learning_rates:
+                                for pooling_type in ['set2set', 'sort', 'mean', 'max']:
+                                    # Run intergraph analysis with mean/max pooling
+                                    args.intergraph = pooling_type
+                                    args.lr = lr
+                                    args.batchsize = batchsize
+                                    args.hdim = hdim
+                                    args.width = width
+                                    args.depth = depth
+                                    args.dropout = dropout
+                                    args.decay = decay  # Set decay value
+                                    log_print(f"Test number: {index}/{total_tests}")
+                                    test.execute(args)
+                                    index += 1
+elif args.alltests == 5:
+    # Define your range of hyperparameters
+    learning_rates = [1e-3]
+    batch_sizes = [256]
+    hidden_dims = [128]
+    widths = [4]
+    depths = [6]
+    dropouts = [0.4]
+    decay_values = [0]  # Add decay parameter values
+
+    intergraph_options = 4
+    datasets = ['AIDS', 'PROTEINS', 'MOLT-4']
+    total_tests = (
+        len(learning_rates) *
+        len(batch_sizes) *
+        len(hidden_dims) *
+        len(widths) *
+        len(depths) *
+        len(dropouts) *
+        len(decay_values) *
+        len(datasets) *
+        intergraph_options
+    )
+
+    log_print(f"There will be {total_tests} total tests below")
+
+    index = 1
+    # Automate testing
+    for width in widths:
+        for depth in depths:
+            for decay in decay_values:  # Loop through decay values
+                for hdim in hidden_dims:
+                    for dropout in dropouts:
+                        for batchsize in batch_sizes:
+                            for lr in learning_rates:
+                                for dataset in datasets:
+                                    for pooling_type in ['sort', 'set2set', 'mean', 'max', 'none']:
+                                        # Run intergraph analysis with mean/max pooling
+                                        args.data = dataset
+                                        args.intergraph = pooling_type
+                                        args.lr = lr
+                                        args.batchsize = batchsize
+                                        args.hdim = hdim
+                                        args.width = width
+                                        args.depth = depth
+                                        args.dropout = dropout
+                                        args.decay = decay  # Set decay value
+                                        log_print(f"Test number: {index}/{total_tests}")
+                                        test.execute(args)
+                                        index += 1                                    
 else:
     test.execute(args)
+
+
+# currently mean is showing the best performance compared to max and attention. however max does good for bigger datasets

@@ -2,7 +2,8 @@ import torch.nn as nn
 from torch.nn import init
 import torch.nn.functional as F
 import torch
-from torch_geometric.nn import ChebConv, GCNConv, global_mean_pool, global_max_pool
+from torch_geometric.nn import ChebConv, GCNConv, global_mean_pool, global_max_pool, GATConv, Set2Set, SAGEConv
+from torch_geometric.nn.aggr import SortAggregation
 from torch_geometric.data import Batch
 import pdb
 
@@ -116,36 +117,101 @@ class Graph2Vec(torch.nn.Module):
         self.conv2 = GCNConv(hidden_channels, out_channels)
         self.pooling = pooling
 
-    def forward(self, data):
+    def forward(self, x, edge_index, batch):
         # Node-level GNN encoding
-        x = self.conv1(data.x, data.edge_index)
+        x = self.conv1(x, edge_index)
         x = F.relu(x)
-        x = self.conv2(x, data.edge_index)
+        x = self.conv2(x, edge_index)
 
         # Graph-level pooling
         if self.pooling == "mean":
-            graph_embedding = global_mean_pool(x, data.batch)
+            graph_embedding = global_mean_pool(x, batch)
         elif self.pooling == "max":
-            graph_embedding = global_max_pool(x, data.batch)
+            graph_embedding = global_max_pool(x, batch)
         else:
             raise ValueError("Unknown pooling method")
         
+        return graph_embedding
+
+class Graph2VecSet2Set(torch.nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels):
+        super(Graph2VecSet2Set, self).__init__()
+        self.conv1 = GCNConv(in_channels, hidden_channels)
+        self.conv2 = GCNConv(hidden_channels, out_channels)
+        self.set2set = Set2Set(out_channels, processing_steps=3)
+
+    def forward(self, x, edge_index, batch):
+        # Node-level GNN encoding
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = self.conv2(x, edge_index)
+
+        # Set2Set pooling
+        graph_embedding = self.set2set(x, batch)
+        return graph_embedding
+
+class Graph2VecSortPooling(torch.nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels, k):
+        super(Graph2VecSortPooling, self).__init__()
+        self.conv1 = GCNConv(in_channels, hidden_channels)
+        self.conv2 = GCNConv(hidden_channels, out_channels)
+        self.sort_pool = SortAggregation(k)
+
+    def forward(self, x, edge_index, batch):
+        # Node-level GNN encoding
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = self.conv2(x, edge_index)
+
+        # SortPooling
+        graph_embedding = self.sort_pool(x, batch)
+        return graph_embedding
+
+class Graph2VecGraphSAGE(torch.nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels, pooling="mean"):
+        super(Graph2VecGraphSAGE, self).__init__()
+        self.conv1 = SAGEConv(in_channels, hidden_channels)
+        self.conv2 = SAGEConv(hidden_channels, out_channels)
+        self.pooling = pooling
+
+    def forward(self, x, edge_index, batch):
+        # Node-level GNN encoding
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = self.conv2(x, edge_index)
+
+        # Graph-level pooling
+        if self.pooling == "mean":
+            graph_embedding = global_mean_pool(x, batch)
+        elif self.pooling == "max":
+            graph_embedding = global_max_pool(x, batch)
+        else:
+            raise ValueError("Unknown pooling method")
+
         return graph_embedding
 
 class EnhancedRQGNN(nn.Module):
     def __init__(self, feature_dim, hidden_dim, n_class, gnn_width, gnn_depth, dropout, normalize, embedding_dim=128, inter_graph_pooling="mean"):
         super(EnhancedRQGNN, self).__init__()
         self.intra_analyzer = RQGNN(feature_dim, hidden_dim, n_class, gnn_width, gnn_depth, dropout, normalize)
-        self.inter_analyzer = Graph2Vec(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim, pooling=inter_graph_pooling)
-        # self.fc = nn.Linear(nclass + embedding_dim, n_class)
-        self.projection = nn.Linear(embedding_dim, n_class)
+        if inter_graph_pooling == "set2set":
+            self.inter_analyzer = Graph2VecSet2Set(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim)
+            self.projection = nn.Linear(2 * embedding_dim, n_class)  # Adjust for Set2Set output
+        elif inter_graph_pooling == "sort":
+            k = 30
+            self.inter_analyzer = Graph2VecSortPooling(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim, k=k)
+            self.projection = nn.Linear(k * embedding_dim, n_class)  # Adjust for SortPooling output
+        else:
+            self.inter_analyzer = Graph2Vec(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim, pooling=inter_graph_pooling)
+            self.projection = nn.Linear(embedding_dim, n_class)
         self.fc = nn.Linear(n_class + n_class, n_class)  # Combine intra and inter outputs
         
 
     def forward(self, batch_data):
         intra_output = self.intra_analyzer(batch_data)
         batch_graphs = Batch.from_data_list(batch_data.graphs)
-        graph_embeddings = self.inter_analyzer(batch_graphs)
+        graph_embeddings = self.inter_analyzer(batch_graphs.x, batch_graphs.edge_index, batch_graphs.batch)
+
         # Project Graph2Vec embeddings to match nclass dimension
         graph_embeddings = self.projection(graph_embeddings)
         

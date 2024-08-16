@@ -3,9 +3,7 @@ conda activate gmapadconda
 
 # run
 #PC-3
-python main.py --data MOLT-4 --lr 5e-3 --batchsize 512 --nepoch 2 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50
-
-python main.py --data MOLT-4 --lr 5e-3 --batchsize 512 --nepoch 2 --hdim 64 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50 --intergraphpooling mean --intergraph 0
+python main.py --data AIDS --lr 1e-3 --batchsize 256 --nepoch 20 --hdim 128 --width 4 --depth 6 --dropout 0.4 --normalize 1 --beta 0.999 --gamma 1.5 --decay 0 --seed 10 --patience 50 --intergraphpooling attention --intergraph 1
 
 
 [Experiment 1 - Dataset: MOLT-4]

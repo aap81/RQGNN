@@ -30,7 +30,6 @@ def execute(args):
     seed = args.seed
     patience = args.patience
     intergraph = args.intergraph
-    inter_graph_pooling = args.intergraphpooling
 
     nclass = 2
 
@@ -67,10 +66,10 @@ def execute(args):
 
 
     gad = None
-    if intergraph:
-        gad = model.EnhancedRQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize, embedding_dim=128, inter_graph_pooling=inter_graph_pooling)
-    else: 
+    if intergraph == 'none':
         gad = model.RQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
+    else: 
+        gad = model.EnhancedRQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize, embedding_dim=128, inter_graph_pooling=intergraph)
     optimizer = optim.Adam(gad.parameters(), lr=lr, weight_decay=decay)
 
     bestauc = 0
