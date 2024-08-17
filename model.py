@@ -168,7 +168,7 @@ class Graph2VecSortPooling(torch.nn.Module):
         return graph_embedding
 
 class Graph2VecGraphSAGE(torch.nn.Module):
-    def __init__(self, in_channels, hidden_channels, out_channels, pooling="mean"):
+    def __init__(self, in_channels, hidden_channels, out_channels, pooling="max"):
         super(Graph2VecGraphSAGE, self).__init__()
         self.conv1 = SAGEConv(in_channels, hidden_channels)
         self.conv2 = SAGEConv(hidden_channels, out_channels)
@@ -196,11 +196,14 @@ class EnhancedRQGNN(nn.Module):
         self.intra_analyzer = RQGNN(feature_dim, hidden_dim, n_class, gnn_width, gnn_depth, dropout, normalize)
         if inter_graph_pooling == "set2set":
             self.inter_analyzer = Graph2VecSet2Set(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim)
-            self.projection = nn.Linear(2 * embedding_dim, n_class)  # Adjust for Set2Set output
+            self.projection = nn.Linear(2 * embedding_dim, n_class)
         elif inter_graph_pooling == "sort":
             k = 30
             self.inter_analyzer = Graph2VecSortPooling(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim, k=k)
-            self.projection = nn.Linear(k * embedding_dim, n_class)  # Adjust for SortPooling output
+            self.projection = nn.Linear(k * embedding_dim, n_class)
+        elif inter_graph_pooling == "sage":
+            self.inter_analyzer = Graph2VecGraphSAGE(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim)
+            self.projection = nn.Linear(embedding_dim, n_class)
         else:
             self.inter_analyzer = Graph2Vec(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim, pooling=inter_graph_pooling)
             self.projection = nn.Linear(embedding_dim, n_class)

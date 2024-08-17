@@ -25,267 +25,31 @@ args = parser.parse_args()
 
 #checking all hyper parameters with intergraph max and mean with integraph 0 (disabled)
 if args.alltests == 1:
-    # Define your range of hyperparameters
-    learning_rates = [5e-3, 1e-3]
-    batch_sizes = [256, 512, 1024]
-    hidden_dims = [64, 128]
-    widths = [4, 8]
-    depths = [6, 10]
-    dropouts = [0.4, 0.5]
-    decay_values = [0, 1e-4, 1e-5]  # Add decay parameter values
-
-    intergraph_options = 3
+    datasets = DATASETS
+    intergraph_options = ['sort', 'set2set', "sage", 'mean', 'max', 'none']
     total_tests = (
-        len(learning_rates) *
-        len(batch_sizes) *
-        len(hidden_dims) *
-        len(widths) *
-        len(depths) *
-        len(dropouts) *
-        len(decay_values) *
-        intergraph_options
-    )
-
-    log_print(f"There will be {total_tests} total tests below")
-
-    index = 1
-    # Automate testing
-    for width in widths:
-        for depth in depths:
-            for decay in decay_values:  # Loop through decay values
-                for hdim in hidden_dims:
-                    for dropout in dropouts:
-                        for batchsize in batch_sizes:
-                            for lr in learning_rates:
-                                for pooling_type in ['mean', 'max']:
-                                    # Run intergraph analysis with mean/max pooling
-                                    args.intergraph = 1
-                                    args.intergraphpooling = pooling_type
-                                    args.lr = lr
-                                    args.batchsize = batchsize
-                                    args.hdim = hdim
-                                    args.width = width
-                                    args.depth = depth
-                                    args.dropout = dropout
-                                    args.decay = decay  # Set decay value
-                                    log_print(f"Test number: {index}/{total_tests}")
-                                    index += 1
-                                    test.execute(args)  # Assuming you move your training loop logic to a function
-
-                                # Run without intergraph analysis
-                                args.intergraph = 0
-                                log_print(f"Test number: {index}/{total_tests}")
-                                index += 1
-                                test.execute(args) 
-#checking selective hyper parameters with intergraph max and mean with integraph 0 (disabled)
-elif args.alltests == 2:
-    # Define your range of hyperparameters
-    learning_rates = [5e-3, 1e-3]
-    batch_sizes = [256, 512]
-    hidden_dims = [64, 128]
-    widths = [4]
-    depths = [6]
-    dropouts = [0.4, 0.5]
-    decay_values = [0, 1e-4, 1e-5]  # Add decay parameter values
-
-    intergraph_options = 3
-    total_tests = (
-        len(learning_rates) *
-        len(batch_sizes) *
-        len(hidden_dims) *
-        len(widths) *
-        len(depths) *
-        len(dropouts) *
-        len(decay_values) *
-        intergraph_options
-    )
-
-    log_print(f"There will be {total_tests} total tests below")
-
-    index = 1
-    # Automate testing
-    for width in widths:
-        for depth in depths:
-            for decay in decay_values:  # Loop through decay values
-                for hdim in hidden_dims:
-                    for dropout in dropouts:
-                        for batchsize in batch_sizes:
-                            for lr in learning_rates:
-                                for pooling_type in ['mean', 'max']:
-                                    # Run intergraph analysis with mean/max pooling
-                                    args.intergraph = 1
-                                    args.intergraphpooling = pooling_type
-                                    args.lr = lr
-                                    args.batchsize = batchsize
-                                    args.hdim = hdim
-                                    args.width = width
-                                    args.depth = depth
-                                    args.dropout = dropout
-                                    args.decay = decay  # Set decay value
-                                    log_print(f"Test number: {index}/{total_tests}")
-                                    index += 1
-                                    test.execute(args)  # Assuming you move your training loop logic to a function
-
-                                # Run without intergraph analysis
-                                args.intergraph = 0
-                                log_print(f"Test number: {index}/{total_tests}")
-                                index += 1
-                                test.execute(args)
-# checking selective hyperparameters with all datasets
-elif args.alltests == 3:
-    # Define your range of hyperparameters
-    datas = DATASETS
-    learning_rates = [1e-3]
-    batch_sizes = [256]
-    hidden_dims = [64]
-    widths = [4]
-    depths = [6]
-    dropouts = [0.4]
-    decay_values = [0]  # Add decay parameter values
-
-    intergraph_options = 3
-    total_tests = (
-        len(datas) *
-        len(learning_rates) *
-        len(batch_sizes) *
-        len(hidden_dims) *
-        len(widths) *
-        len(depths) *
-        len(dropouts) *
-        len(decay_values) *
-        intergraph_options
-    )
-
-    log_print(f"There will be {total_tests} total tests below")
-
-    index = 1
-    # Automate testing
-    for width in widths:
-        for depth in depths:
-            for decay in decay_values:  # Loop through decay values
-                for hdim in hidden_dims:
-                    for dropout in dropouts:
-                        for batchsize in batch_sizes:
-                            for lr in learning_rates:
-                                for dataset in datas:
-                                    for pooling_type in ['mean', 'max']:
-                                        # Run intergraph analysis with mean/max pooling
-                                        args.intergraph = 1
-                                        args.data = dataset
-                                        args.intergraphpooling = pooling_type
-                                        args.lr = lr
-                                        args.batchsize = batchsize
-                                        args.hdim = hdim
-                                        args.width = width
-                                        args.depth = depth
-                                        args.dropout = dropout
-                                        args.decay = decay  # Set decay value
-                                        log_print(f"Test number: {index}/{total_tests}")
-                                        index += 1
-                                        test.execute(args)  # Assuming you move your training loop logic to a function
-
-                                    # Run without intergraph analysis
-                                    args.intergraph = 0
-                                    log_print(f"Test number: {index}/{total_tests}")
-                                    index += 1
-                                    test.execute(args)
-# selective hyper parameters with all intergraph methods including new attention
-elif args.alltests == 4:
-    # Define your range of hyperparameters
-    learning_rates = [1e-3]
-    batch_sizes = [256]
-    hidden_dims = [128]
-    widths = [4]
-    depths = [6]
-    dropouts = [0.4]
-    decay_values = [0]  # Add decay parameter values
-
-    intergraph_options = 3
-    total_tests = (
-        len(learning_rates) *
-        len(batch_sizes) *
-        len(hidden_dims) *
-        len(widths) *
-        len(depths) *
-        len(dropouts) *
-        len(decay_values) *
-        intergraph_options
-    )
-
-    log_print(f"There will be {total_tests} total tests below")
-
-    index = 1
-    # Automate testing
-    for width in widths:
-        for depth in depths:
-            for decay in decay_values:  # Loop through decay values
-                for hdim in hidden_dims:
-                    for dropout in dropouts:
-                        for batchsize in batch_sizes:
-                            for lr in learning_rates:
-                                for pooling_type in ['set2set', 'sort', 'mean', 'max']:
-                                    # Run intergraph analysis with mean/max pooling
-                                    args.intergraph = pooling_type
-                                    args.lr = lr
-                                    args.batchsize = batchsize
-                                    args.hdim = hdim
-                                    args.width = width
-                                    args.depth = depth
-                                    args.dropout = dropout
-                                    args.decay = decay  # Set decay value
-                                    log_print(f"Test number: {index}/{total_tests}")
-                                    test.execute(args)
-                                    index += 1
-elif args.alltests == 5:
-    # Define your range of hyperparameters
-    learning_rates = [1e-3]
-    batch_sizes = [256]
-    hidden_dims = [128]
-    widths = [4]
-    depths = [6]
-    dropouts = [0.4]
-    decay_values = [0]  # Add decay parameter values
-
-    intergraph_options = 4
-    datasets = ['AIDS', 'PROTEINS', 'MOLT-4']
-    total_tests = (
-        len(learning_rates) *
-        len(batch_sizes) *
-        len(hidden_dims) *
-        len(widths) *
-        len(depths) *
-        len(dropouts) *
-        len(decay_values) *
         len(datasets) *
-        intergraph_options
+        len(intergraph_options)
     )
 
     log_print(f"There will be {total_tests} total tests below")
 
     index = 1
-    # Automate testing
-    for width in widths:
-        for depth in depths:
-            for decay in decay_values:  # Loop through decay values
-                for hdim in hidden_dims:
-                    for dropout in dropouts:
-                        for batchsize in batch_sizes:
-                            for lr in learning_rates:
-                                for dataset in datasets:
-                                    for pooling_type in ['sort', 'set2set', 'mean', 'max', 'none']:
-                                        # Run intergraph analysis with mean/max pooling
-                                        args.data = dataset
-                                        args.intergraph = pooling_type
-                                        args.lr = lr
-                                        args.batchsize = batchsize
-                                        args.hdim = hdim
-                                        args.width = width
-                                        args.depth = depth
-                                        args.dropout = dropout
-                                        args.decay = decay  # Set decay value
-                                        log_print(f"Test number: {index}/{total_tests}")
-                                        test.execute(args)
-                                        index += 1                                    
+    for dataset in datasets:
+        for pooling_type in intergraph_options:
+            # Run intergraph analysis with mean/max pooling
+            args.data = dataset
+            args.intergraph = pooling_type
+            args.lr = 1e-3
+            args.batchsize = 256
+            args.hdim = 128
+            args.width = 4
+            args.depth = 6
+            args.dropout = 0.4
+            args.decay = 0  # Set decay value
+            log_print(f"Test number: {index}/{total_tests}")
+            test.execute(args)
+            index += 1                                    
 else:
     test.execute(args)
 
