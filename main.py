@@ -27,22 +27,22 @@ args = parser.parse_args()
 #checking all hyper parameters with intergraph max and mean with integraph 0 (disabled)
 if args.alltests == 1:
     if args.datagroup == 1:
-        completed_index = 999
+        completed_index = 17
         datasets = group1
     elif args.datagroup == 2:
         datasets = group2
         completed_index = 999
     elif args.datagroup == 3:
-        completed_index = 16
+        completed_index = 999
         datasets = group3
     elif args.datagroup == 4:
         datasets = group4
-        completed_index = 8
-    elif args.datagroup == 5:
         completed_index = 999
+    elif args.datagroup == 5:
+        completed_index = 7
         datasets = group5
     elif args.datagroup == 6:
-        completed_index = -1
+        completed_index = 3
         datasets = group6
     intergraph_options = ['none', 'sort', 'set2set', "sage", 'mean', 'max']
     total_tests = (
