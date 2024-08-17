@@ -29,26 +29,21 @@ if args.alltests == 1:
     if args.datagroup == 1:
         completed_index = 999
         datasets = group1
-        completed_datasets = {}
     elif args.datagroup == 2:
         datasets = group2
-        completed_datasets = {}
         completed_index = 999
     elif args.datagroup == 3:
         completed_index = 16
         datasets = group3
-        completed_datasets = {}
     elif args.datagroup == 4:
         datasets = group4
         completed_index = 8
     elif args.datagroup == 5:
         completed_index = 999
-        completed_datasets = {}
         datasets = group5
     elif args.datagroup == 6:
         completed_index = -1
         datasets = group6
-        completed_datasets = {}
     intergraph_options = ['none', 'sort', 'set2set', "sage", 'mean', 'max']
     total_tests = (
         len(datasets) *
@@ -61,7 +56,7 @@ if args.alltests == 1:
     for dataset in datasets:
         log_print(f"Group by {dataset}")
         for pooling_type in intergraph_options:
-            if index > completed_datasets:
+            if index > completed_index:
                 args.data = dataset
                 args.intergraph = pooling_type
                 args.lr = 1e-3
