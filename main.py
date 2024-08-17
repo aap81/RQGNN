@@ -27,17 +27,28 @@ args = parser.parse_args()
 #checking all hyper parameters with intergraph max and mean with integraph 0 (disabled)
 if args.alltests == 1:
     if args.datagroup == 1:
+        completed_index = 999
         datasets = group1
+        completed_datasets = {}
     elif args.datagroup == 2:
         datasets = group2
+        completed_datasets = {}
+        completed_index = 999
     elif args.datagroup == 3:
+        completed_index = 16
         datasets = group3
+        completed_datasets = {}
     elif args.datagroup == 4:
         datasets = group4
+        completed_index = 8
     elif args.datagroup == 5:
+        completed_index = 999
+        completed_datasets = {}
         datasets = group5
     elif args.datagroup == 6:
+        completed_index = 999
         datasets = group6
+        completed_datasets = {}
     intergraph_options = ['none', 'sort', 'set2set', "sage", 'mean', 'max']
     total_tests = (
         len(datasets) *
@@ -49,20 +60,22 @@ if args.alltests == 1:
     index = 1
     for dataset in datasets:
         log_print(f"Group by {dataset}")
-
         for pooling_type in intergraph_options:
-            args.data = dataset
-            args.intergraph = pooling_type
-            args.lr = 1e-3
-            args.batchsize = 256
-            args.hdim = 128
-            args.width = 4
-            args.depth = 6
-            args.dropout = 0.4
-            args.decay = 0  # Set decay value
-            log_print(f"Test number: {index}/{total_tests}")
-            test.execute(args)
-            index += 1                                    
+            if index > completed_datasets:
+                args.data = dataset
+                args.intergraph = pooling_type
+                args.lr = 1e-3
+                args.batchsize = 256
+                args.hdim = 128
+                args.width = 4
+                args.depth = 6
+                args.dropout = 0.4
+                args.decay = 0  # Set decay value
+                log_print(f"Test number: {index}/{total_tests}")
+                test.execute(args)
+            else:
+                log_print(f"Test number: {index}/{total_tests} skipped")
+            index += 1                                  
         log_print(f"End group by {dataset}")
 else:
     test.execute(args)

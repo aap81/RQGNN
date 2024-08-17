@@ -15,7 +15,6 @@ import pdb
 from name import *
 import batchdata
 import logging
-# Configure logging
 logging.basicConfig(filename=f"output.txt", level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
