@@ -34,6 +34,10 @@ if args.alltests == 1:
         datasets = group3
     elif args.datagroup == 4:
         datasets = group4
+    elif args.datagroup == 5:
+        datasets = group5
+    elif args.datagroup == 6:
+        datasets = group6
     intergraph_options = ['none', 'sort', 'set2set', "sage", 'mean', 'max']
     total_tests = (
         len(datasets) *
@@ -47,7 +51,6 @@ if args.alltests == 1:
         log_print(f"Group by {dataset}")
 
         for pooling_type in intergraph_options:
-            # Run intergraph analysis with mean/max pooling
             args.data = dataset
             args.intergraph = pooling_type
             args.lr = 1e-3
