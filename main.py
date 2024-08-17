@@ -46,7 +46,7 @@ if args.alltests == 1:
         completed_datasets = {}
         datasets = group5
     elif args.datagroup == 6:
-        completed_index = 999
+        completed_index = -1
         datasets = group6
         completed_datasets = {}
     intergraph_options = ['none', 'sort', 'set2set', "sage", 'mean', 'max']
