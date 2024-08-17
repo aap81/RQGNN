@@ -13,9 +13,9 @@ TEST = '_test.txt'
 
 NODELABEL = '_node_labels.txt'
 NODEATTR = '_node_attributes.txt'
-DATASETS =  ["AIDS"]
-# DATASETS =  ["MOLT-4", "Mutagenicity", "SW-620", "NCI-H23"]
-    # ["MOLT-4", "Mutagenicity", "SW-620", "NCI-H23"]
-    # ["PC-3", "MCF-7", "NCI109", "NCI1"]
-    # ["DD", "PROTEINS", "AIDS", "OVCAR-8"]
-    # ["P388", "SF-295", "SN12C", "UACC257"]
+DATASETS = ["MOLT-4", "Mutagenicity", "SW-620", "NCI-H23", "PC-3", "MCF-7", "NCI109", "AIDS", "DD", "NCI1", "SF-295", "OVCAR-8", "P388", "PROTEINS", "SN12C", "UACC257"]
+
+group1 = ["MOLT-4", "Mutagenicity", "SW-620", "NCI-H23"]
+group2 =  ["PC-3", "MCF-7", "NCI109", "AIDS"]
+group3 = ["DD", "NCI1", "SF-295", "OVCAR-8"]
+group4 = ["OVCAR-8", "P388", "PROTEINS", "SN12C", "UACC257"]

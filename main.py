@@ -20,13 +20,21 @@ parser.add_argument('--seed', type=int, default=10, help='Random seed')
 parser.add_argument('--patience', type=int, default=50, help='Patience')
 parser.add_argument('--intergraph', default='none', help="mean or max or attention or none")
 parser.add_argument('--alltests', type=int, default=0, help='Run all tests for the data and hyperparameter')
+parser.add_argument('--datagroup', type=int, default=1, help="select dataset group")
 args = parser.parse_args()
 
 
 #checking all hyper parameters with intergraph max and mean with integraph 0 (disabled)
 if args.alltests == 1:
-    datasets = DATASETS
-    intergraph_options = ['sort', 'set2set', "sage", 'mean', 'max', 'none']
+    if args.datagroup == 1:
+        datasets = group1
+    elif args.datagroup == 2:
+        datasets = group2
+    elif args.datagroup == 3:
+        datasets = group3
+    elif args.datagroup == 4:
+        datasets = group4
+    intergraph_options = ['none', 'sort', 'set2set', "sage", 'mean', 'max']
     total_tests = (
         len(datasets) *
         len(intergraph_options)
@@ -36,6 +44,8 @@ if args.alltests == 1:
 
     index = 1
     for dataset in datasets:
+        log_print(f"Group by {dataset}")
+
         for pooling_type in intergraph_options:
             # Run intergraph analysis with mean/max pooling
             args.data = dataset
@@ -50,8 +60,6 @@ if args.alltests == 1:
             log_print(f"Test number: {index}/{total_tests}")
             test.execute(args)
             index += 1                                    
+        log_print(f"End group by {dataset}")
 else:
     test.execute(args)
-
-
-# currently mean is showing the best performance compared to max and attention. however max does good for bigger datasets
