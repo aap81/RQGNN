@@ -162,5 +162,50 @@ elif args.alltests == 3:
                                     else:
                                         log_print(f"Test number: {index}/{total_tests} skipped")
                                     index += 1                                  
+elif args.alltests == 4:
+    completed_index = -1
+    dataset = 'Mutagenicity'
+    learning_rates = [5e-3, 1e-3]
+    batch_sizes = [256]
+    hidden_dims = [64, 128]
+    widths = [4]
+    depths = [6]
+    dropouts = [0.4, 0.5]
+    decay_values = [0, 1e-4, 1e-5]
+    total_tests = (
+        len(learning_rates) *
+        len(batch_sizes) *
+        len(hidden_dims) *
+        len(widths) *
+        len(depths) *
+        len(dropouts) *
+        len(decay_values)
+    )
+    log_print(f"There will be {total_tests} total tests below")
+
+    index = 1
+    for width in widths:
+        for depth in depths:
+            for lr in learning_rates:
+                for batchsize in batch_sizes:
+                    for hdim in hidden_dims:
+                        for decay in decay_values:  # Loop through decay values
+                            for dropout in dropouts:
+                                for pooling_type in ['mean']:
+                                    if index > completed_index:
+                                        args.data = dataset
+                                        args.intergraph = pooling_type
+                                        args.lr = lr
+                                        args.batchsize = batchsize
+                                        args.hdim = hdim
+                                        args.width = width
+                                        args.depth = depth
+                                        args.dropout = dropout
+                                        args.decay = decay
+                                        log_print(f"Test number: {index}/{total_tests} {args}")
+                                        test.execute(args)
+                                    else:
+                                        log_print(f"Test number: {index}/{total_tests} skipped")
+                                    index += 1                                                                  
 else:
     test.execute(args)
