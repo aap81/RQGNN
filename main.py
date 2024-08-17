@@ -73,7 +73,7 @@ if args.alltests == 1:
             index += 1                                  
         log_print(f"End group by {dataset}")
 elif args.alltests == 2:
-    completed_index = -1
+    completed_index = 17
     dataset = 'NCI-H23'
     learning_rates = [5e-3, 1e-3]
     batch_sizes = [256]
@@ -118,7 +118,7 @@ elif args.alltests == 2:
                                         log_print(f"Test number: {index}/{total_tests} skipped")
                                     index += 1     
 elif args.alltests == 3:
-    completed_index = -1
+    completed_index = 17
     dataset = 'SN12C'
     learning_rates = [5e-3, 1e-3]
     batch_sizes = [256]
