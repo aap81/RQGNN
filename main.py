@@ -75,7 +75,8 @@ if args.alltests == 1:
             index += 1                                  
         log_print(f"End group by {dataset}")
 elif args.alltests == 2:
-    completed_index = 7
+    completed_index = 15
+    end_index = 18
     dataset = 'NCI-H23'
     learning_rates = [5e-3, 1e-3]
     batch_sizes = [256]
@@ -104,7 +105,7 @@ elif args.alltests == 2:
                         for decay in decay_values:  # Loop through decay values
                             for dropout in dropouts:
                                 for pooling_type in ['mean']:
-                                    if index > completed_index:
+                                    if index > completed_index or index < end_index:
                                         args.data = dataset
                                         args.intergraph = pooling_type
                                         args.lr = lr
