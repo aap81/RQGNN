@@ -151,7 +151,7 @@ elif args.alltests == 3:
                         for decay in decay_values:  # Loop through decay values
                             for dropout in dropouts:
                                 for pooling_type in ['mean']:
-                                    if index > completed_index or index < end_index:
+                                    if index > completed_index and index < end_index:
                                         args.data = dataset
                                         args.intergraph = pooling_type
                                         args.lr = lr
