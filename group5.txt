@@ -1,6 +1,6 @@
-There will be 24 total tests below
+There will be 12 total tests below
 Group by SN12C
-Test number: 1/24
+Test number: 1/12
 
 [NEW TEST]  - Model info:
 {
@@ -72,7 +72,7 @@ Test auc: 0.8333550834489367, f1: 0.6293793916128717, accuracy: 0.95201599466844
 Under the condition of f1, best idx: 18
 Test auc: 0.8295413645486225, f1: 0.6537585906864907, accuracy: 0.9476841052982339, precision: 0.7034520079639461, recall: 0.6256817022534311
 
-Test number: 2/24
+Test number: 2/12
 
 [NEW TEST]  - Model info:
 {
@@ -150,7 +150,7 @@ Test auc: 0.8547023749934451, f1: 0.6734982204929395, accuracy: 0.95368210596467
 Under the condition of f1, best idx: 18
 Test auc: 0.8584666347267709, f1: 0.7147722726188402, accuracy: 0.949516827724092, precision: 0.7268952938237938, recall: 0.7040732901429668
 
-Test number: 3/24
+Test number: 3/12
 
 [NEW TEST]  - Model info:
 {
@@ -222,7 +222,7 @@ Test auc: 0.8760079539874814, f1: 0.7215761070889053, accuracy: 0.95401532822392
 Under the condition of f1, best idx: 19
 Test auc: 0.8760079539874814, f1: 0.7215761070889053, accuracy: 0.9540153282239253, precision: 0.7551187076595955, recall: 0.6967598882580363
 
-Test number: 4/24
+Test number: 4/12
 
 [NEW TEST]  - Model info:
 {
@@ -294,7 +294,7 @@ Test auc: 0.8692266850678605, f1: 0.7250878310510798, accuracy: 0.95518160613128
 Under the condition of f1, best idx: 19
 Test auc: 0.8708582416849008, f1: 0.725099314075853, accuracy: 0.9548483838720426, precision: 0.7611417805715557, recall: 0.6988109539541114
 
-Test number: 5/24
+Test number: 5/12
 
 [NEW TEST]  - Model info:
 {
@@ -366,7 +366,7 @@ Test auc: 0.8704655478168843, f1: 0.7192140613513334, accuracy: 0.95568143952015
 Under the condition of f1, best idx: 18
 Test auc: 0.8582539007193628, f1: 0.7095798896459147, accuracy: 0.9431856047984005, precision: 0.7001945773092506, recall: 0.7201016356086933
 
-Test number: 6/24
+Test number: 6/12
 
 [NEW TEST]  - Model info:
 {
@@ -446,7 +446,7 @@ Test auc: 0.8676481629792773, f1: 0.7116145803705898, accuracy: 0.95651449516827
 
 End group by SN12C
 Group by UACC257
-Test number: 7/24
+Test number: 7/12
 
 [NEW TEST]  - Model info:
 {
@@ -530,49 +530,6 @@ Test auc: 0.8534056804040699, f1: 0.5010732040964061, accuracy: 0.95832638773128
 Under the condition of f1, best idx: 15
 Test auc: 0.8400785081619208, f1: 0.6448157625120345, accuracy: 0.9539923320553425, precision: 0.6874831644256033, recall: 0.619533146013638
 
-Test number: 8/24
-
-[NEW TEST]  - Model info:
-{
-	"data": "UACC257",
-	"lr": 0.001,
-	"batchsize": 256,
-	"nepoch": 20,
-	"hdim": 128,
-	"width": 4,
-	"depth": 6,
-	"dropout": 0.4,
-	"normalize": 1,
-	"beta": 0.999,
-	"gamma": 1.5,
-	"decay": 0,
-	"seed": 10,
-	"patience": 50,
-	"intergraph": "sort",
-	"alltests": 1,
-	"datagroup": 5
-}
-Loading dataset: UACC257
-Starts training...
-Epoch: 0, loss: 0.1864108955995603, time cost: 133.69905924797058
-Val auc: 0.6825349542612256, f1: 0.5843229338649251, accuracy: 0.9574858286095365, precision: 0.6991757536647429, recall: 0.557585484582245
-Epoch: 1, loss: 0.13002668923952362, time cost: 131.24024891853333
-Val auc: 0.7396865141287018, f1: 0.5047513341796378, accuracy: 0.9581527175725242, precision: 0.6336289441552599, recall: 0.5073477447222317
-Epoch: 2, loss: 0.12588111873377453, time cost: 132.22427582740784
-Val auc: 0.7565565741714441, f1: 0.4976039340814351, accuracy: 0.9591530510170057, precision: 0.8129830414234084, recall: 0.5039781143638975
-
-
-There will be 12 total tests below
-Group by SN12C
-Test number: 1/12 skipped
-Test number: 2/12 skipped
-Test number: 3/12 skipped
-Test number: 4/12 skipped
-Test number: 5/12 skipped
-Test number: 6/12 skipped
-End group by SN12C
-Group by UACC257
-Test number: 7/12 skipped
 Test number: 8/12
 
 [NEW TEST]  - Model info:

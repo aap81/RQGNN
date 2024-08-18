@@ -123,6 +123,7 @@ elif args.alltests == 2:
 elif args.alltests == 3:
     completed_index = 14
     dataset = 'SN12C'
+    end_index = 18
     learning_rates = [5e-3, 1e-3]
     batch_sizes = [256]
     hidden_dims = [64, 128]

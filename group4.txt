@@ -1,6 +1,6 @@
-There will be 30 total tests below
+There will be 18 total tests below
 Group by OVCAR-8
-Test number: 1/30
+Test number: 1/18
 
 [NEW TEST]  - Model info:
 {
@@ -78,7 +78,7 @@ Test auc: 0.7451553425473821, f1: 0.5050338888798405, accuracy: 0.94817374136229
 Under the condition of f1, best idx: 11
 Test auc: 0.7348843129930539, f1: 0.5325392132146297, accuracy: 0.945541296479105, precision: 0.6358960306897361, recall: 0.5241218415646095
 
-Test number: 2/30
+Test number: 2/18
 
 [NEW TEST]  - Model info:
 {
@@ -150,7 +150,7 @@ Test auc: 0.8361349022119053, f1: 0.6522090052756522, accuracy: 0.94998354721948
 Under the condition of f1, best idx: 18
 Test auc: 0.8420851788112454, f1: 0.6707418523253695, accuracy: 0.9501480750246791, precision: 0.7445253293109264, recall: 0.6341751380773233
 
-Test number: 3/30
+Test number: 3/18
 
 [NEW TEST]  - Model info:
 {
@@ -228,7 +228,7 @@ Test auc: 0.8604704745768742, f1: 0.6845843139328873, accuracy: 0.94833826916748
 Under the condition of f1, best idx: 19
 Test auc: 0.8604704745768742, f1: 0.6845843139328873, accuracy: 0.9483382691674893, precision: 0.7297937688376359, recall: 0.6559590037087436
 
-Test number: 4/30
+Test number: 4/18
 
 [NEW TEST]  - Model info:
 {
@@ -306,7 +306,7 @@ Test auc: 0.8485109994930493, f1: 0.6596040491491041, accuracy: 0.94455412964791
 Under the condition of f1, best idx: 19
 Test auc: 0.8527984004375785, f1: 0.6886023481503027, accuracy: 0.9489963803882856, precision: 0.7347718188966059, recall: 0.6593375623682596
 
-Test number: 5/30
+Test number: 5/18
 
 [NEW TEST]  - Model info:
 {
@@ -384,7 +384,7 @@ Test auc: 0.8387794387078986, f1: 0.6069043041118388, accuracy: 0.94899638038828
 Under the condition of f1, best idx: 18
 Test auc: 0.8470763071764633, f1: 0.6588929053354141, accuracy: 0.9514642974662718, precision: 0.7612440826275898, recall: 0.6181945222658022
 
-Test number: 6/30
+Test number: 6/18
 
 [NEW TEST]  - Model info:
 {
@@ -458,7 +458,7 @@ Test auc: 0.835860859859299, f1: 0.6609195765081697, accuracy: 0.946199407699901
 
 End group by OVCAR-8
 Group by P388
-Test number: 7/30
+Test number: 7/18
 
 [NEW TEST]  - Model info:
 {
@@ -530,7 +530,7 @@ Test auc: 0.8316889964070203, f1: 0.6539873206539872, accuracy: 0.95114111218257
 Under the condition of f1, best idx: 18
 Test auc: 0.8233203374491077, f1: 0.6532424071114751, accuracy: 0.9496946319511411, precision: 0.7926237052867677, recall: 0.6091299169200494
 
-Test number: 8/30
+Test number: 8/18
 
 [NEW TEST]  - Model info:
 {
@@ -602,78 +602,6 @@ Test auc: 0.8391065144643944, f1: 0.6685233289121257, accuracy: 0.95339119254259
 Under the condition of f1, best idx: 15
 Test auc: 0.8314165020603532, f1: 0.6830965994148243, accuracy: 0.9524268723882996, precision: 0.8163236029908294, recall: 0.6337675980794697
 
-Test number: 9/30
-
-[NEW TEST]  - Model info:
-{
-	"data": "P388",
-	"lr": 0.001,
-	"batchsize": 256,
-	"nepoch": 20,
-	"hdim": 128,
-	"width": 4,
-	"depth": 6,
-	"dropout": 0.4,
-	"normalize": 1,
-	"beta": 0.999,
-	"gamma": 1.5,
-	"decay": 0,
-	"seed": 10,
-	"patience": 50,
-	"intergraph": "set2set",
-	"alltests": 1,
-	"datagroup": 4
-}
-Loading dataset: P388
-Starts training...
-Epoch: 0, loss: 0.21522701616611398, time cost: 125.51953220367432
-/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/usr/local/lib/python3.10/dist-packages/sklearn/metrics/_classification.py:1471: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-Val auc: 0.7158998530006611, f1: 0.48574026618169797, accuracy: 0.9445426780260409, precision: 0.47227133901302043, recall: 0.5
-Epoch: 1, loss: 0.1559573771399364, time cost: 124.18025183677673
-Val auc: 0.7401446315644086, f1: 0.5052223513456254, accuracy: 0.9445426780260409, precision: 0.7227726760109554, recall: 0.5095492842414735
-Epoch: 2, loss: 0.15070010675934323, time cost: 122.18423533439636
-Val auc: 0.7415255867641399, f1: 0.5301979008292875, accuracy: 0.9418099983925414, precision: 0.6433035386535496, recall: 0.5231087400479474
-Epoch: 3, loss: 0.14365301555708834, time cost: 124.49937915802002
-Val auc: 0.7598775663223528, f1: 0.5236728278974799, accuracy: 0.945024915608423, precision: 0.7532892188508715, recall: 0.5193538441807006
-Epoch: 4, loss: 0.13503062496321244, time cost: 124.48566818237305
-Val auc: 0.7969312654768599, f1: 0.5897749091766541, accuracy: 0.9480790869635107, precision: 0.8141115283691843, recall: 0.5591677272323675
-Epoch: 5, loss: 0.12728213211684897, time cost: 123.90808391571045
-Val auc: 0.8084416096920906, f1: 0.5712149144660356, accuracy: 0.9466323742163639, precision: 0.7838719665025211, recall: 0.5474884324345656
-Epoch: 6, loss: 0.12182388866418287, time cost: 124.84194445610046
-Val auc: 0.8232974220854175, f1: 0.6799940438319819, accuracy: 0.9480790869635107, precision: 0.7601005551825224, recall: 0.6410187350164265
-Epoch: 7, loss: 0.11629722535348776, time cost: 124.52177476882935
-Val auc: 0.853163938793027, f1: 0.7074939767266015, accuracy: 0.950651020736216, precision: 0.7779547002447315, recall: 0.6682996912027308
-Epoch: 8, loss: 0.11509238830522488, time cost: 123.8974380493164
-Val auc: 0.8586408973865689, f1: 0.6691122711685695, accuracy: 0.9525799710657451, precision: 0.8345492769602058, recall: 0.6188460058602421
-Epoch: 9, loss: 0.11088533640692108, time cost: 124.03628277778625
-Val auc: 0.86371040143645, f1: 0.725583395929042, accuracy: 0.9548304131168622, precision: 0.8161372383038512, recall: 0.6786971813616677
-Epoch: 10, loss: 0.10855193122437126, time cost: 124.14897441864014
-Val auc: 0.8696651078817296, f1: 0.6532422373721313, accuracy: 0.9525799710657451, precision: 0.8580042517006803, recall: 0.6038399877664979
-Epoch: 11, loss: 0.10357001054574523, time cost: 124.53164505958557
-Val auc: 0.8756237606179892, f1: 0.6847221686874267, accuracy: 0.95434817553448, precision: 0.8532392334418588, recall: 0.6306954844565464
-Epoch: 12, loss: 0.102695394209341, time cost: 124.84015011787415
-Val auc: 0.8745782401515375, f1: 0.6854448949895854, accuracy: 0.9537051920913037, precision: 0.8381710725880245, recall: 0.6330834837856769
-Epoch: 13, loss: 0.09865942646406199, time cost: 124.1740255355835
-Val auc: 0.8729392961790038, f1: 0.6902810799875095, accuracy: 0.9545089213952741, precision: 0.8487907757978355, recall: 0.6362373102080682
-
-
-There will be 18 total tests below
-Group by OVCAR-8
-Test number: 1/18 skipped
-Test number: 2/18 skipped
-Test number: 3/18 skipped
-Test number: 4/18 skipped
-Test number: 5/18 skipped
-Test number: 6/18 skipped
-End group by OVCAR-8
-Group by P388
-Test number: 7/18 skipped
-Test number: 8/18 skipped
 Test number: 9/18
 
 [NEW TEST]  - Model info:

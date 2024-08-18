@@ -455,50 +455,6 @@ Test number: 7/24 Namespace(data='SN12C', lr=0.005, batchsize=256, nepoch=20, hd
 }
 Loading dataset: SN12C
 Starts training...
-Epoch: 0, loss: 0.1952717934819785, time cost: 143.36360883712769
-Val auc: 0.7004307625328096, f1: 0.5189961022447863, accuracy: 0.9473333333333334, precision: 0.5985446403582424, recall: 0.515792533090612
-Epoch: 1, loss: 0.1466924134303223, time cost: 147.23650097846985
-Val auc: 0.7202307088295256, f1: 0.49395112567476734, accuracy: 0.9505, precision: 0.6007176234979974, recall: 0.5028872990537339
-Epoch: 2, loss: 0.14417230690067465, time cost: 145.7245590686798
-Val auc: 0.726694239934073, f1: 0.5160836050804607, accuracy: 0.9471666666666667, precision: 0.5898788082300507, recall: 0.5140860484489738
-Epoch: 3, loss: 0.14426810199564152, time cost: 144.33415579795837
-Val auc: 0.7226724739571965, f1: 0.5214490162617043, accuracy: 0.947, precision: 0.5988395021930802, recall: 0.517236182617479
-Epoch: 4, loss: 0.14444044198502193, time cost: 143.73498129844666
-Val auc: 0.7281247327543984, f1: 0.4996462640799432, accuracy: 0.949, precision: 0.5710701741810622, recall: 0.5053365395828487
-Epoch: 5, loss: 0.14212284257466143, time cost: 142.352144241333
-Val auc: 0.7415744750324582, f1: 0.4998157215816354, accuracy: 0.9493333333333334, precision: 0.581103318403013, recall: 0.5055117629926963
-
-There will be 24 total tests below
-Test number: 1/24 skipped
-Test number: 2/24 skipped
-Test number: 3/24 skipped
-Test number: 4/24 skipped
-Test number: 5/24 skipped
-Test number: 6/24 skipped
-Test number: 7/24 Namespace(data='SN12C', lr=0.005, batchsize=256, nepoch=20, hdim=128, width=4, depth=6, dropout=0.4, normalize=1, beta=0.999, gamma=1.5, decay=0, seed=10, patience=50, intergraph='mean', alltests=3, datagroup=1)
-
-[NEW TEST]  - Model info:
-{
-	"data": "SN12C",
-	"lr": 0.005,
-	"batchsize": 256,
-	"nepoch": 20,
-	"hdim": 128,
-	"width": 4,
-	"depth": 6,
-	"dropout": 0.4,
-	"normalize": 1,
-	"beta": 0.999,
-	"gamma": 1.5,
-	"decay": 0,
-	"seed": 10,
-	"patience": 50,
-	"intergraph": "mean",
-	"alltests": 3,
-	"datagroup": 1
-}
-Loading dataset: SN12C
-Starts training...
 Epoch: 0, loss: 0.1952717934819785, time cost: 127.25043559074402
 Val auc: 0.7004307625328096, f1: 0.5189961022447863, accuracy: 0.9473333333333334, precision: 0.5985446403582424, recall: 0.515792533090612
 Epoch: 1, loss: 0.1466924134303223, time cost: 130.06782245635986
@@ -1109,3 +1065,4 @@ Epoch: 6, loss: 0.12891468087380584, time cost: 113.29061079025269
 Val auc: 0.7980544221185766, f1: 0.5625308138018056, accuracy: 0.951, precision: 0.7228347256108201, recall: 0.5420030846496519
 Epoch: 7, loss: 0.12700328291817145, time cost: 114.3223979473114
 Val auc: 0.8072940183033709, f1: 0.5774107180942613, accuracy: 0.9526666666666667, precision: 0.7704249169551161, recall: 0.5509735663824619
+

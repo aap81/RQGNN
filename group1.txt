@@ -1,6 +1,6 @@
-There will be 24 total tests below
+There will be 18 total tests below
 Group by MOLT-4
-Test number: 1/24
+Test number: 1/18
 
 [NEW TEST]  - Model info:
 {
@@ -72,7 +72,7 @@ Test auc: 0.7320172479222654, f1: 0.5110913844503903, accuracy: 0.92087175188600
 Under the condition of f1, best idx: 17
 Test auc: 0.7268554694293021, f1: 0.5425692806072981, accuracy: 0.922883487007544, precision: 0.7629441624365483, recall: 0.5330296629328115
 
-Test number: 2/24
+Test number: 2/18
 
 [NEW TEST]  - Model info:
 {
@@ -144,7 +144,7 @@ Test auc: 0.8190877212508222, f1: 0.6997604196862199, accuracy: 0.93109807208717
 Under the condition of f1, best idx: 18
 Test auc: 0.8190877212508222, f1: 0.6997604196862199, accuracy: 0.9310980720871752, precision: 0.7808046829475023, recall: 0.6597799800129382
 
-Test number: 3/24
+Test number: 3/18
 
 [NEW TEST]  - Model info:
 {
@@ -216,7 +216,7 @@ Test auc: 0.8190883009219864, f1: 0.6550334063601355, accuracy: 0.93160100586756
 Under the condition of f1, best idx: 13
 Test auc: 0.8047839488281754, f1: 0.6705959917427735, accuracy: 0.9314333612740989, precision: 0.803310838091942, recall: 0.6259923004211504
 
-Test number: 4/24
+Test number: 4/18
 
 [NEW TEST]  - Model info:
 {
@@ -288,7 +288,7 @@ Test auc: 0.817533429636036, f1: 0.6841125327309887, accuracy: 0.932271584241408
 Under the condition of f1, best idx: 18
 Test auc: 0.8156560679591016, f1: 0.6978394957369499, accuracy: 0.9324392288348701, precision: 0.7936653446082467, recall: 0.65468467048013
 
-Test number: 5/24
+Test number: 5/18
 
 [NEW TEST]  - Model info:
 {
@@ -360,7 +360,7 @@ Test auc: 0.8199338479267481, f1: 0.6305928891494148, accuracy: 0.92975691533948
 Under the condition of f1, best idx: 15
 Test auc: 0.8129710311267958, f1: 0.6811880274316607, accuracy: 0.9312657166806371, precision: 0.7931646972969144, recall: 0.6375480450783213
 
-Test number: 6/24
+Test number: 6/18
 
 [NEW TEST]  - Model info:
 {
@@ -434,7 +434,7 @@ Test auc: 0.7982893131051284, f1: 0.6879036526031419, accuracy: 0.92271584241408
 
 End group by MOLT-4
 Group by Mutagenicity
-Test number: 7/24
+Test number: 7/18
 
 [NEW TEST]  - Model info:
 {
@@ -506,7 +506,7 @@ Test auc: 0.8259988005825742, f1: 0.7010078613182826, accuracy: 0.72085889570552
 Under the condition of f1, best idx: 17
 Test auc: 0.8308440662154573, f1: 0.7629113302353696, accuracy: 0.7638036809815951, precision: 0.7630422301907747, recall: 0.7660469676633255
 
-Test number: 8/24
+Test number: 8/18
 
 [NEW TEST]  - Model info:
 {
@@ -578,7 +578,7 @@ Test auc: 0.8457987072945522, f1: 0.7683128007812959, accuracy: 0.76840490797546
 Under the condition of f1, best idx: 19
 Test auc: 0.8462270706609171, f1: 0.7636599511599513, accuracy: 0.7668711656441718, precision: 0.764300396768488, recall: 0.7631531351438825
 
-Test number: 9/24
+Test number: 9/18
 
 [NEW TEST]  - Model info:
 {
@@ -650,7 +650,7 @@ Test auc: 0.84008719574302, f1: 0.7387517861970416, accuracy: 0.745398773006135,
 Under the condition of f1, best idx: 16
 Test auc: 0.84008719574302, f1: 0.7387517861970416, accuracy: 0.745398773006135, precision: 0.745013052258287, recall: 0.7367659517758041
 
-Test number: 10/24
+Test number: 10/18
 
 [NEW TEST]  - Model info:
 {
@@ -722,7 +722,7 @@ Test auc: 0.8396778707484938, f1: 0.7579446434694191, accuracy: 0.75920245398773
 Under the condition of f1, best idx: 18
 Test auc: 0.8396778707484938, f1: 0.7579446434694191, accuracy: 0.75920245398773, precision: 0.7575754720536689, recall: 0.7602259854737223
 
-Test number: 11/24
+Test number: 11/18
 
 [NEW TEST]  - Model info:
 {
@@ -794,7 +794,7 @@ Test auc: 0.8506249345555968, f1: 0.7458762621248557, accuracy: 0.75613496932515
 Under the condition of f1, best idx: 19
 Test auc: 0.8506249345555968, f1: 0.7458762621248557, accuracy: 0.7561349693251533, precision: 0.7631465073150628, recall: 0.7431295275628028
 
-Test number: 12/24
+Test number: 12/18
 
 [NEW TEST]  - Model info:
 {
@@ -868,7 +868,7 @@ Test auc: 0.8443517910348307, f1: 0.76043901340508, accuracy: 0.7622699386503068
 
 End group by Mutagenicity
 Group by SW-620
-Test number: 13/24
+Test number: 13/18
 
 [NEW TEST]  - Model info:
 {
@@ -940,7 +940,7 @@ Test auc: 0.8101093186518911, f1: 0.5567444894658985, accuracy: 0.94129255056734
 Under the condition of f1, best idx: 15
 Test auc: 0.7899588847488116, f1: 0.5922401985961308, accuracy: 0.9381680644630818, precision: 0.6943453556820733, recall: 0.5660529648675202
 
-Test number: 14/24
+Test number: 14/18
 
 [NEW TEST]  - Model info:
 {
@@ -1012,7 +1012,7 @@ Test auc: 0.834220814789125, f1: 0.6518817996580477, accuracy: 0.944581483308666
 Under the condition of f1, best idx: 13
 Test auc: 0.8396529354994837, f1: 0.6596115084133867, accuracy: 0.9445814833086663, precision: 0.7673728675165754, recall: 0.6186265805848297
 
-Test number: 15/24
+Test number: 15/18
 
 [NEW TEST]  - Model info:
 {
@@ -1084,7 +1084,7 @@ Test auc: 0.8454502245592138, f1: 0.637417913741314, accuracy: 0.945568163131064
 Under the condition of f1, best idx: 15
 Test auc: 0.8338928395123747, f1: 0.6888773670754998, accuracy: 0.9422792303897385, precision: 0.7413064713064713, recall: 0.6575100059025889
 
-Test number: 16/24
+Test number: 16/18
 
 [NEW TEST]  - Model info:
 {
@@ -1156,7 +1156,7 @@ Test auc: 0.8465290651786862, f1: 0.6244370332364175, accuracy: 0.9444170366716,
 Under the condition of f1, best idx: 15
 Test auc: 0.8214546548820979, f1: 0.6594876559041951, accuracy: 0.936523598092419, precision: 0.7023818920945653, recall: 0.6337494288206704
 
-Test number: 17/24
+Test number: 17/18
 
 [NEW TEST]  - Model info:
 {
@@ -1228,73 +1228,6 @@ Test auc: 0.8432398933862988, f1: 0.6457099414539874, accuracy: 0.94606150304226
 Under the condition of f1, best idx: 17
 Test auc: 0.8459702030355343, f1: 0.6985492788508993, accuracy: 0.9442525900345338, precision: 0.7549451238258409, recall: 0.6650280783546945
 
-Test number: 18/24
-
-[NEW TEST]  - Model info:
-{
-	"data": "SW-620",
-	"lr": 0.001,
-	"batchsize": 256,
-	"nepoch": 20,
-	"hdim": 128,
-	"width": 4,
-	"depth": 6,
-	"dropout": 0.4,
-	"normalize": 1,
-	"beta": 0.999,
-	"gamma": 1.5,
-	"decay": 0,
-	"seed": 10,
-	"patience": 50,
-	"intergraph": "max",
-	"alltests": 1,
-	"datagroup": 1
-}
-Loading dataset: SW-620
-Starts training...
-Epoch: 0, loss: 0.31638978247169974, time cost: 143.7224690914154
-Val auc: 0.6959133765268641, f1: 0.5642520585008761, accuracy: 0.9340352031584143, precision: 0.6382453461624855, recall: 0.5471086107049808
-Epoch: 1, loss: 0.17544414324534907, time cost: 142.62290120124817
-Val auc: 0.7131481572988637, f1: 0.5703188580639981, accuracy: 0.9346932061194275, precision: 0.6482337640543716, recall: 0.5513511785206652
-Epoch: 2, loss: 0.167114061882367, time cost: 144.66212368011475
-Val auc: 0.7208259575874021, f1: 0.5465709943757212, accuracy: 0.9379832209244942, precision: 0.6650654969926063, recall: 0.5336360659200329
-Epoch: 3, loss: 0.16263324774063384, time cost: 140.51393818855286
-Val auc: 0.7409516916497352, f1: 0.5809993776041662, accuracy: 0.9340352031584143, precision: 0.6512780261947801, recall: 0.5600845945979989
-Epoch: 4, loss: 0.15804594607503564, time cost: 140.69410872459412
-Val auc: 0.7679314193696535, f1: 0.5644358724009811, accuracy: 0.9396282283270275, precision: 0.703110067773131, recall: 0.5448912846538947
-Epoch: 5, loss: 0.15214096768213822, time cost: 160.21698355674744
-Val auc: 0.7923157080861429, f1: 0.6068191090281302, accuracy: 0.9401217305477875, precision: 0.7184575776995442, recall: 0.5762959754829721
-Epoch: 6, loss: 0.1481846122591345, time cost: 169.29645013809204
-Val auc: 0.8008589776755913, f1: 0.5969108979672735, accuracy: 0.9399572298075342, precision: 0.715109124415541, recall: 0.5684229419852165
-Epoch: 7, loss: 0.1439911467400757, time cost: 175.10797262191772
-Val auc: 0.8209861650868764, f1: 0.6006543772385751, accuracy: 0.944892252015134, precision: 0.8119427504106937, recall: 0.5671534416756532
-Epoch: 8, loss: 0.14197018970777323, time cost: 146.94710516929626
-Val auc: 0.8210096608949337, f1: 0.5561848143512724, accuracy: 0.9424247409113341, precision: 0.7809907443986681, recall: 0.5385922280711443
-
-
-There will be 18 total tests below
-Group by MOLT-4
-Test number: 1/18 skipped
-Test number: 2/18 skipped
-Test number: 3/18 skipped
-Test number: 4/18 skipped
-Test number: 5/18 skipped
-Test number: 6/18 skipped
-End group by MOLT-4
-Group by Mutagenicity
-Test number: 7/18 skipped
-Test number: 8/18 skipped
-Test number: 9/18 skipped
-Test number: 10/18 skipped
-Test number: 11/18 skipped
-Test number: 12/18 skipped
-End group by Mutagenicity
-Group by SW-620
-Test number: 13/18 skipped
-Test number: 14/18 skipped
-Test number: 15/18 skipped
-Test number: 16/18 skipped
-Test number: 17/18 skipped
 Test number: 18/18
 
 [NEW TEST]  - Model info:
