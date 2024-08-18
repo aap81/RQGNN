@@ -39,11 +39,13 @@ if args.alltests == 1:
         datasets = group4
         completed_index = 999
     elif args.datagroup == 5:
-        completed_index = 7
+        completed_index = 15
         datasets = group5
+        end_index = 18
     elif args.datagroup == 6:
-        completed_index = 3
+        completed_index = 14
         datasets = group6
+        end_index = 18
     intergraph_options = ['none', 'sort', 'set2set', "sage", 'mean', 'max']
     total_tests = (
         len(datasets) *
@@ -56,7 +58,7 @@ if args.alltests == 1:
     for dataset in datasets:
         log_print(f"Group by {dataset}")
         for pooling_type in intergraph_options:
-            if index > completed_index:
+            if index > completed_index or index < end_index:
                 args.data = dataset
                 args.intergraph = pooling_type
                 args.lr = 1e-3
@@ -147,7 +149,7 @@ elif args.alltests == 3:
                         for decay in decay_values:  # Loop through decay values
                             for dropout in dropouts:
                                 for pooling_type in ['mean']:
-                                    if index > completed_index:
+                                    if index > completed_index or index < end_index:
                                         args.data = dataset
                                         args.intergraph = pooling_type
                                         args.lr = lr
@@ -192,7 +194,7 @@ elif args.alltests == 4:
                         for decay in decay_values:  # Loop through decay values
                             for dropout in dropouts:
                                 for pooling_type in ['mean']:
-                                    if index > completed_index:
+                                    if index > completed_index or index < end_index:
                                         args.data = dataset
                                         args.intergraph = pooling_type
                                         args.lr = lr
