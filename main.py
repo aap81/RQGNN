@@ -121,7 +121,7 @@ elif args.alltests == 2:
                                         log_print(f"Test number: {index}/{total_tests} skipped")
                                     index += 1     
 elif args.alltests == 3:
-    completed_index = 6
+    completed_index = 14
     dataset = 'SN12C'
     learning_rates = [5e-3, 1e-3]
     batch_sizes = [256]
