@@ -28,7 +28,7 @@ def gen_nodeattr(data):
     if not os.path.exists(nodeattr_path):
         nodelabel_path = os.path.join(data, data + NODELABEL)
         nodelabels = np.loadtxt(nodelabel_path, dtype=np.int64).reshape(-1, 1)
-        enc = OneHotEncoder(sparse=False)
+        enc = OneHotEncoder(sparse_output=False)
         nodeattrs = enc.fit_transform(nodelabels)
         np.savetxt(nodeattr_path, nodeattrs, fmt='%f', delimiter=',')
 
