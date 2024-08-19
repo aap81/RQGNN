@@ -9,7 +9,7 @@ from copy import deepcopy
 
 import utils
 import pdb
-import model
+import models
 from name import *
 import lossfunc
 
@@ -67,9 +67,9 @@ def execute(args):
 
     gad = None
     if intergraph == 'none':
-        gad = model.RQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
+        gad = models.RQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize)
     else: 
-        gad = model.EnhancedRQGNN(featuredim, hdim, nclass, width, depth, dropout, normalize, embedding_dim=128, inter_graph_pooling=intergraph)
+        gad = models.RQPool(featuredim, hdim, nclass, width, depth, dropout, normalize, embedding_dim=128, inter_graph_pooling=intergraph)
     optimizer = optim.Adam(gad.parameters(), lr=lr, weight_decay=decay)
 
     bestauc = 0

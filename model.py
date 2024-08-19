@@ -190,9 +190,9 @@ class Graph2VecGraphSAGE(torch.nn.Module):
 
         return graph_embedding
 
-class EnhancedRQGNN(nn.Module):
+class RQPool(nn.Module):
     def __init__(self, feature_dim, hidden_dim, n_class, gnn_width, gnn_depth, dropout, normalize, embedding_dim=128, inter_graph_pooling="mean"):
-        super(EnhancedRQGNN, self).__init__()
+        super(RQPool, self).__init__()
         self.intra_analyzer = RQGNN(feature_dim, hidden_dim, n_class, gnn_width, gnn_depth, dropout, normalize)
         if inter_graph_pooling == "set2set":
             self.inter_analyzer = Graph2VecSet2Set(in_channels=feature_dim, hidden_channels=gnn_width, out_channels=embedding_dim)
