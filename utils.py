@@ -46,7 +46,7 @@ def load_data(data):
     adj = csr_matrix((np.ones(edges.shape[0]), (edges[:, 0], edges[:, 1])), shape=(graphindicator.size, graphindicator.size))
 
     nodeattr_path = os.path.join(path, data + NODEATTR)
-    nodeattrs = np.loadtxt(nodeattr_path, dtype=np.float, delimiter=",")
+    nodeattrs = np.loadtxt(nodeattr_path, dtype=np.float64, delimiter=",")
 
     adjs = []
     features = []
@@ -132,5 +132,10 @@ def compute_metrics(preds, truths):
 
     macro_f1 = DICT['macro avg']['f1-score']
 
-    return auc, macro_f1
+    # Extract other metrics
+    accuracy = DICT['accuracy']
+    macro_precision = DICT['macro avg']['precision']
+    macro_recall = DICT['macro avg']['recall']
+
+    return auc, macro_f1, accuracy, macro_precision, macro_recall
 
